@@ -82,5 +82,19 @@
         "director": "Rocky Soraya",
         "subtitle": ["-", "-"],
         "country": "Indonesia"
+    },
+    {
+        "id": "the-most-beautiful-girl-in-the-world-2025",
+        "type": "movie",
+        "title": "The Most Beautiful Girl in the World (2025)",
+        "posterUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/iIfL2XV0tVZzRezrYok5YTQt51K.jpg",
+        "quality": "HD",
+        "rating": "6.4",
+        "description": "Demi warisan, seorang pria mata keranjang membuat acara perjodohan untuk memenuhi permintaan terakhir ayahnya yang ingin putranya itu menikahi gadis tercantik di dunia.",
+        "streamUrl": "https://vidlink.pro/movie/1393069",
+        "cast": ["Reza Rahadian", "Sheila Dara Aisha", "Kevin Julio"],
+        "director": "Robert Ronny",
+        "subtitle": ["Indonesia", "English"],
+        "country": "Indonesia"
     }
 ]
