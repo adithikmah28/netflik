@@ -24,23 +24,63 @@
         "streamUrl": "https://vidlink.pro/movie/572468",
         "cast": ["Tara Basro", "Marissa Anita", "Asmara Abigail"],
         "director": "Joko Anwar",
-        "subtitle": ["Indonesia", "English"],
+        "subtitle": ["English", "Arabic", "Persian", "Spanish", "French", "Italian"],
         "country": "Indonesia"
     },
     {
-        "title": "Ipar Adalah Maut",
-        "posterUrl": "https://image.tmdb.org/t/p/w500/y4sBebI7hsx444f2w3F30uDu1C.jpg"
+        "id": "pengabdi-setan-2017",
+        "type": "movie",
+        "title": "Pengabdi Setan (2017)",
+        "posterUrl": "https://image.tmdb.org/t/p/original/xTWgncjZOrMmSjaEwA3DLOxaqf0.jpg",
+        "quality": "HD",
+        "rating": "6.7",
+        "description": "Setelah Rini ditinggal mati ibunya, ada sesuatu peristiwa yang terus menganggu keluarga mereka.",
+        "streamUrl": "https://vidlink.pro/movie/467012",
+        "cast": ["Tara Basro", "Bront Palarae", "Endy Arfian"],
+        "director": "Joko Anwar",
+        "subtitle": ["Arabic", "English"],
+        "country": "Indonesia"
     },
     {
-        "title": "Vina: Sebelum 7 Hari",
-        "posterUrl": "https://image.tmdb.org/t/p/w500/4hIdu7iH24VXloweETk63Dpt7Z4.jpg"
+        "id": "pengabdi-setan-2-communion-2022",
+        "type": "movie",
+        "title": "pengabdi setan 2: communion (2022)",
+        "posterUrl": "https://image.tmdb.org/t/p/original/zzpxuEXS1azwhqfvtacLtScixbS.jpg",
+        "quality": "HD",
+        "rating": "6.9",
+        "description": "Beberapa tahun setelah berhasil menyelamatkan diri dari kejadian mengerikan yang membuat mereka kehilangan ibu dan si bungsu Ian, Rini dan adik-adiknya, Toni dan Bondi, serta Bapak tinggal di rumah susun karena percaya tinggal di rumah susun aman jika terjadi sesuatu karena ada banyak orang. Namun, mereka segera menyadari bahwa tinggal bersama banyak orang mungkin juga sangat berbahaya, jika mereka tidak sangat mengenali siapa saja yang menjadi tetangga mereka. Pada sebuah malam penuh teror, Rini dan Keluarganya harus kembali menyelamatkan diri. Tapi kali ini, mungkin sudah terlambat untuk lari.",
+        "streamUrl": "https://vidlink.pro/movie/925786",
+        "cast": ["Tara Basro", "Bront Palarae", "Endy Arfian"],
+        "director": "Joko Anwar",
+        "subtitle": ["-", "-"],
+        "country": "Indonesia"
     },
     {
-        "title": "Badarawuhi",
-        "posterUrl": "https://image.tmdb.org/t/p/w500/vJv5H4Yjj6rhaS2gWb1m5Y22v4K.jpg"
+        "id": "mencuri-raden-saleh-2022",
+        "type": "movie",
+        "title": "Mencuri Raden Saleh (2022)",
+        "posterUrl": "https://image.tmdb.org/t/p/original/1fdqRcgEYNkXCnnKAzz2JtFnUv7.jpg",
+        "quality": "HD",
+        "rating": "7.5",
+        "description": "Mengisahkan tentang pencurian lukisan karya Raden Saleh.",
+        "streamUrl": "https://vidsrc.pm/embed/movie?tmdb=832544",
+        "cast": ["Iqbaal Ramadhan", "Angga Yunanda", "Aghniny Haque"],
+        "director": "Angga Dwimas Sasongko",
+        "subtitle": ["-", "-"],
+        "country": "Indonesia"
     },
     {
-        "title": "Gadis Kretek",
-        "posterUrl": "https://image.tmdb.org/t/p/w500/m1i3tD8Gj2gb4v3a3yXunrRUe5.jpg"
+        "id": "mata-batin-2018",
+        "type": "movie",
+        "title": "mata batin (2018)",
+        "posterUrl": "https://image.tmdb.org/t/p/original/9vDSQoEVFCwt9O21E0O0BEqu57k.jpg",
+        "quality": "HD",
+        "rating": "7.5",
+        "description": "Seorang wanita tersiksa dengan kemampuan mata ketiga.",
+        "streamUrl": "https://vidsrc.pm/embed/movie?tmdb=480007",
+        "cast": ["Jessica Mila", "Bianca Hello", "Denny Sumargo"],
+        "director": "Rocky Soraya",
+        "subtitle": ["-", "-"],
+        "country": "Indonesia"
     }
 ]
