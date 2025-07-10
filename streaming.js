@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     adLink.href = ADSTERRA_DIRECT_LINK;
     adLink.addEventListener('click', () => {
-        // Setelah diklik, tunggu sebentar lalu buka video
         setTimeout(unlockVideo, 500);
     });
 
@@ -47,14 +46,29 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (contentData) {
             document.title = `${contentData.title} - Netflik`;
 
-            const metadataHTML = `<div class="metadata-grid"> ... </div>`; // (Isi metadata sama seperti sebelumnya)
+            // --- KUNCI PERBAIKAN DI SINI ---
+            // Kita buat lagi HTML untuk metadata yang sempat hilang
+            const metadataHTML = `
+                <div class="metadata-grid">
+                    <div class="metadata-item"><strong>Pemeran:</strong> <span>${(contentData.cast || []).join(', ') || 'N/A'}</span></div>
+                    <div class="metadata-item"><strong>Sutradara:</strong> <span>${contentData.director || 'N/A'}</span></div>
+                    <div class="metadata-item"><strong>Kualitas:</strong> <span>${contentData.quality || 'N/A'}</span></div>
+                    <div class="metadata-item"><strong>Subtitle:</strong> <span>${(contentData.subtitle || []).join(', ') || 'N/A'}</span></div>
+                    <div class="metadata-item"><strong>Negara:</strong> <span>${contentData.country || 'N/A'}</span></div>
+                </div>
+            `;
+            // --------------------------------
 
             if (contentData.type === 'series' && contentData.seasons) {
                 // --- KONTEN SERIES ---
                 streamContainer.innerHTML = `
                     <div class="video-player-wrapper"><div class="video-container"><iframe id="video-iframe" data-src="" title="${contentData.title}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></div>
                     <div class="stream-controls"><select id="season-select"></select><div id="episodes-list-container"></div></div>
-                    <div class="stream-details"><h1 class="stream-title">${contentData.title}</h1><p class="stream-description">${contentData.description}</p>${metadataHTML.replace('...','...')}</div>
+                    <div class="stream-details">
+                        <h1 class="stream-title">${contentData.title}</h1>
+                        <p class="stream-description">${contentData.description}</p>
+                        ${metadataHTML}
+                    </div>
                 `;
                 
                 const videoIframe = document.getElementById('video-iframe');
@@ -89,7 +103,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 // --- KONTEN MOVIE ---
                 streamContainer.innerHTML = `
                     <div class="video-player-wrapper"><div class="video-container"><iframe id="video-iframe" data-src="${contentData.streamUrl}?autoplay=1&modestbranding=1&rel=0" title="${contentData.title}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></div>
-                    <div class="stream-details"><h1 class="stream-title">${contentData.title}</h1><p class="stream-description">${contentData.description}</p>${metadataHTML.replace('...','...')}</div>
+                    <div class="stream-details">
+                        <h1 class="stream-title">${contentData.title}</h1>
+                        <p class="stream-description">${contentData.description}</p>
+                        ${metadataHTML}
+                    </div>
                 `;
                 adModal.classList.add('show');
             }
