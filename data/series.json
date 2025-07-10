@@ -7,40 +7,22 @@
         "quality": "HD",
         "rating": "8.5",
         "description": "Sekelompok main hakim sendiri berangkat untuk menjatuhkan pahlawan super korup yang menyalahgunakan kekuatan super mereka.",
+        "cast": ["Karl Urban", "Jack Quaid", "Antony Starr"],
+        "director": "Eric Kripke",
+        "subtitle": ["Indonesia", "English", "Spanish"],
+        "country": "USA",
         "seasons": [
             {
                 "season_name": "Season 1",
                 "episodes": [
                     { "episode": 1, "streamUrl": "https://www.youtube.com/embed/Ffa4h_K2p_8" },
-                    { "episode": 2, "streamUrl": "https://www.youtube.com/embed/VLs_g_F_v3E" },
-                    { "episode": 3, "streamUrl": "https://www.youtube.com/embed/tcrNs_p42bA" },
-                    { "episode": 4, "streamUrl": "https://www.youtube.com/embed/hPCq4TwjK0I" },
-                    { "episode": 5, "streamUrl": "https://www.youtube.com/embed/GCR-aJ0uP-c" }
+                    { "episode": 2, "streamUrl": "https://www.youtube.com/embed/VLs_g_F_v3E" }
                 ]
             },
             {
                 "season_name": "Season 2",
                 "episodes": [
-                    { "episode": 1, "streamUrl": "https://www.youtube.com/embed/M1kH4_jYn0A" },
-                    { "episode": 2, "streamUrl": "https://www.youtube.com/embed/LhM-D9P369k" }
-                ]
-            }
-        ]
-    },
-    {
-        "id": "house-of-the-dragon-s2",
-        "type": "series",
-        "title": "House of the Dragon",
-        "posterUrl": "https://image.tmdb.org/t/p/w500/zof2n_fKjp1mD3pZ5tllwxTPHPs.jpg",
-        "quality": "HD",
-        "rating": "8.4",
-        "description": "Kisah Wangsa Targaryen berlatar 200 tahun sebelum peristiwa Game of Thrones.",
-        "seasons": [
-            {
-                "season_name": "Season 1",
-                "episodes": [
-                    { "episode": 1, "streamUrl": "https://www.youtube.com/embed/DotnJ7tTA34" },
-                    { "episode": 2, "streamUrl": "https://www.youtube.com/embed/Td22-0Xl9wA" }
+                    { "episode": 1, "streamUrl": "https://www.youtube.com/embed/M1kH4_jYn0A" }
                 ]
             }
         ]
