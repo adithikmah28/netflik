@@ -63,7 +63,7 @@
         "quality": "HD",
         "rating": "7.5",
         "description": "Mengisahkan tentang pencurian lukisan karya Raden Saleh.",
-        "streamUrl": "https://vidsrc.pm/embed/movie?tmdb=832544",
+        "streamUrl": "https://vidsrc.icu/embed/movie/832544",
         "cast": ["Iqbaal Ramadhan", "Angga Yunanda", "Aghniny Haque"],
         "director": "Angga Dwimas Sasongko",
         "subtitle": ["-", "-"],
@@ -95,6 +95,20 @@
         "cast": ["Reza Rahadian", "Sheila Dara Aisha", "Kevin Julio"],
         "director": "Robert Ronny",
         "subtitle": ["Indonesia", "English"],
+        "country": "Indonesia"
+    },
+    {
+        "id": "sebelum-7-hari-2025",
+        "type": "movie",
+        "title": "Sebelum 7 Hari (2025)",
+        "posterUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/mTyXwqsKKcRMl4t5FXk5rotibyX.jpg",
+        "quality": "HD",
+        "rating": "6.9",
+        "description": "Kutukan pada ibu mereka yang baru saja meninggal membuat Tari dan saudara laki-lakinya Kadar hanya punya waktu tujuh hari untuk membebaskan jiwanya dan melindungi keluarga mereka dari kegelapan.",
+        "streamUrl": "https://vidlink.pro/movie/1305926",
+        "cast": ["Agla Artalidia", "Anantya Rezky Kirana", "Sulthan Hamonangan"],
+        "director": "Awi Suryadi",
+        "subtitle": ["English", "Arabic"],
         "country": "Indonesia"
     }
 ]
