@@ -17,83 +17,46 @@
     <!-- ===== HEADER ===== -->
     <header class="header">
         <a href="#" class="logo">NETFLIK</a>
-        
         <nav class="navbar">
             <a href="#" class="active">Beranda</a>
             <a href="#">Series</a>
             <a href="#">Movies</a>
             <a href="#">Terbaru</a>
-            <a href="#">Daftar Saya</a>
         </nav>
-        
         <div class="header-right">
             <i class="fas fa-search"></i>
             <i class="fas fa-bell"></i>
-            <img src="https://picsum.photos/40/40?grayscale" alt="Profil" class="profile-pic">
+            <img src="https://i.pravatar.cc/40" alt="Profil" class="profile-pic">
         </div>
-
         <div class="hamburger">
             <i class="fas fa-bars"></i>
         </div>
     </header>
 
-    <!-- ===== HERO SECTION ===== -->
     <main>
-        <section class="hero">
-            <div class="hero-content">
-                <h1 class="hero-title">Kingdom of the Planet of the Apes</h1>
-                <p class="hero-description">
-                    Beberapa generasi setelah masa pemerintahan Caesar, kera adalah spesies dominan yang hidup secara harmonis dan manusia terpaksa hidup dalam bayang-bayang.
-                </p>
-                <div class="hero-buttons">
-                    <button class="btn btn-play"><i class="fas fa-play"></i> Putar</button>
-                    <button class="btn btn-info"><i class="fas fa-info-circle"></i> Info Lainnya</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== KATEGORI FILM ===== -->
+        <!-- ===== KATEGORI FILM (Akan diisi oleh JavaScript) ===== -->
         <section class="movie-rows">
             <!-- Kategori: Movies -->
             <div class="movie-row">
                 <h2>Movies</h2>
-                <div class="movie-list">
-                    <!-- Gunakan gambar poster film asli di sini -->
-                    <div class="movie-card"><img src="https://picsum.photos/200/300?random=1" alt="Movie 1"></div>
-                    <div class="movie-card"><img src="https://picsum.photos/200/300?random=2" alt="Movie 2"></div>
-                    <div class="movie-card"><img src="https://picsum.photos/200/300?random=3" alt="Movie 3"></div>
-                    <div class="movie-card"><img src="https://picsum.photos/200/300?random=4" alt="Movie 4"></div>
-                    <div class="movie-card"><img src="https://picsum.photos/200/300?random=5" alt="Movie 5"></div>
-                    <div class="movie-card"><img src="https://picsum.photos/200/300?random=6" alt="Movie 6"></div>
-                    <div class="movie-card"><img src="https://picsum.photos/200/300?random=7" alt="Movie 7"></div>
+                <div class="movie-list" id="movies-list">
+                    <!-- Poster film akan dimuat di sini -->
                 </div>
             </div>
 
             <!-- Kategori: Series -->
             <div class="movie-row">
                 <h2>Series Populer</h2>
-                <div class="movie-list">
-                    <div class="movie-card"><img src="https://picsum.photos/200/300?random=8" alt="Series 1"></div>
-                    <div class="movie-card"><img src="https://picsum.photos/200/300?random=9" alt="Series 2"></div>
-                    <div class="movie-card"><img src="https://picsum.photos/200/300?random=10" alt="Series 3"></div>
-                    <div class="movie-card"><img src="https://picsum.photos/200/300?random=11" alt="Series 4"></div>
-                    <div class="movie-card"><img src="https://picsum.photos/200/300?random=12" alt="Series 5"></div>
-                    <div class="movie-card"><img src="https://picsum.photos/200/300?random=13" alt="Series 6"></div>
-                    <div class="movie-card"><img src="https://picsum.photos/200/300?random=14" alt="Series 7"></div>
+                <div class="movie-list" id="series-list">
+                    <!-- Poster series akan dimuat di sini -->
                 </div>
             </div>
 
             <!-- Kategori: Indonesia -->
             <div class="movie-row">
                 <h2>Film Indonesia</h2>
-                <div class="movie-list">
-                    <div class="movie-card"><img src="https://picsum.photos/200/300?random=15" alt="Indonesia 1"></div>
-                    <div class="movie-card"><img src="https://picsum.photos/200/300?random=16" alt="Indonesia 2"></div>
-                    <div class="movie-card"><img src="https://picsum.photos/200/300?random=17" alt="Indonesia 3"></div>
-                    <div class="movie-card"><img src="https://picsum.photos/200/300?random=18" alt="Indonesia 4"></div>
-                    <div class="movie-card"><img src="https://picsum.photos/200/300?random=19" alt="Indonesia 5"></div>
-                    <div class="movie-card"><img src="https://picsum.photos/200/300?random=20" alt="Indonesia 6"></div>
-                    <div class="movie-card"><img src="https://picsum.photos/200/300?random=21" alt="Indonesia 7"></div>
+                <div class="movie-list" id="indonesia-list">
+                    <!-- Poster film Indonesia akan dimuat di sini -->
                 </div>
             </div>
         </section>
@@ -109,6 +72,9 @@
             <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
     </footer>
+
+    <!-- ===== SCRIPT UTAMA ===== -->
+    <script src="script.js"></script>
 
 </body>
 </html>
