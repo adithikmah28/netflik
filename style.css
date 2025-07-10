@@ -1,135 +1,47 @@
+/* ... (CSS sebelumnya tetap sama dari :root sampai .movie-list) ... */
+
 /* ===== CSS UTAMA & RESET ===== */
 :root {
     --primary-color: #E50914;
     --dark-color: #141414;
     --light-color: #ffffff;
     --gray-color: #808080;
+    --quality-hd: #28a745; /* Hijau */
+    --quality-sd: #17a2b8; /* Biru Muda */
+    --quality-cam: #dc3545; /* Merah */
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Poppins', sans-serif; background-color: var(--dark-color); color: var(--light-color); overflow-x: hidden; }
+a { text-decoration: none; color: var(--light-color); }
+/* Header, Main, Movie Rows (sama seperti sebelumnya) */
+.header { position: fixed; top: 0; left: 0; width: 100%; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 100; background: linear-gradient(to bottom, rgba(0,0,0,0.7) 10%, rgba(0,0,0,0)); transition: background-color 0.3s ease; }
+.header.scrolled { background-color: var(--dark-color); }
+.logo { font-size: 2em; font-weight: 700; color: var(--primary-color); letter-spacing: 2px; }
+.navbar a { margin-left: 20px; font-weight: 500; transition: color 0.3s; }
+.navbar a:hover, .navbar a.active { color: var(--primary-color); }
+.header-right { display: flex; align-items: center; gap: 20px; }
+.header-right i { font-size: 1.2rem; cursor: pointer; }
+.profile-pic { width: 40px; height: 40px; border-radius: 5px; cursor: pointer; }
+.hamburger { display: none; font-size: 1.8rem; cursor: pointer; }
+main { padding-top: 100px; }
+.movie-rows { padding: 20px 0; }
+.movie-row { margin-bottom: 40px; }
+.movie-row h2 { font-size: 1.5rem; font-weight: 700; margin-left: 5%; margin-bottom: 20px; }
+.movie-list { display: flex; gap: 15px; padding: 0 5%; overflow-x: auto; overflow-y: hidden; -ms-overflow-style: none; scrollbar-width: none; }
+.movie-list::-webkit-scrollbar { display: none; }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--dark-color);
-    color: var(--light-color);
-    overflow-x: hidden;
-}
-
-a {
-    text-decoration: none;
-    color: var(--light-color);
-}
-
-/* ===== HEADER ===== */
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 100;
-    background-color: transparent;
-    transition: background-color 0.3s ease;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.7) 10%, rgba(0,0,0,0));
-}
-
-.header.scrolled {
-    background-color: var(--dark-color);
-}
-
-.logo {
-    font-size: 2em;
-    font-weight: 700;
-    color: var(--primary-color);
-    letter-spacing: 2px;
-}
-
-.navbar a {
-    margin-left: 20px;
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-.navbar a:hover, .navbar a.active {
-    color: var(--primary-color);
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.header-right i {
-    font-size: 1.2rem;
-    cursor: pointer;
-}
-
-.profile-pic {
-    width: 40px;
-    height: 40px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.hamburger {
-    display: none;
-    font-size: 1.8rem;
-    cursor: pointer;
-}
-
-/* ===== KONTEN UTAMA ===== */
-main {
-    padding-top: 100px; /* Jarak dari header */
-}
-
-/* ===== MOVIE ROWS ===== */
-.movie-rows {
-    padding: 20px 0;
-}
-
-.movie-row {
-    margin-bottom: 40px;
-}
-
-.movie-row h2 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-left: 5%;
-    margin-bottom: 20px;
-}
-
-.movie-list {
-    display: flex;
-    gap: 15px;
-    padding: 0 5%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.movie-list::-webkit-scrollbar {
-    display: none;
-}
-
+/* ===== MOVIE CARD (UPDATE) ===== */
 .movie-card {
+    position: relative; /* Diperlukan untuk positioning absolut info di dalamnya */
     flex-shrink: 0;
     width: 200px;
     height: 300px;
-    transition: transform 0.3s ease, border 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     border-radius: 5px;
     overflow: hidden;
-    border: 2px solid transparent;
-    background-color: #222; /* Placeholder color saat gambar loading */
+    background-color: #222;
 }
 
 .movie-card img {
@@ -141,43 +53,125 @@ main {
 .movie-card:hover {
     transform: scale(1.08) translateY(-10px);
     z-index: 10;
-    border: 2px solid var(--light-color);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
 }
 
-/* ===== FOOTER ===== */
-.footer {
-    padding: 40px 5%;
-    text-align: center;
-    border-top: 1px solid #333;
-    margin-top: 50px;
-    color: var(--gray-color);
+.movie-card-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 8px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
 }
 
-.social-links {
-    margin-top: 20px;
+.quality-badge {
+    padding: 3px 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
+    border-radius: 3px;
+    text-shadow: 1px 1px 2px black;
 }
 
-.social-links a {
-    color: var(--gray-color);
-    margin: 0 15px;
-    font-size: 1.5rem;
-    transition: color 0.3s;
+.quality-hd { background-color: var(--quality-hd); }
+.quality-sd { background-color: var(--quality-sd); }
+.quality-cam { background-color: var(--quality-cam); }
+
+.rating-badge {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0,0,0,0.7);
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-weight: 700;
 }
 
-.social-links a:hover {
+.rating-badge i {
+    color: #f5c518; /* Warna kuning IMDb */
+    margin-right: 5px;
+}
+
+/* ===== MODAL & VIDEO PLAYER ===== */
+.modal {
+    display: none; /* Sembunyi secara default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+    animation: fadeIn 0.3s;
+}
+
+.modal-content {
+    background-color: var(--dark-color);
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 800px;
+    position: relative;
+    animation: slideIn 0.3s;
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
     color: var(--light-color);
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 992px) {
-    .navbar { display: none; }
-    .hamburger { display: block; }
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 20px;
 }
 
-@media (max-width: 768px) {
-    .header { padding: 15px 5%; }
-    .logo { font-size: 1.5em; }
-    main { padding-top: 80px; }
-    .movie-card { width: 150px; height: 225px; }
-    .movie-row h2 { font-size: 1.2rem; }
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
 }
+
+#modal-title {
+    font-size: 2rem;
+    color: var(--light-color);
+    margin-bottom: 10px;
+}
+
+#modal-description {
+    font-size: 1rem;
+    color: #ccc;
+    line-height: 1.6;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideIn { from { transform: translateY(-50px); } to { transform: translateY(0); } }
+
+/* ... (Footer dan Media Queries lainnya tetap sama) ... */
+.footer { padding: 40px 5%; text-align: center; border-top: 1px solid #333; margin-top: 50px; color: var(--gray-color); }
+.social-links { margin-top: 20px; }
+.social-links a { color: var(--gray-color); margin: 0 15px; font-size: 1.5rem; transition: color 0.3s; }
+.social-links a:hover { color: var(--light-color); }
+@media (max-width: 992px) { .navbar { display: none; } .hamburger { display: block; } }
+@media (max-width: 768px) { .header { padding: 15px 5%; } .logo { font-size: 1.5em; } main { padding-top: 80px; } .movie-card { width: 150px; height: 225px; } .movie-row h2 { font-size: 1.2rem; } #modal-title { font-size: 1.5rem; } }
