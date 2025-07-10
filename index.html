@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Netflik - Tonton Film & Series Favoritmu</title>
+    <!-- Favicon Baru -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 style=%22fill: %23E50914;%22>N</text></svg>">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +13,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-
     <header class="header">
         <a href="index.html" class="logo">NETFLIK</a>
         <nav class="navbar">
@@ -19,59 +20,20 @@
             <a href="index.html" class="active">Beranda</a>
             <a href="category.html?name=series">Series</a>
             <a href="category.html?name=movies">Movies</a>
-            <a href="#">Terbaru</a>
+            <!-- Ganti "Terbaru" menjadi "Request Movie" -->
+            <a href="request.html">Request Movie</a>
         </nav>
         <div class="header-right">
-            <div class="search-box">
-                <input type="text" id="search-input" placeholder="Judul, genre...">
-                <i class="fas fa-search search-icon"></i>
-            </div>
+            <div class="search-box"><input type="text" id="search-input" placeholder="Judul, genre..."><i class="fas fa-search search-icon"></i></div>
             <i class="fas fa-bell"></i>
             <img src="https://i.pravatar.cc/40" alt="Profil" class="profile-pic">
         </div>
-        <div class="hamburger">
-            <i class="fas fa-bars"></i>
-        </div>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
     </header>
 
-    <main>
-        <section class="movie-rows">
-            <div class="movie-row">
-                <div class="row-header">
-                    <h2>Movies</h2>
-                    <!-- PESAN RAHASIA UNTUK KATEGORI MOVIES -->
-                    <a href="category.html?name=movies" class="view-all-link">Lihat Semua <i class="fas fa-chevron-right"></i></a>
-                </div>
-                <div class="movie-list" id="movies-list"></div>
-            </div>
-            <div class="movie-row">
-                <div class="row-header">
-                    <h2>Series Populer</h2>
-                    <!-- PESAN RAHASIA UNTUK KATEGORI SERIES -->
-                    <a href="category.html?name=series" class="view-all-link">Lihat Semua <i class="fas fa-chevron-right"></i></a>
-                </div>
-                <div class="movie-list" id="series-list"></div>
-            </div>
-            <div class="movie-row">
-                <div class="row-header">
-                    <h2>Film Indonesia</h2>
-                    <!-- PESAN RAHASIA UNTUK KATEGORI INDONESIA -->
-                    <a href="category.html?name=indonesia" class="view-all-link">Lihat Semua <i class="fas fa-chevron-right"></i></a>
-                </div>
-                <div class="movie-list" id="indonesia-list"></div>
-            </div>
-        </section>
-    </main>
-    
-    <footer class="footer">
-        <p>© 2024 Netflik. Dibuat dengan ❤️ untukmu.</p>
-        <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-        </div>
-    </footer>
+    <!-- ... (Sisa main dan footer tetap sama persis) ... -->
+    <main><section class="movie-rows"><div class="movie-row"><div class="row-header"><h2>Movies</h2><a href="category.html?name=movies" class="view-all-link">Lihat Semua <i class="fas fa-chevron-right"></i></a></div><div class="movie-list" id="movies-list"></div></div><div class="movie-row"><div class="row-header"><h2>Series Populer</h2><a href="category.html?name=series" class="view-all-link">Lihat Semua <i class="fas fa-chevron-right"></i></a></div><div class="movie-list" id="series-list"></div></div><div class="movie-row"><div class="row-header"><h2>Film Indonesia</h2><a href="category.html?name=indonesia" class="view-all-link">Lihat Semua <i class="fas fa-chevron-right"></i></a></div><div class="movie-list" id="indonesia-list"></div></div></section></main>
+    <footer class="footer"><p>© 2024 Netflik. Dibuat dengan ❤️ untukmu.</p><div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div></footer>
 
     <script src="script.js"></script>
 </body>
