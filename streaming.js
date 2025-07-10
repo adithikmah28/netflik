@@ -12,8 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         let dataSources = [];
         if (type === 'movie') {
-            dataSources.push(fetch('data/movies.json'));
-            dataSources.push(fetch('data/indonesia.json'));
+            dataSources.push(fetch('data/movies.json'), fetch('data/indonesia.json'));
         } else if (type === 'series') {
             dataSources.push(fetch('data/series.json'));
         }
@@ -21,8 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const responses = await Promise.all(dataSources);
         let allData = [];
         for (const response of responses) {
-            if (!response.ok) { continue; }
-            allData.push(...await response.json());
+            if (response.ok) allData.push(...await response.json());
         }
 
         const contentData = allData.find(item => item.id === id);
@@ -32,53 +30,65 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Jika tipenya adalah Series
             if (contentData.type === 'series' && contentData.seasons) {
-                let seasonsHTML = '';
-                contentData.seasons.forEach(season => {
-                    let episodesHTML = '';
-                    season.episodes.forEach(episode => {
-                        episodesHTML += `<div class="episode-box" data-stream-url="${episode.streamUrl}">${episode.episode}</div>`;
-                    });
-                    seasonsHTML += `
-                        <div class="season-block">
-                            <h3 class="season-title">${season.season_name}</h3>
-                            <div class="episodes-list">${episodesHTML}</div>
-                        </div>
-                    `;
-                });
-
+                // Tata letak HTML baru
                 streamContainer.innerHTML = `
                     <div class="video-player-wrapper">
                         <div class="video-container">
                             <iframe id="video-iframe" src="" title="${contentData.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         </div>
                     </div>
+                    <div class="stream-controls">
+                        <select id="season-select"></select>
+                        <div id="episodes-list-container"></div>
+                    </div>
                     <h1 class="stream-title">${contentData.title}</h1>
                     <p class="stream-description">${contentData.description}</p>
-                    <div id="seasons-list-container">${seasonsHTML}</div>
                 `;
 
-                // Logika untuk mengelola klik episode
                 const videoIframe = document.getElementById('video-iframe');
-                const episodeBoxes = document.querySelectorAll('.episode-box');
+                const seasonSelect = document.getElementById('season-select');
+                const episodesContainer = document.getElementById('episodes-list-container');
 
-                // Set video pertama sebagai default
-                if (episodeBoxes.length > 0) {
-                    const firstEpisode = episodeBoxes[0];
-                    videoIframe.src = `${firstEpisode.dataset.streamUrl}?autoplay=1&modestbranding=1&rel=0`;
-                    firstEpisode.classList.add('active');
-                }
+                // Fungsi untuk mengganti video dan menandai episode aktif
+                const playEpisode = (episodeBox) => {
+                    document.querySelectorAll('.episode-box').forEach(b => b.classList.remove('active'));
+                    episodeBox.classList.add('active');
+                    videoIframe.src = `${episodeBox.dataset.streamUrl}?autoplay=1&modestbranding=1&rel=0`;
+                };
 
-                episodeBoxes.forEach(box => {
-                    box.addEventListener('click', () => {
-                        // Hapus kelas aktif dari semua kotak
-                        episodeBoxes.forEach(b => b.classList.remove('active'));
-                        // Tambahkan kelas aktif ke kotak yang diklik
-                        box.classList.add('active');
-                        // Ubah sumber video di iframe
-                        videoIframe.src = `${box.dataset.streamUrl}?autoplay=1&modestbranding=1&rel=0`;
+                // Fungsi untuk merender daftar episode untuk season tertentu
+                const renderEpisodes = (seasonIndex) => {
+                    episodesContainer.innerHTML = '';
+                    const episodes = contentData.seasons[seasonIndex].episodes;
+                    episodes.forEach(ep => {
+                        const epBox = document.createElement('div');
+                        epBox.className = 'episode-box';
+                        epBox.textContent = ep.episode;
+                        epBox.dataset.streamUrl = ep.streamUrl;
+                        epBox.addEventListener('click', () => playEpisode(epBox));
+                        episodesContainer.appendChild(epBox);
                     });
+                    // Otomatis putar episode pertama dari season yang dipilih
+                    const firstEpisodeBox = episodesContainer.querySelector('.episode-box');
+                    if (firstEpisodeBox) {
+                        playEpisode(firstEpisodeBox);
+                    }
+                };
+
+                // Isi dropdown season
+                contentData.seasons.forEach((season, index) => {
+                    const option = new Option(season.season_name, index);
+                    seasonSelect.add(option);
                 });
 
+                // Tambahkan event listener untuk dropdown
+                seasonSelect.addEventListener('change', (e) => {
+                    renderEpisodes(e.target.value);
+                });
+
+                // Render episode untuk season pertama saat halaman dimuat
+                renderEpisodes(0);
+                
             } else { // Jika tipenya adalah Movie
                 streamContainer.innerHTML = `
                     <div class="video-player-wrapper">
