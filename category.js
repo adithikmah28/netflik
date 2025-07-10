@@ -18,14 +18,21 @@ document.addEventListener('DOMContentLoaded', async () => {
         anchor.className = 'movie-card-link';
         anchor.href = `streaming.html?type=${item.type}&id=${item.id}`;
         
-        let qualityClass = item.quality.toLowerCase() === 'hd' ? 'quality-hd' : item.quality.toLowerCase() === 'sd' ? 'quality-sd' : 'quality-cam';
+        // --- PERBAIKAN DI SINI ---
+        // Jika item.quality tidak ada, gunakan string kosong '' sebagai nilai aman.
+        const qualityLower = (item.quality || '').toLowerCase();
+        let qualityClass = '';
+        if (qualityLower === 'hd') qualityClass = 'quality-hd';
+        else if (qualityLower === 'sd') qualityClass = 'quality-sd';
+        else if (qualityLower === 'cam') qualityClass = 'quality-cam';
+        // -------------------------
 
         anchor.innerHTML = `
             <div class="poster-wrapper">
                 <img src="${item.posterUrl}" alt="${item.title}" loading="lazy">
                 <div class="movie-card-info">
-                    <span class="quality-badge ${qualityClass}">${item.quality}</span>
-                    <span class="rating-badge"><i class="fas fa-star"></i> ${item.rating}</span>
+                    ${ qualityClass ? `<span class="quality-badge ${qualityClass}">${item.quality}</span>` : '' }
+                    <span class="rating-badge"><i class="fas fa-star"></i> ${item.rating || 'N/A'}</span>
                 </div>
             </div>
             <h3 class="movie-title">${item.title}</h3>
@@ -42,16 +49,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
 
     try {
-        const fetchUrl = `data/${categoryName}.json`;
-        console.log('Mencoba memuat data dari:', fetchUrl); // Pesan debugging
-        const response = await fetch(fetchUrl);
+        const response = await fetch(`data/${categoryName}.json`);
         
         if (!response.ok) {
-            throw new Error(`Gagal memuat file. Status: ${response.status} - ${response.statusText}. Pastikan nama file dan path sudah benar.`);
+            throw new Error(`Data untuk kategori "${categoryName}" tidak ditemukan.`);
         }
         
         const allData = await response.json();
-        console.log('Data berhasil dimuat:', allData); // Pesan debugging
 
         let formattedTitle;
         if (categoryName === 'movies') formattedTitle = 'Movies';
@@ -79,17 +83,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
     } catch (error) {
-        console.error('Terjadi kesalahan fatal:', error);
+        console.error('Error:', error);
         titleEl.textContent = 'Gagal Memuat Konten';
-        gridEl.innerHTML = `<p style="color: #ff9999; text-align: center;">${error.message}<br>Coba jalankan project menggunakan Live Server.</p>`;
+        gridEl.innerHTML = `<p style="color: #ff9999;">${error.message}</p>`;
     }
 });
 
-// Logika menu mobile (tetap sama)
+// Logika menu mobile
 const navbar = document.querySelector('.navbar');
 const hamburger = document.querySelector('.hamburger');
 const navCloseBtn = document.querySelector('.nav-close-btn');
-
 if (hamburger && navbar && navCloseBtn) {
     hamburger.addEventListener('click', () => navbar.classList.add('nav-active'));
     navCloseBtn.addEventListener('click', () => navbar.classList.remove('nav-active'));
