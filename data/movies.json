@@ -7,7 +7,11 @@
         "quality": "HD",
         "rating": "7.7",
         "description": "Setelah kapten mereka, Conrad Howard, dijebak sebagai anggota kartel Rumania, detektif Mike Lowrey dan Marcus Burnett memulai misi berbahaya untuk membersihkan namanya.",
-        "streamUrl": "https://www.youtube.com/embed/hRFY_Fz_3lI"
+        "streamUrl": "https://www.youtube.com/embed/hRFY_Fz_3lI",
+        "cast": ["Will Smith", "Martin Lawrence", "Vanessa Hudgens"],
+        "director": "Adil & Bilall",
+        "subtitle": ["Indonesia", "English"],
+        "country": "USA"
     },
     {
         "id": "dune-part-two",
@@ -17,17 +21,11 @@
         "quality": "HD",
         "rating": "8.3",
         "description": "Paul Atreides bersatu dengan Chani dan Fremen saat dia membalas dendam terhadap para konspirator yang menghancurkan keluarganya.",
-        "streamUrl": "https://www.youtube.com/embed/U2Qp5pL3ovA"
-    },
-    {
-        "id": "inside-out-2",
-        "type": "movie",
-        "title": "Inside Out 2",
-        "posterUrl": "https://image.tmdb.org/t/p/w500/gMBd0iODxdkX1eG2sI2iC6F2Am.jpg",
-        "quality": "CAM",
-        "rating": "7.9",
-        "description": "Kini Riley sudah remaja, markas besar tiba-tiba dihancurkan untuk memberi ruang bagi sesuatu yang sama sekali tidak terduga: emosi-emosi baru!",
-        "streamUrl": "https://www.youtube.com/embed/LEjhY15eCx0"
+        "streamUrl": "https://www.youtube.com/embed/U2Qp5pL3ovA",
+        "cast": ["Timothée Chalamet", "Zendaya", "Rebecca Ferguson"],
+        "director": "Denis Villeneuve",
+        "subtitle": ["Indonesia", "English"],
+        "country": "USA"
     },
     {
         "title": "Godzilla x Kong",
