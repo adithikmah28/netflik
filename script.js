@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const data = await response.json();
             
-            // Terapkan limit jika ada
             const itemsToShow = limit ? data.slice(0, limit) : data;
             
             container.innerHTML = ''; 
@@ -20,14 +19,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 anchor.href = `streaming.html?type=${item.type}&id=${item.id}`;
                 anchor.dataset.title = item.title;
 
-                let qualityClass = item.quality.toLowerCase() === 'hd' ? 'quality-hd' : item.quality.toLowerCase() === 'sd' ? 'quality-sd' : 'quality-cam';
+                // --- PERBAIKAN DI SINI JUGA ---
+                const qualityLower = (item.quality || '').toLowerCase();
+                let qualityClass = '';
+                if (qualityLower === 'hd') qualityClass = 'quality-hd';
+                else if (qualityLower === 'sd') qualityClass = 'quality-sd';
+                else if (qualityLower === 'cam') qualityClass = 'quality-cam';
+                // -----------------------------
 
                 anchor.innerHTML = `
                     <div class="poster-wrapper">
                         <img src="${item.posterUrl}" alt="${item.title}" loading="lazy">
                         <div class="movie-card-info">
-                            <span class="quality-badge ${qualityClass}">${item.quality}</span>
-                            <span class="rating-badge"><i class="fas fa-star"></i> ${item.rating}</span>
+                            ${ qualityClass ? `<span class="quality-badge ${qualityClass}">${item.quality}</span>` : '' }
+                            <span class="rating-badge"><i class="fas fa-star"></i> ${item.rating || 'N/A'}</span>
                         </div>
                     </div>
                     <h3 class="movie-title">${item.title}</h3>
@@ -39,12 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     
-    // Panggil dengan limit 10
     loadCategory('movies', 'movies-list', 10);
     loadCategory('series', 'series-list', 10);
     loadCategory('indonesia', 'indonesia-list', 10);
 
-    // ... (sisa script untuk pencarian dan menu hamburger tetap sama) ...
     const header = document.querySelector('.header');
     const navbar = document.querySelector('.navbar');
     const hamburger = document.querySelector('.hamburger');
