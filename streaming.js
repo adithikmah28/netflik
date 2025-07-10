@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const streamContainer = document.getElementById('stream-container');
     const adModal = document.getElementById('ad-modal');
     const adLink = document.getElementById('ad-link');
-    const adCloseBtn = document.querySelector('.ad-modal-close-btn');
+    
+    // const adCloseBtn = ... <-- BARIS INI DIHAPUS
 
     const params = new URLSearchParams(window.location.search);
     const type = params.get('type');
@@ -27,10 +28,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     adLink.href = ADSTERRA_DIRECT_LINK;
     adLink.addEventListener('click', () => {
-        setTimeout(unlockVideo, 500);
+        // Setelah diklik, tunggu sebentar lalu buka video
+        setTimeout(unlockVideo, 500); 
     });
 
-    adCloseBtn.addEventListener('click', unlockVideo);
+    // adCloseBtn.addEventListener(...) <-- BARIS INI DIHAPUS
 
     try {
         let dataSources = [];
@@ -46,8 +48,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (contentData) {
             document.title = `${contentData.title} - Netflik`;
 
-            // --- KUNCI PERBAIKAN DI SINI ---
-            // Kita buat lagi HTML untuk metadata yang sempat hilang
             const metadataHTML = `
                 <div class="metadata-grid">
                     <div class="metadata-item"><strong>Pemeran:</strong> <span>${(contentData.cast || []).join(', ') || 'N/A'}</span></div>
@@ -57,7 +57,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <div class="metadata-item"><strong>Negara:</strong> <span>${contentData.country || 'N/A'}</span></div>
                 </div>
             `;
-            // --------------------------------
 
             if (contentData.type === 'series' && contentData.seasons) {
                 // --- KONTEN SERIES ---
@@ -77,9 +76,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const playEpisode = (episodeBox) => {
                     document.querySelectorAll('.episode-box').forEach(b => b.classList.remove('active'));
                     episodeBox.classList.add('active');
-                    videoIframe.src = ''; // Kosongkan dulu
+                    videoIframe.src = '';
                     videoIframe.dataset.src = `${episodeBox.dataset.streamUrl}?autoplay=1&modestbranding=1&rel=0`;
-                    adModal.classList.add('show'); // Tampilkan modal
+                    adModal.classList.add('show');
                 };
 
                 const renderEpisodes = (seasonIndex) => {
