@@ -28,9 +28,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (contentData) {
             document.title = `${contentData.title} - Netflik`;
 
+            // Membuat HTML untuk metadata
+            const metadataHTML = `
+                <div class="metadata-grid">
+                    <div class="metadata-item"><strong>Pemeran:</strong> <span>${contentData.cast.join(', ')}</span></div>
+                    <div class="metadata-item"><strong>Sutradara:</strong> <span>${contentData.director}</span></div>
+                    <div class="metadata-item"><strong>Kualitas:</strong> <span>${contentData.quality}</span></div>
+                    <div class="metadata-item"><strong>Subtitle:</strong> <span>${contentData.subtitle.join(', ')}</span></div>
+                    <div class="metadata-item"><strong>Negara:</strong> <span>${contentData.country}</span></div>
+                </div>
+            `;
+
             // Jika tipenya adalah Series
             if (contentData.type === 'series' && contentData.seasons) {
-                // Tata letak HTML baru
                 streamContainer.innerHTML = `
                     <div class="video-player-wrapper">
                         <div class="video-container">
@@ -38,25 +48,29 @@ document.addEventListener('DOMContentLoaded', async () => {
                         </div>
                     </div>
                     <div class="stream-controls">
-                        <select id="season-select"></select>
+                        <div class="season-selector">
+                            <label for="season-select">Season:</label>
+                            <select id="season-select"></select>
+                        </div>
                         <div id="episodes-list-container"></div>
                     </div>
-                    <h1 class="stream-title">${contentData.title}</h1>
-                    <p class="stream-description">${contentData.description}</p>
+                    <div class="stream-details">
+                        <h1 class="stream-title">${contentData.title}</h1>
+                        <p class="stream-description">${contentData.description}</p>
+                        ${metadataHTML}
+                    </div>
                 `;
 
                 const videoIframe = document.getElementById('video-iframe');
                 const seasonSelect = document.getElementById('season-select');
                 const episodesContainer = document.getElementById('episodes-list-container');
 
-                // Fungsi untuk mengganti video dan menandai episode aktif
                 const playEpisode = (episodeBox) => {
                     document.querySelectorAll('.episode-box').forEach(b => b.classList.remove('active'));
                     episodeBox.classList.add('active');
                     videoIframe.src = `${episodeBox.dataset.streamUrl}?autoplay=1&modestbranding=1&rel=0`;
                 };
 
-                // Fungsi untuk merender daftar episode untuk season tertentu
                 const renderEpisodes = (seasonIndex) => {
                     episodesContainer.innerHTML = '';
                     const episodes = contentData.seasons[seasonIndex].episodes;
@@ -68,25 +82,16 @@ document.addEventListener('DOMContentLoaded', async () => {
                         epBox.addEventListener('click', () => playEpisode(epBox));
                         episodesContainer.appendChild(epBox);
                     });
-                    // Otomatis putar episode pertama dari season yang dipilih
                     const firstEpisodeBox = episodesContainer.querySelector('.episode-box');
                     if (firstEpisodeBox) {
                         playEpisode(firstEpisodeBox);
                     }
                 };
 
-                // Isi dropdown season
                 contentData.seasons.forEach((season, index) => {
-                    const option = new Option(season.season_name, index);
-                    seasonSelect.add(option);
+                    seasonSelect.add(new Option(season.season_name, index));
                 });
-
-                // Tambahkan event listener untuk dropdown
-                seasonSelect.addEventListener('change', (e) => {
-                    renderEpisodes(e.target.value);
-                });
-
-                // Render episode untuk season pertama saat halaman dimuat
+                seasonSelect.addEventListener('change', (e) => renderEpisodes(e.target.value));
                 renderEpisodes(0);
                 
             } else { // Jika tipenya adalah Movie
@@ -96,8 +101,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                             <iframe src="${contentData.streamUrl}?autoplay=1&modestbranding=1&rel=0" title="${contentData.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         </div>
                     </div>
-                    <h1 class="stream-title">${contentData.title}</h1>
-                    <p class="stream-description">${contentData.description}</p>
+                    <div class="stream-details">
+                        <h1 class="stream-title">${contentData.title}</h1>
+                        <p class="stream-description">${contentData.description}</p>
+                        ${metadataHTML}
+                    </div>
                 `;
             }
 
