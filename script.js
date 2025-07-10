@@ -1,32 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
     
+    // FUNGSI MEMUAT KATEGORI (TETAP SAMA, TIDAK DIUBAH)
     const loadCategory = async (categoryName, elementId, limit) => {
         const container = document.getElementById(elementId);
         if (!container) return;
-
         try {
             const response = await fetch(`data/${categoryName}.json`);
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const data = await response.json();
-            
             const itemsToShow = limit ? data.slice(0, limit) : data;
-            
             container.innerHTML = ''; 
-
             itemsToShow.forEach(item => {
                 const anchor = document.createElement('a');
                 anchor.className = 'movie-card-link';
                 anchor.href = `streaming.html?type=${item.type}&id=${item.id}`;
                 anchor.dataset.title = item.title;
-
-                // --- PERBAIKAN DI SINI JUGA ---
                 const qualityLower = (item.quality || '').toLowerCase();
                 let qualityClass = '';
                 if (qualityLower === 'hd') qualityClass = 'quality-hd';
                 else if (qualityLower === 'sd') qualityClass = 'quality-sd';
                 else if (qualityLower === 'cam') qualityClass = 'quality-cam';
-                // -----------------------------
-
                 anchor.innerHTML = `
                     <div class="poster-wrapper">
                         <img src="${item.posterUrl}" alt="${item.title}" loading="lazy">
@@ -44,17 +37,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     
+    // MEMANGGIL FUNGSI (TETAP SAMA, TIDAK DIUBAH)
     loadCategory('movies', 'movies-list', 10);
     loadCategory('series', 'series-list', 10);
     loadCategory('indonesia', 'indonesia-list', 10);
 
+    // INTERAKTIVITAS UI (TETAP SAMA, TIDAK DIUBAH)
     const header = document.querySelector('.header');
     const navbar = document.querySelector('.navbar');
     const hamburger = document.querySelector('.hamburger');
     const navCloseBtn = document.querySelector('.nav-close-btn');
     const searchIcon = document.querySelector('.search-icon');
     const searchInput = document.getElementById('search-input');
-    
     window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50));
     hamburger.addEventListener('click', () => navbar.classList.add('nav-active'));
     navCloseBtn.addEventListener('click', () => navbar.classList.remove('nav-active'));
@@ -78,4 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
             row.style.display = hasVisibleMovies ? 'block' : 'none';
         });
     });
+
+    // BLOK KODE UNTUK NOTIFIKASI SUDAH DIHAPUS
 });
