@@ -11,7 +11,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 25px 20px; /* Jarak vertikal 25px, horizontal 20px */
-    justify-content: flex-start;
+    justify-content: flex-start; /* Default rata kiri, ini bagus untuk desktop */
 }
 
 .pagination {
@@ -47,12 +47,33 @@
     border-color: var(--primary-color);
 }
 
+/* --- KUNCI PERBAIKAN DI SINI (MODE SELULER) --- */
 @media (max-width: 768px) {
     .category-grid {
-        justify-content: center;
-        gap: 20px 15px;
+        gap: 20px 15px; /* Sedikit rapatkan jarak di HP */
+        /* Hapus 'justify-content: center;' agar poster selalu rata kiri */
     }
+
     #category-title {
         font-size: 1.8rem;
+    }
+
+    /* 
+      Atur lebar kartu secara eksplisit agar pas 2 kolom.
+      Ini mencegah poster meregang atau berada di tengah.
+    */
+    .category-grid .movie-card-link {
+        width: calc(50% - 7.5px); /* 50% untuk 2 kolom, dikurangi setengah dari gap (15px / 2) */
+    }
+}
+
+@media (max-width: 400px) {
+    /* 
+      Untuk HP yang sangat kecil, kita bisa buat 2 kolom juga
+      tapi dengan poster yang lebih kecil
+    */
+    .category-grid .movie-card-link {
+        width: calc(50% - 5px); /* Disesuaikan dengan gap yang mungkin lebih kecil */
+        /* Anda bisa juga mengubah ukuran poster di sini jika perlu */
     }
 }
