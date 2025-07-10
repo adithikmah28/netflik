@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
-    // Fungsi untuk membuat kartu film
+    // Fungsi untuk membuat kartu film, tidak berubah
     const createMovieCard = (item) => {
         const anchor = document.createElement('a');
         anchor.className = 'movie-card-link';
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         return anchor;
     };
 
-    // Fungsi untuk membuat tombol paginasi
+    // Fungsi untuk membuat tombol paginasi, tidak berubah
     const createPageLink = (page, isActive) => {
         const link = document.createElement('a');
         link.className = `page-link ${isActive ? 'active' : ''}`;
@@ -44,12 +44,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
 
     try {
+        // --- PERBAIKAN LOGIKA PENGAMBILAN DATA ---
+        // Langsung gunakan nama kategori dari URL untuk fetch file JSON
         const response = await fetch(`data/${categoryName}.json`);
-        if (!response.ok) throw new Error('Data tidak ditemukan');
+        
+        if (!response.ok) {
+            // Jika file tidak ditemukan, coba tangani kasus khusus (jika ada) atau tampilkan error
+            throw new Error(`Data untuk kategori "${categoryName}" tidak ditemukan.`);
+        }
+        
         const allData = await response.json();
 
+        // --- Sisa logika tetap sama ---
         // Set judul halaman
-        const formattedTitle = categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
+        let formattedTitle;
+        if (categoryName === 'movies') {
+            formattedTitle = 'Movies';
+        } else if (categoryName === 'series') {
+            formattedTitle = 'Series';
+        } else if (categoryName === 'indonesia') {
+            formattedTitle = 'Film Indonesia';
+        } else {
+            formattedTitle = categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
+        }
+        
         titleEl.textContent = formattedTitle;
         document.title = `${formattedTitle} - Netflik`;
 
@@ -62,7 +80,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Render poster film
         gridEl.innerHTML = '';
-        itemsToShow.forEach(item => gridEl.appendChild(createMovieCard(item)));
+        if (itemsToShow.length === 0 && currentPage > 1) {
+             gridEl.innerHTML = '<p>Tidak ada item di halaman ini.</p>';
+        } else {
+            itemsToShow.forEach(item => gridEl.appendChild(createMovieCard(item)));
+        }
 
         // Render kontrol paginasi
         paginationEl.innerHTML = '';
@@ -74,6 +96,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     } catch (error) {
         console.error('Error:', error);
-        titleEl.textContent = 'Gagal memuat konten.';
+        titleEl.textContent = error.message;
+        gridEl.innerHTML = ''; // Kosongkan grid jika ada error
     }
 });
+
+// Logika untuk menu mobile di halaman kategori (jika diperlukan)
+const navbar = document.querySelector('.navbar');
+const hamburger = document.querySelector('.hamburger');
+const navCloseBtn = document.querySelector('.nav-close-btn');
+
+if (hamburger && navbar && navCloseBtn) {
+    hamburger.addEventListener('click', () => navbar.classList.add('nav-active'));
+    navCloseBtn.addEventListener('click', () => navbar.classList.remove('nav-active'));
+}
