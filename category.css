@@ -47,32 +47,29 @@
     border-color: var(--primary-color);
 }
 
-/* --- TAMPILAN SELULER YANG RAPI --- */
+/* === TAMPILAN SELULER YANG RAPI (GANTI BAGIAN INI) === */
 @media (max-width: 768px) {
     #category-title {
         font-size: 1.8rem;
     }
 
     .category-grid {
-        gap: 20px 15px; /* Jarak antar kartu di HP */
+        gap: 20px 15px;
     }
 
-    /* 
-      Atur lebar kartu untuk membuat grid 2 kolom yang rapi.
-      Tingginya akan mengikuti secara otomatis berkat perbaikan di style.css.
-    */
+    /* Di halaman kategori, kartu akan mengisi ruang dalam 2 kolom */
     .category-grid .movie-card-link {
-        width: calc(50% - 7.5px); /* 50% untuk 2 kolom, dikurangi setengah dari gap */
+        width: calc(50% - 7.5px);
     }
 }
 
 @media (max-width: 480px) {
-    /* Untuk HP yang lebih kecil, kita buat 3 kolom */
     .category-grid {
         gap: 20px 10px;
     }
     
+    /* Di HP yang sangat kecil, kita buat 3 kolom agar tidak terlalu besar */
     .category-grid .movie-card-link {
-        width: calc(33.33% - 7px); /* 33.33% untuk 3 kolom */
+        width: calc(33.33% - 7px);
     }
 }
