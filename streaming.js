@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (contentData) {
             document.title = `${contentData.title} - Netflik`;
 
-            // Membuat HTML untuk metadata
             const metadataHTML = `
                 <div class="metadata-grid">
                     <div class="metadata-item"><strong>Pemeran:</strong> <span>${contentData.cast.join(', ')}</span></div>
@@ -39,8 +38,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 </div>
             `;
 
-            // Jika tipenya adalah Series
             if (contentData.type === 'series' && contentData.seasons) {
+                // Perubahan di sini: Label 'Season:' dihapus
                 streamContainer.innerHTML = `
                     <div class="video-player-wrapper">
                         <div class="video-container">
@@ -48,10 +47,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         </div>
                     </div>
                     <div class="stream-controls">
-                        <div class="season-selector">
-                            <label for="season-select">Season:</label>
-                            <select id="season-select"></select>
-                        </div>
+                        <select id="season-select"></select>
                         <div id="episodes-list-container"></div>
                     </div>
                     <div class="stream-details">
@@ -83,18 +79,14 @@ document.addEventListener('DOMContentLoaded', async () => {
                         episodesContainer.appendChild(epBox);
                     });
                     const firstEpisodeBox = episodesContainer.querySelector('.episode-box');
-                    if (firstEpisodeBox) {
-                        playEpisode(firstEpisodeBox);
-                    }
+                    if (firstEpisodeBox) playEpisode(firstEpisodeBox);
                 };
 
-                contentData.seasons.forEach((season, index) => {
-                    seasonSelect.add(new Option(season.season_name, index));
-                });
+                contentData.seasons.forEach((season, index) => seasonSelect.add(new Option(season.season_name, index)));
                 seasonSelect.addEventListener('change', (e) => renderEpisodes(e.target.value));
                 renderEpisodes(0);
                 
-            } else { // Jika tipenya adalah Movie
+            } else {
                 streamContainer.innerHTML = `
                     <div class="video-player-wrapper">
                         <div class="video-container">
@@ -108,7 +100,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </div>
                 `;
             }
-
         } else {
             streamContainer.innerHTML = `<p class="error">Konten dengan ID '${id}' tidak ditemukan.</p>`;
         }
