@@ -16,26 +16,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 const anchor = document.createElement('a');
                 anchor.className = 'movie-card-link';
                 anchor.href = `streaming.html?type=${item.type}&id=${item.id}`;
-
-                const movieCard = document.createElement('div');
-                movieCard.className = 'movie-card';
                 
                 let qualityClass = '';
                 if (item.quality === 'HD') qualityClass = 'quality-hd';
                 else if (item.quality === 'SD') qualityClass = 'quality-sd';
                 else if (item.quality === 'CAM') qualityClass = 'quality-cam';
 
-                movieCard.innerHTML = `
-                    <img src="${item.posterUrl}" alt="${item.title}" loading="lazy">
-                    <div class="movie-card-info">
-                        <span class="quality-badge ${qualityClass}">${item.quality}</span>
-                        <span class="rating-badge">
-                            <i class="fas fa-star"></i> ${item.rating}
-                        </span>
+                anchor.innerHTML = `
+                    <div class="poster-wrapper">
+                        <img src="${item.posterUrl}" alt="${item.title}" loading="lazy">
+                        <div class="movie-card-info">
+                            <span class="quality-badge ${qualityClass}">${item.quality}</span>
+                            <span class="rating-badge">
+                                <i class="fas fa-star"></i> ${item.rating}
+                            </span>
+                        </div>
                     </div>
+                    <h3 class="movie-title">${item.title}</h3>
                 `;
                 
-                anchor.appendChild(movieCard);
                 container.appendChild(anchor);
             });
 
