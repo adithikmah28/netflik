@@ -124,5 +124,19 @@
         "director": "Azhar Kinoi Lubis",
         "subtitle": ["English"],
         "country": "Indonesia"
+    },
+    {
+        "id": "the-night-comes-for-us-2018",
+        "type": "movie",
+        "title": "The Night Comes for Us (2018)",
+        "posterUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/8lI1p5cPqgXN2qrKZrmI3mhKBfs.jpg",
+        "quality": "HD",
+        "rating": "6.9",
+        "description": "Seorang tukang pukul bernama Ito (Joe Taslim) kembali ke keluarga kriminalnya di Jakarta setelah bekerja dengan sebuah Triad Asia Tenggara yang kejam. Dia terperangkap dalam sebuah intrik pengkhianatan dan kekacauan saat Triad tersebut memulai sebuah kampanye berdarah untuk ekspansi teritorial mereka.",
+        "streamUrl": "https://vidlink.pro/movie/449992",
+        "cast": ["Joe Taslim", "Iko Uwais", "Julie Estelle"],
+        "director": "Timo Tjahjanto",
+        "subtitle": ["English", "indonesia"],
+        "country": "Indonesia"
     }
 ]
