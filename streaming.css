@@ -112,7 +112,7 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--dark-color); 
 
 /* --- MODAL IKLAN --- */
 .ad-modal {
-    display: none; /* Sembunyi secara default */
+    display: none;
     position: fixed;
     z-index: 2000;
     left: 0;
@@ -124,7 +124,7 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--dark-color); 
     align-items: center;
 }
 .ad-modal.show {
-    display: flex; /* Tampilkan dengan flexbox */
+    display: flex;
 }
 
 .ad-modal-content {
@@ -138,18 +138,7 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--dark-color); 
     box-shadow: 0 5px 25px rgba(0,0,0,0.5);
 }
 
-.ad-modal-close-btn {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 30px;
-    color: #888;
-    cursor: pointer;
-    transition: color 0.2s;
-}
-.ad-modal-close-btn:hover {
-    color: var(--light-color);
-}
+/* Style untuk tombol close sudah DIHAPUS dari sini */
 
 .ad-modal-content h2 {
     color: var(--primary-color);
