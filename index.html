@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+    <!-- ... (Bagian head tetap sama) ... -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Netflik - Tonton Film & Series Favoritmu</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome untuk Ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
 
-    <!-- ===== HEADER ===== -->
+    <!-- ... (Header, Main Content, dan Footer tetap sama) ... -->
     <header class="header">
         <a href="#" class="logo">NETFLIK</a>
         <nav class="navbar">
@@ -34,35 +33,22 @@
     </header>
 
     <main>
-        <!-- ===== KATEGORI FILM (Akan diisi oleh JavaScript) ===== -->
         <section class="movie-rows">
-            <!-- Kategori: Movies -->
             <div class="movie-row">
                 <h2>Movies</h2>
-                <div class="movie-list" id="movies-list">
-                    <!-- Poster film akan dimuat di sini -->
-                </div>
+                <div class="movie-list" id="movies-list"></div>
             </div>
-
-            <!-- Kategori: Series -->
             <div class="movie-row">
                 <h2>Series Populer</h2>
-                <div class="movie-list" id="series-list">
-                    <!-- Poster series akan dimuat di sini -->
-                </div>
+                <div class="movie-list" id="series-list"></div>
             </div>
-
-            <!-- Kategori: Indonesia -->
             <div class="movie-row">
                 <h2>Film Indonesia</h2>
-                <div class="movie-list" id="indonesia-list">
-                    <!-- Poster film Indonesia akan dimuat di sini -->
-                </div>
+                <div class="movie-list" id="indonesia-list"></div>
             </div>
         </section>
     </main>
 
-    <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <p>© 2024 Netflik. Dibuat dengan ❤️ untukmu.</p>
         <div class="social-links">
@@ -72,6 +58,19 @@
             <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
     </footer>
+
+
+    <!-- ===== MODAL UNTUK VIDEO PLAYER ===== -->
+    <div id="video-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <div class="video-container">
+                <iframe id="video-iframe" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <h2 id="modal-title">Judul Film</h2>
+            <p id="modal-description">Deskripsi film akan muncul di sini.</p>
+        </div>
+    </div>
 
     <!-- ===== SCRIPT UTAMA ===== -->
     <script src="script.js"></script>
