@@ -1,0 +1,26 @@
+[
+    {
+        "title": "The Boys",
+        "posterUrl": "https://image.tmdb.org/t/p/w500/2zmTngn1tJ9p5PaB2S5maA5bEaN.jpg"
+    },
+    {
+        "title": "House of the Dragon",
+        "posterUrl": "https://image.tmdb.org/t/p/w500/zof2n_fKjp1mD3pZ5tllwxTPHPs.jpg"
+    },
+    {
+        "title": "Bridgerton",
+        "posterUrl": "https://image.tmdb.org/t/p/w500/vQ4l92GfCjWvCwsLgQQOInK4gaG.jpg"
+    },
+    {
+        "title": "Dark Matter",
+        "posterUrl": "https://image.tmdb.org/t/p/w500/7Mdd0c2goOR3k17H27K5i1Kxy3p.jpg"
+    },
+    {
+        "title": "Fallout",
+        "posterUrl": "https://image.tmdb.org/t/p/w500/2K21k22SiI6bWllPnoImH3m22hV.jpg"
+    },
+    {
+        "title": "Shōgun",
+        "posterUrl": "https://image.tmdb.org/t/p/w500/7O4iVfOMQmdCS2Mv3f21iSgN2S1.jpg"
+    }
+]
