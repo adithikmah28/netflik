@@ -1,36 +1,12 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Request Movie - Netflik</title>
-    <!-- Favicon Baru -->
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="request.css"> <!-- CSS Khusus -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- ... (head tetap sama) ... -->
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Request Movie - Netflik</title><link rel="icon" href="data:image/svg+xml,..."><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="request.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-    <header class="header">
-        <a href="index.html" class="logo">NETFLIK</a>
-        <nav class="navbar">
-            <div class="nav-close-btn"><i class="fas fa-times"></i></div>
-            <a href="index.html">Beranda</a>
-            <a href="category.html?name=series">Series</a>
-            <a href="category.html?name=movies">Movies</a>
-            <a href="request.html" class="active">Request Movie</a>
-        </nav>
-        <div class="header-right">
-            <i class="fas fa-bell"></i>
-            <img src="https://i.pravatar.cc/40" alt="Profil" class="profile-pic">
-        </div>
-        <div class="hamburger">
-            <i class="fas fa-bars"></i>
-        </div>
-    </header>
+    <!-- ... (header tetap sama) ... -->
+    <header class="header">...</header>
 
     <main>
         <section class="request-page">
@@ -38,23 +14,27 @@
             <p>Punya film atau series favorit yang belum ada di sini? Beri tahu kami!</p>
             
             <div class="form-container">
-                <form id="request-form">
+                <!-- UPDATE DI SINI -->
+                <form id="request-form" action="https://formspree.io/f/YOUR_UNIQUE_ID" method="POST">
                     <div class="form-group">
                         <label for="movie-title">Judul Film / Series</label>
-                        <input type="text" id="movie-title" name="movie-title" required>
+                        <input type="text" id="movie-title" name="Judul Film" required>
                     </div>
                     <div class="form-group">
                         <label for="movie-year">Tahun Rilis (Opsional)</label>
-                        <input type="number" id="movie-year" name="movie-year" min="1900" max="2099">
+                        <input type="number" id="movie-year" name="Tahun Rilis" min="1900" max="2099">
                     </div>
                     <div class="form-group">
                         <label for="movie-notes">Catatan Tambahan (Opsional)</label>
-                        <textarea id="movie-notes" name="movie-notes" rows="4"></textarea>
+                        <textarea id="movie-notes" name="Catatan" rows="4"></textarea>
                     </div>
                     <button type="submit" class="submit-btn">Kirim Request</button>
                 </form>
                 <div id="success-message" class="success-message" style="display: none;">
                     Terima kasih! Request Anda telah kami terima dan akan kami pertimbangkan.
+                </div>
+                <div id="error-message" class="error-message" style="display: none;">
+                    Oops! Terjadi kesalahan. Coba lagi nanti.
                 </div>
             </div>
         </section>
