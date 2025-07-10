@@ -5,17 +5,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!container) return;
 
         try {
-            const response = await fetch(`data/${categoryName}.json`);
+            const jsonFile = `${categoryName}.json`;
+            const response = await fetch(`data/${jsonFile}`);
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             
             const data = await response.json();
             container.innerHTML = ''; 
 
             data.forEach(item => {
+                const anchor = document.createElement('a');
+                anchor.className = 'movie-card-link';
+                anchor.href = `streaming.html?type=${item.type}&id=${item.id}`;
+
                 const movieCard = document.createElement('div');
                 movieCard.className = 'movie-card';
                 
-                // Menentukan kelas CSS berdasarkan kualitas
                 let qualityClass = '';
                 if (item.quality === 'HD') qualityClass = 'quality-hd';
                 else if (item.quality === 'SD') qualityClass = 'quality-sd';
@@ -31,12 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 `;
                 
-                // Menambahkan event listener untuk membuka modal
-                movieCard.addEventListener('click', () => {
-                    openModal(item);
-                });
-                
-                container.appendChild(movieCard);
+                anchor.appendChild(movieCard);
+                container.appendChild(anchor);
             });
 
         } catch (error) {
@@ -44,44 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
             container.innerHTML = `<p style="color: #ff9999;">Gagal memuat data.</p>`;
         }
     };
-
-    // --- LOGIKA MODAL ---
-    const modal = document.getElementById('video-modal');
-    const closeModalButton = document.querySelector('.close-button');
-    const modalTitle = document.getElementById('modal-title');
-    const modalDescription = document.getElementById('modal-description');
-    const videoIframe = document.getElementById('video-iframe');
-
-    // Fungsi untuk membuka modal
-    const openModal = (movieData) => {
-        modalTitle.textContent = movieData.title;
-        modalDescription.textContent = movieData.description;
-        videoIframe.src = movieData.trailerUrl;
-        modal.style.display = 'block';
-    };
-
-    // Fungsi untuk menutup modal
-    const closeModal = () => {
-        modal.style.display = 'none';
-        videoIframe.src = ''; // Menghentikan video saat modal ditutup
-    };
-
-    // Event listener untuk tombol close
-    closeModalButton.addEventListener('click', closeModal);
-
-    // Event listener untuk menutup modal jika klik di luar area konten
-    window.addEventListener('click', (event) => {
-        if (event.target == modal) {
-            closeModal();
-        }
-    });
     
-    // --- MEMUAT SEMUA KATEGORI ---
     loadCategory('movies', 'movies-list');
     loadCategory('series', 'series-list');
     loadCategory('indonesia', 'indonesia-list');
 
-    // --- EFEK SCROLL HEADER ---
     const header = document.querySelector('.header');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
