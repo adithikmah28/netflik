@@ -1,0 +1,286 @@
+/* ===== CSS UTAMA & RESET ===== */
+:root {
+    --primary-color: #E50914; /* Warna merah Netflix */
+    --dark-color: #141414;    /* Warna background utama */
+    --light-color: #ffffff;   /* Warna teks utama */
+    --gray-color: #808080;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    overflow-x: hidden; /* Mencegah scroll horizontal di body */
+}
+
+a {
+    text-decoration: none;
+    color: var(--light-color);
+}
+
+/* ===== HEADER ===== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.header.scrolled {
+    background-color: var(--dark-color);
+}
+
+.logo {
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: 2px;
+}
+
+.navbar a {
+    margin-left: 20px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.navbar a:hover, .navbar a.active {
+    color: var(--primary-color);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-right i {
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.hamburger {
+    display: none; /* Sembunyikan di desktop */
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+
+/* ===== HERO SECTION ===== */
+.hero {
+    height: 100vh;
+    background: linear-gradient(to top, rgba(20, 20, 20, 1) 10%, rgba(20, 20, 20, 0.2) 50%, rgba(20, 20, 20, 1) 100%), 
+                url('https://picsum.photos/1920/1080?blur=2') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    max-width: 90%;
+}
+
+.hero-buttons .btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: opacity 0.3s;
+}
+
+.btn i {
+    margin-right: 8px;
+}
+
+.btn-play {
+    background-color: var(--light-color);
+    color: var(--dark-color);
+}
+
+.btn-info {
+    background-color: rgba(109, 109, 110, 0.7);
+    color: var(--light-color);
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+/* ===== MOVIE ROWS ===== */
+.movie-rows {
+    padding: 20px 0;
+}
+
+.movie-row {
+    margin-bottom: 40px;
+}
+
+.movie-row h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-left: 5%;
+    margin-bottom: 20px;
+}
+
+.movie-list {
+    display: flex;
+    gap: 15px;
+    padding: 0 5%;
+    overflow-x: auto; /* KUNCI untuk scroll horizontal */
+    overflow-y: hidden;
+    /* Menyembunyikan scrollbar untuk tampilan bersih */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.movie-list::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.movie-card {
+    flex-shrink: 0; /* Mencegah gambar menyusut */
+    width: 200px;
+    height: 300px;
+    transition: transform 0.3s ease, border 0.3s ease;
+    cursor: pointer;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 2px solid transparent;
+}
+
+.movie-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.movie-card:hover {
+    transform: scale(1.08) translateY(-10px);
+    z-index: 10;
+    border: 2px solid var(--light-color);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    padding: 40px 5%;
+    text-align: center;
+    border-top: 1px solid var(--gray-color);
+    margin-top: 50px;
+    color: var(--gray-color);
+}
+
+.social-links {
+    margin-top: 20px;
+}
+
+.social-links a {
+    color: var(--gray-color);
+    margin: 0 15px;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--light-color);
+}
+
+/* ===== RESPONSIVE DESIGN (Tampilan Seluler) ===== */
+@media (max-width: 992px) {
+    .navbar {
+        display: none; /* Sembunyikan navigasi utama di layar kecil */
+    }
+
+    .hamburger {
+        display: block; /* Tampilkan ikon hamburger */
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 15px 5%;
+    }
+
+    .logo {
+        font-size: 1.5em;
+    }
+
+    .hero {
+        text-align: center;
+        justify-content: center;
+        padding-top: 100px; /* Beri ruang dari header */
+    }
+    
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+        max-width: 100%;
+    }
+
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .hero-buttons .btn {
+        width: 80%;
+        margin-right: 0;
+    }
+
+    .movie-card {
+        width: 150px;
+        height: 225px;
+    }
+
+    .movie-row h2 {
+        font-size: 1.2rem;
+    }
+}
