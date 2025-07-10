@@ -1,17 +1,17 @@
 [
     {
-        "id": "bad-boys-ride-or-die",
+        "id": "bad-boys-ride-or-die-2024",
         "type": "movie",
-        "title": "Bad Boys: Ride or Die",
-        "posterUrl": "https://image.tmdb.org/t/p/w500/A2n01TAr84trQHPai1Jt51m5i2g.jpg",
+        "title": "Bad Boys: Ride or Die (2024)",
+        "posterUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/oGythE98MYleE6mZlGs5oBGkux1.jpg",
         "quality": "HD",
-        "rating": "7.7",
-        "description": "Setelah kapten mereka, Conrad Howard, dijebak sebagai anggota kartel Rumania, detektif Mike Lowrey dan Marcus Burnett memulai misi berbahaya untuk membersihkan namanya.",
-        "streamUrl": "https://www.youtube.com/embed/hRFY_Fz_3lI",
+        "rating": "7.4",
+        "description": "Setelah mendiang mantan Kapten mereka dijebak, Lowrey dan Burnett mencoba membersihkan namanya, namun akhirnya mereka sendiri yang melarikan diri.",
+        "streamUrl": "https://vidlink.pro/movie/667538",
         "cast": ["Will Smith", "Martin Lawrence", "Vanessa Hudgens"],
         "director": "Adil & Bilall",
         "subtitle": ["Indonesia", "English"],
-        "country": "USA"
+        "country": "United States"
     },
     {
         "id": "dune-part-two",
