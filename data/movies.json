@@ -14,9 +14,9 @@
         "country": "United States"
     },
     {
-        "id": "dune-part-two",
+        "id": "dune-part-two-2024",
         "type": "movie",
-        "title": "Dune: Part Two",
+        "title": "Dune: Part Two (2024)",
         "posterUrl": "https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
         "quality": "HD",
         "rating": "8.3",
@@ -25,15 +25,21 @@
         "cast": ["Timothée Chalamet", "Zendaya", "Rebecca Ferguson"],
         "director": "Denis Villeneuve",
         "subtitle": ["Indonesia", "English"],
-        "country": "USA"
+        "country": "United States"
     },
     {
-        "title": "Godzilla x Kong",
-        "posterUrl": "https://image.tmdb.org/t/p/w500/1dMh3z42GgSGNf1D22y4a2jGvL.jpg",
+        "id": "godzilla-x-kong-the-new-empire-2024",
+        "type": "movie",
+        "title": "Godzilla x Kong: The New Empire (2024)",
+        "posterUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/z1p34vh7dEOnLDmyCrlUVLuoDzd.jpg",
         "quality": "HD",
         "rating": "7.2",
         "description": "Dua raksasa kuno, Godzilla dan Kong, bentrok dalam pertempuran spektakuler seiring dengan terungkapnya asal-usul mereka dan kaitan mereka dengan Pulau Tengkorak.",
-        "trailerUrl": "https://www.youtube.com/embed/qqrpMRDuPfc"
+        "streamUrl": "https://vidlink.pro/movie/823464"
+        "cast": ["Rebecca Hall", "Brian Tyree Henry", "Dan Stevens"],
+        "director": "Adam Wingard",
+        "subtitle": ["Indonesia", "English"],
+        "country": "United States"
     },
     {
         "title": "The Fall Guy",
