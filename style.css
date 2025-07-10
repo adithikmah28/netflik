@@ -91,3 +91,33 @@ a.movie-card-link:hover { transform: scale(1.08) translateY(-10px); z-index: 10;
     .movie-row h2 { font-size: 1.2rem; }
     .header.search-active .search-box input { width: 120px; }
 }
+/* ... (semua CSS dari versi sebelumnya) ... */
+/* Tambahkan atau modifikasi ini */
+.row-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 5%;
+}
+
+.row-header h2 {
+    margin: 0; /* Hapus margin default dari h2 */
+}
+
+.view-all-link {
+    color: var(--gray-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.view-all-link:hover {
+    color: var(--light-color);
+}
+
+.view-all-link i {
+    margin-left: 5px;
+    font-size: 0.8rem;
+}
+/* ... (sisa CSS tetap sama) ... */
