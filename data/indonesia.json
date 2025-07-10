@@ -77,7 +77,7 @@
         "quality": "HD",
         "rating": "7.5",
         "description": "Seorang wanita tersiksa dengan kemampuan mata ketiga.",
-        "streamUrl": "https://vidsrc.pm/embed/movie?tmdb=480007",
+        "streamUrl": "https://vidsrc.vc/embed/movie/480007",
         "cast": ["Jessica Mila", "Bianca Hello", "Denny Sumargo"],
         "director": "Rocky Soraya",
         "subtitle": ["-", "-"],
@@ -109,6 +109,20 @@
         "cast": ["Agla Artalidia", "Anantya Rezky Kirana", "Sulthan Hamonangan"],
         "director": "Awi Suryadi",
         "subtitle": ["English", "Arabic"],
+        "country": "Indonesia"
+    },
+    {
+        "id": "pengantin-iblis-2025",
+        "type": "movie",
+        "title": "Pengantin Iblis (2025)",
+        "posterUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/6UWQVddCVCnFM4G7PSHcCc5NGtI.jpg",
+        "quality": "HD",
+        "rating": "6.3",
+        "description": "Ranti adalah seorang ibu dan istri yang amat berbakti. Ranti memiliki putri yang amat ia sayangi, tapi cacat kondisinya sejak lahir, Nina. Suatu hari Nina mengalami kecelakaan fatal yang membutuhkan penanganan segera. Namun suami Ranti yang bekerja sebagai pelaut sedang tidak berada di rumah, dan keluarga besarnya juga tidak bisa membantu Ranti. Ranti akhirnya harus mencari jalan apapun demi keselamatan Nina. Ranti terpaksa menerima tawaran untuk menjadi pengantin iblis. Akhirnya Nina dapat disembuhkan, namun ada harga lain yang harus Ranti bayar, yang menyangkut nyawa seluruh anggota keluarganya.",
+        "streamUrl": "https://vidlink.pro/movie/1261543",
+        "cast": ["Taskya Namya", "Wafda Saifan Lubis", "Arla Ailani"],
+        "director": "Azhar Kinoi Lubis",
+        "subtitle": ["English"],
         "country": "Indonesia"
     }
 ]
