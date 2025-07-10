@@ -1,19 +1,35 @@
 [
     {
         "title": "Bad Boys: Ride or Die",
-        "posterUrl": "https://image.tmdb.org/t/p/w500/A2n01TAr84trQHPai1Jt51m5i2g.jpg"
+        "posterUrl": "https://image.tmdb.org/t/p/w500/A2n01TAr84trQHPai1Jt51m5i2g.jpg",
+        "quality": "HD",
+        "rating": "7.7",
+        "description": "Setelah kapten mereka, Conrad Howard, dijebak sebagai anggota kartel Rumania, detektif Mike Lowrey dan Marcus Burnett memulai misi berbahaya untuk membersihkan namanya.",
+        "trailerUrl": "https://www.youtube.com/embed/hRFY_Fz_3lI"
     },
     {
         "title": "Inside Out 2",
-        "posterUrl": "https://image.tmdb.org/t/p/w500/gMBd0iODxdkX1eG2sI2iC6F2Am.jpg"
+        "posterUrl": "https://image.tmdb.org/t/p/w500/gMBd0iODxdkX1eG2sI2iC6F2Am.jpg",
+        "quality": "CAM",
+        "rating": "7.9",
+        "description": "Kini Riley sudah remaja, markas besar tiba-tiba dihancurkan untuk memberi ruang bagi sesuatu yang sama sekali tidak terduga: emosi-emosi baru!",
+        "trailerUrl": "https://www.youtube.com/embed/LEjhY15eCx0"
     },
     {
         "title": "Dune: Part Two",
-        "posterUrl": "https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg"
+        "posterUrl": "https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
+        "quality": "HD",
+        "rating": "8.3",
+        "description": "Paul Atreides bersatu dengan Chani dan Fremen saat dia membalas dendam terhadap para konspirator yang menghancurkan keluarganya.",
+        "trailerUrl": "https://www.youtube.com/embed/U2Qp5pL3ovA"
     },
     {
         "title": "Godzilla x Kong",
-        "posterUrl": "https://image.tmdb.org/t/p/w500/1dMh3z42GgSGNf1D22y4a2jGvL.jpg"
+        "posterUrl": "https://image.tmdb.org/t/p/w500/1dMh3z42GgSGNf1D22y4a2jGvL.jpg",
+        "quality": "HD",
+        "rating": "7.2",
+        "description": "Dua raksasa kuno, Godzilla dan Kong, bentrok dalam pertempuran spektakuler seiring dengan terungkapnya asal-usul mereka dan kaitan mereka dengan Pulau Tengkorak.",
+        "trailerUrl": "https://www.youtube.com/embed/qqrpMRDuPfc"
     },
     {
         "title": "The Fall Guy",
