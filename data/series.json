@@ -1,11 +1,23 @@
 [
     {
+        "id": "the-boys-s4",
+        "type": "series",
         "title": "The Boys",
-        "posterUrl": "https://image.tmdb.org/t/p/w500/2zmTngn1tJ9p5PaB2S5maA5bEaN.jpg"
+        "posterUrl": "https://image.tmdb.org/t/p/w500/2zmTngn1tJ9p5PaB2S5maA5bEaN.jpg",
+        "quality": "HD",
+        "rating": "8.5",
+        "description": "Sekelompok main hakim sendiri berangkat untuk menjatuhkan pahlawan super korup yang menyalahgunakan kekuatan super mereka.",
+        "streamUrl": "https://www.youtube.com/embed/Ffa4h_K2p_8"
     },
     {
+        "id": "house-of-the-dragon-s2",
+        "type": "series",
         "title": "House of the Dragon",
-        "posterUrl": "https://image.tmdb.org/t/p/w500/zof2n_fKjp1mD3pZ5tllwxTPHPs.jpg"
+        "posterUrl": "https://image.tmdb.org/t/p/w500/zof2n_fKjp1mD3pZ5tllwxTPHPs.jpg",
+        "quality": "HD",
+        "rating": "8.4",
+        "description": "Kisah Wangsa Targaryen berlatar 200 tahun sebelum peristiwa Game of Thrones.",
+        "streamUrl": "https://www.youtube.com/embed/DotnJ7tTA34"
     },
     {
         "title": "Bridgerton",
