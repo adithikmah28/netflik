@@ -13,10 +13,8 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--dark-color); 
 .video-player-wrapper { margin-bottom: 20px; }
 .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background-color: #000; border-radius: 8px; }
 .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-.stream-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 10px; }
-.stream-description { font-size: 1.1rem; line-height: 1.7; max-width: 800px; color: #ccc; }
 
-/* -- Gaya BARU untuk Kontrol Season & Episode -- */
+/* --- KONTROL SEASON (UPDATE) --- */
 .stream-controls {
     display: flex;
     align-items: center;
@@ -27,7 +25,15 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--dark-color); 
     border-radius: 8px;
     margin-bottom: 25px;
 }
-
+.season-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.season-selector label {
+    font-weight: 500;
+    color: #ccc;
+}
 #season-select {
     background-color: #333;
     color: var(--light-color);
@@ -43,41 +49,61 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--dark-color); 
     outline: none;
     border-color: var(--primary-color);
 }
-
 #episodes-list-container {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    flex: 1; /* Agar mengambil sisa ruang */
+    flex: 1;
 }
-
 .episode-box {
-    width: 40px; /* Diperkecil */
-    height: 40px; /* Diperkecil */
-    background-color: #2a2a2a;
-    border: 1px solid #444;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    font-size: 0.9rem; /* Diperkecil */
-    cursor: pointer;
-    transition: background-color 0.2s, border-color 0.2s;
+    width: 40px; height: 40px; background-color: #2a2a2a; border: 1px solid #444; border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: background-color 0.2s, border-color 0.2s;
+}
+.episode-box:hover { border-color: var(--light-color); }
+.episode-box.active { background-color: var(--primary-color); border-color: var(--primary-color); color: var(--light-color); }
+
+/* --- METADATA BARU --- */
+.stream-details {
+    margin-top: 30px;
+}
+.stream-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.stream-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 800px;
+    color: #ccc;
+    margin-bottom: 30px;
+}
+.metadata-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+}
+.metadata-item {
+    font-size: 1rem;
+}
+.metadata-item strong {
+    color: #888;
+    margin-right: 8px;
+}
+.metadata-item span {
+    color: #e5e5e5;
 }
 
-.episode-box:hover {
-    border-color: var(--light-color);
-}
-
-.episode-box.active {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-    color: var(--light-color);
-}
-
+/* --- PERBAIKAN TAMPILAN SELULER --- */
 @media (max-width: 768px) {
-    .stream-controls { flex-direction: column; align-items: stretch; }
+    .stream-controls {
+        flex-direction: column;
+        align-items: flex-start; /* Mencegah dropdown jadi full-width */
+    }
     .stream-title { font-size: 1.8rem; }
     .stream-description { font-size: 1rem; }
+    .metadata-grid { grid-template-columns: 1fr; } /* Satu kolom di HP */
 }
