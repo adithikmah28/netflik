@@ -1,7 +1,17 @@
 [
     {
-        "title": "Agak Laen",
-        "posterUrl": "https://image.tmdb.org/t/p/w500/k3Y0L3d0yI6wPBL4d8g2C0EX0e.jpg"
+        "id": "pemandi-jenazah-2024",
+        "type": "movie",
+        "title": "Pemandi Jenazah (2024)",
+        "posterUrl": "https://image.tmdb.org/t/p/original/tgMEMGpnSKJrqSAmrnRygv5KBur.jpg",
+        "quality": "HD",
+        "rating": "6.9",
+        "description": "Lela, seorang petugas pemakaman, menemukan keanehan pada jenazah ibunya yang meninggal mendadak. Terjebak dalam ketegangan sakral dan perjalanan horor yang menegangkan, Lela menemukan keanehan lain pada tubuh mayat yang sedang dimandikannya.",
+        "streamUrl": "https://vidlink.pro/movie/1223799",
+        "cast": ["Aghniny Haque", "Djenar Maesa Ayu", "Ibrahim Risyad"],
+        "director": "Hadrah Daeng Ratu",
+        "subtitle": ["Indonesia", "English"],
+        "country": "Indonesia"
     },
     {
         "title": "Siksa Kubur",
