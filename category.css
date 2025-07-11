@@ -1,3 +1,5 @@
+/* Style yang HANYA berlaku di halaman kategori */
+
 .category-page {
     padding: 0 5%;
 }
@@ -7,12 +9,8 @@
     margin-bottom: 30px;
 }
 
-.category-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 25px 20px; 
-    justify-content: flex-start;
-}
+/* Style untuk .category-grid dan responsivitasnya sudah dipindah ke style.css */
+/* Ini memastikan tampilan konsisten dengan hasil pencarian di halaman utama */
 
 .pagination {
     display: flex;
@@ -45,31 +43,4 @@
 .page-link.active {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
-}
-
-/* === TAMPILAN SELULER YANG RAPI (GANTI BAGIAN INI) === */
-@media (max-width: 768px) {
-    #category-title {
-        font-size: 1.8rem;
-    }
-
-    .category-grid {
-        gap: 20px 15px;
-    }
-
-    /* Di halaman kategori, kartu akan mengisi ruang dalam 2 kolom */
-    .category-grid .movie-card-link {
-        width: calc(50% - 7.5px);
-    }
-}
-
-@media (max-width: 480px) {
-    .category-grid {
-        gap: 20px 10px;
-    }
-    
-    /* Di HP yang sangat kecil, kita buat 3 kolom agar tidak terlalu besar */
-    .category-grid .movie-card-link {
-        width: calc(33.33% - 7px);
-    }
 }
