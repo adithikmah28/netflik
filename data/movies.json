@@ -11,25 +11,25 @@
         "cast": ["Will Smith", "Martin Lawrence", "Vanessa Hudgens"],
         "director": "Adil & Bilall",
         "subtitle": ["Indonesia", "English"],
-        "country": "United States",
+        "country": "United States"
+    },
+    {
+        "id": "dune-part-two",
+        "type": "movie",
+        "title": "Dune: Part Two",
+        "posterUrl": "...",
+        "quality": "HD",
+        "rating": "8.3",
+        "description": "...",
+        "streamUrl": "...",
+        "cast": ["..."],
+        "director": "Denis Villeneuve",
+        "subtitle": ["..."],
+        "country": "USA",
         "downloadLinks": [
         { "quality": "1080p", "provider": "Google Drive", "url": "https://link-download-gd.com/dune2-1080p" },
         { "quality": "720p", "provider": "Mega", "url": "https://link-download-mega.com/dune2-720p" },
         { "quality": "480p", "provider": "Uptobox", "url": "https://link-download-uptobox.com/dune2-480p" }
-    },
-    {
-        "id": "dune-part-two-2024",
-        "type": "movie",
-        "title": "Dune: Part Two (2024)",
-        "posterUrl": "https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
-        "quality": "HD",
-        "rating": "8.3",
-        "description": "Paul Atreides bersatu dengan Chani dan Fremen saat dia membalas dendam terhadap para konspirator yang menghancurkan keluarganya.",
-        "streamUrl": "https://vidlink.pro/movie/693134?sub_file=https://raw.githubusercontent.com/adithikmah28/netflik/main/Subtitle/Dune%20Part%20Two%20(2024)%201080p%20Blu-Ray%20-%20WAN%E2%84%A2.vtt&sub_label=Indonesia",
-        "cast": ["Timothée Chalamet", "Zendaya", "Rebecca Ferguson"],
-        "director": "Denis Villeneuve",
-        "subtitle": ["Indonesia", "English"],
-        "country": "United States"
     },
     {
         "id": "godzilla-x-kong-the-new-empire-2024",
