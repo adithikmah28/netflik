@@ -138,5 +138,61 @@
         "director": "Timo Tjahjanto",
         "subtitle": ["English", "indonesia"],
         "country": "Indonesia"
+    },
+    {
+        "id": "sumala-2024",
+        "type": "movie",
+        "title": "Sumala (2024)",
+        "posterUrl": "https://image.tmdb.org/t/p/original/jCOac0WEpCz8KyQYV0MTQ5oSwmf.jpg",
+        "quality": "HD",
+        "rating": "7.3",
+        "description": "Tanpa sepengetahuan Soedjiman suaminya, Sulastri melakukan perjanjian dengan iblis supaya ia bisa memiliki anak. Ia melahirkan anak kembar, Kumala yang bertahan hidup dan Sumala yang meninggal. Kumala tumbuh menjadi anak yang baik hati tapi cacat fisik dan mental. Ia sering mendapat perlakuan buruk dari orang-orang sekitarnya. Suatu hari Sumala datang dari dunia kematian dan membuat perhitungan kepada mereka yang telah menyakiti Kumala.",
+        "streamUrl": "https://vidsrc.icu/embed/movie/1260594",
+        "cast": ["Luna Maya", "Darius Sinathrya", "Makayla Rose Hilli"],
+        "director": "Rizal Mantovani",
+        "subtitle": ["English", "indonesia"],
+        "country": "Indonesia"
+    },
+    {
+        "id": "penggonan-wingit-2-miss-k-2024",
+        "type": "movie",
+        "title": "Panggonan Wingit 2: Miss K (2024)",
+        "posterUrl": "https://image.tmdb.org/t/p/original/g0ZQ348AfZ3YEhz7N43AICjFlvM.jpg",
+        "quality": "HD",
+        "rating": "5.5",
+        "description": "Setelah ibunya meninggal, ALMA dan adiknya, MIA pindah dari Jakarta ke Surabaya karena Alma mendapat pekerjaan sebagai manajer di Apartemen Sasmaya. Anehnya, lantai 6 di apartemen itu ditutup. Tetapi karena ada hal mendesak, Alma dan Mia terpaksa masuk ke lantai tersebut dan masuk ke unit nomor 610. Mereka melihat sosok seorang wanita dan anak kecil perempuan misterius di sana yang berkata, “Papat dina, maghrib…” Sejak itu Alma dan Mia mulai mengalami teror mengerikan. Ternyata unit 610 itu adalah sebuah tempat angker. Siapapun yang membukanya akan mati dalam empat hari di waktu maghrib.",
+        "streamUrl": "https://vidsrc.icu/embed/movie/1321326",
+        "cast": ["Cinta Laura Kiehl", "Arifin Putra", "Callista Arum"],
+        "director": "Guntur Soeharjanto",
+        "subtitle": ["English", "indonesia"],
+        "country": "Indonesia"
+    },
+    {
+        "id": "badarawuhi-di-desa-penari-2024",
+        "type": "movie",
+        "title": "Badarawuhi di Desa Penari (2024)",
+        "posterUrl": "https://image.tmdb.org/t/p/original/2gACO8YojtfEzDhQT6LkKFW5bCa.jpg",
+        "quality": "HD",
+        "rating": "5.5",
+        "description": "Mila harus mengembalikan gelang mistik ke Desa Menari, tanpa menyadari bahwa Badarawuhi - makhluk misterius dan mistis yang memerintah desa - menantinya.",
+        "streamUrl": "https://vidlink.pro/movie/1176166",
+        "cast": ["Maudy Effrosina", "Aulia Sarah", "Jourdy Pranata"],
+        "director": "Kimo Stamboel",
+        "subtitle": ["English", "indonesia"],
+        "country": "Indonesia"
+    },
+    {
+        "id": "pernikahan-arwah-2025",
+        "type": "movie",
+        "title": "Pernikahan Arwah (2025)",
+        "posterUrl": "https://image.tmdb.org/t/p/original/iyHft1M3T9VbiNuG2kFTK6Coeyt.jpg",
+        "quality": "HD",
+        "rating": "6.5",
+        "description": "Sepasang suami istri yang bertunangan kembali ke rumah leluhur mempelai pria setelah kematian bibinya. Namun pengantin hantu yang menyembunyikan rahasia kelam keluarga mengancam kedamaian mereka.",
+        "streamUrl": "https://vidlink.pro/movie/1339775",
+        "cast": ["Morgan Oey", "Zulfa Maharani", "Jourdy Pranata"],
+        "director": "Paul Agusta",
+        "subtitle": ["English", "indonesia"],
+        "country": "Indonesia"
     }
 ]
