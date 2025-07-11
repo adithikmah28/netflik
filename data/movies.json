@@ -11,7 +11,11 @@
         "cast": ["Will Smith", "Martin Lawrence", "Vanessa Hudgens"],
         "director": "Adil & Bilall",
         "subtitle": ["Indonesia", "English"],
-        "country": "United States"
+        "country": "United States",
+        "downloadLinks": [
+        { "quality": "1080p", "provider": "Google Drive", "url": "https://link-download-gd.com/dune2-1080p" },
+        { "quality": "720p", "provider": "Mega", "url": "https://link-download-mega.com/dune2-720p" },
+        { "quality": "480p", "provider": "Uptobox", "url": "https://link-download-uptobox.com/dune2-480p" }
     },
     {
         "id": "dune-part-two-2024",
