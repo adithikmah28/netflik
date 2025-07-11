@@ -82,5 +82,19 @@
         "director": "Chad Stahelski",
         "subtitle": ["Indonesia", "English"],
         "country": "United States"
+    },
+    {
+        "id": "john-wick-chapter-2-2017",
+        "type": "movie",
+        "title": "John Wick: Chapter 2 (2017)",
+        "posterUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/hXWBc0ioZP3cN4zCu6SN3YHXZVO.jpg",
+        "quality": "HD",
+        "rating": "7.3",
+        "description": "Berlanjut dari film John Wick yang pertama, film ini kembali menampilkan Keanu Reeves sebagai pensiunan pembunuh bayaran, John Wick yang kembali beraksi. Kali ini John harus harus menghadapi krisis identitas yang mempertanyakan jati dirinya sebagai seorang suami yang bersedih atas kematian istrinya atau seorang pembunuh bayaran internasional tanpa belas kasihan.",
+        "streamUrl": "https://vidlink.pro/movie/324552?sub_file=https://raw.githubusercontent.com/adithikmah28/netflik/main/Subtitle/john%20wick%20Chapter%202.vtt&sub_label=Indonesia",
+        "cast": ["Keanu Reeves", "Common", "Laurence Fishburne"],
+        "director": "Chad Stahelski",
+        "subtitle": ["Indonesia", "English"],
+        "country": "United States"
     }
 ]
