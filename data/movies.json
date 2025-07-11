@@ -42,11 +42,31 @@
         "country": "United States"
     },
     {
-        "title": "The Fall Guy",
-        "posterUrl": "https://image.tmdb.org/t/p/w500/v9Qvkfg39324E0zo3dI3mBFJpT.jpg"
+        "id": "ballerina-2025",
+        "type": "movie",
+        "title": "Ballerina (2025)",
+        "posterUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/2VUmvqsHb6cEtdfscEA6fqqVzLg.jpg",
+        "quality": "HD",
+        "rating": "7.4",
+        "description": "Berlangsung selama peristiwa John Wick: Bab 3 - Parabellum, Eve Macarro memulai pelatihannya dalam tradisi pembunuh Ruska Roma.",
+        "streamUrl": "https://vidlink.pro/movie/541671?sub_file=https://raw.githubusercontent.com/adithikmah28/netflik/main/Subtitle/Ballerina%20from%20the%20World%20of%20John%20Wick%20(2025).vtt&sub_label=Indonesia",
+        "cast": ["Ana de Armas", "Keanu Reeves", "Ian McShane"],
+        "director": "Len Wiseman",
+        "subtitle": ["Indonesia", "English"],
+        "country": "United States"
     },
     {
-        "title": "Civil War",
-        "posterUrl": "https://image.tmdb.org/t/p/w500/sh7Rg8Er3tFcN9BpKIPOMvALgZd.jpg"
+        "id": "civil-war-2024",
+        "type": "movie",
+        "title": "Civil War (2024)",
+        "posterUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sh7Rg8Er3tFcN9BpKIPOMvALgZd.jpg",
+        "quality": "HD",
+        "rating": "6.9",
+        "description": "Dalam waktu dekat, sekelompok wartawan perang berusaha untuk bertahan hidup sambil melaporkan kebenaran ketika Amerika Serikat berdiri di ambang perang saudara.",
+        "streamUrl": "https://vidlink.pro/movie/541671?sub_file=https://raw.githubusercontent.com/adithikmah28/netflik/main/Subtitle/Ballerina%20from%20the%20World%20of%20John%20Wick%20(2025).vtt&sub_label=Indonesia",
+        "cast": ["Ana de Armas", "Keanu Reeves", "Ian McShane"],
+        "director": "Len Wiseman",
+        "subtitle": ["Indonesia", "English"],
+        "country": "United States"
     }
 ]
