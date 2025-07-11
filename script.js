@@ -1,28 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- BAGIAN 1: LOGIKA UMUM UNTUK SEMUA HALAMAN (HEADER, MENU, DLL) ---
-    // Kode ini akan selalu berjalan di setiap halaman yang memuat script.js
-
+    // --- BAGIAN 1: LOGIKA UMUM UNTUK SEMUA HALAMAN (HEADER, MENU) ---
     const header = document.querySelector('.header');
     const navbar = document.querySelector('.navbar');
     const hamburger = document.querySelector('.hamburger');
     const navCloseBtn = document.querySelector('.nav-close-btn');
     const searchIcon = document.querySelector('.search-icon');
     
-    // Menambahkan pengecekan 'if' untuk setiap event listener agar aman
     if (header) {
         window.addEventListener('scroll', () => {
             header.classList.toggle('scrolled', window.scrollY > 50);
         });
     }
-
     if (hamburger && navbar && navCloseBtn) {
         hamburger.addEventListener('click', () => navbar.classList.add('nav-active'));
         navCloseBtn.addEventListener('click', () => navbar.classList.remove('nav-active'));
     }
-
     if (searchIcon && header) {
-        const searchInputForIcon = document.getElementById('search-input'); // Khusus untuk ikon
+        const searchInputForIcon = document.getElementById('search-input');
         searchIcon.addEventListener('click', () => {
             header.classList.toggle('search-active');
             if (header.classList.contains('search-active') && searchInputForIcon) {
@@ -31,21 +26,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
     // --- BAGIAN 2: LOGIKA KHUSUS HANYA UNTUK HALAMAN UTAMA (index.html) ---
-    // Kode di dalam 'if' ini hanya akan berjalan jika elemen-elemen halaman utama ditemukan.
-
     const defaultRowsContainer = document.getElementById('default-rows');
     const searchResultsContainer = document.getElementById('search-results-container');
     
     if (defaultRowsContainer && searchResultsContainer) {
 
-        // Semua variabel dan fungsi untuk halaman utama ada di dalam sini
-        let allContent = [];
+        let allContent = []; // Awalnya kosong
+        let isAllContentLoaded = false; // Penanda apakah semua data sudah di-load
+
         const searchInput = document.getElementById('search-input');
         const searchResultsGrid = document.getElementById('search-results-grid');
         const searchResultsTitle = document.getElementById('search-results-title');
+        const searchLoading = document.getElementById('search-loading');
 
+        // Fungsi untuk membuat kartu film (tidak berubah)
         const createMovieCard = (item) => {
             const anchor = document.createElement('a');
             anchor.className = 'movie-card-link';
@@ -56,18 +51,13 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (qualityLower === 'sd') qualityClass = 'quality-sd';
             else if (qualityLower === 'cam') qualityClass = 'quality-cam';
             anchor.innerHTML = `
-                <div class="poster-wrapper">
-                    <img src="${item.posterUrl}" alt="${item.title}" loading="lazy">
-                    <div class="movie-card-info">
-                        ${ qualityClass ? `<span class="quality-badge ${qualityClass}">${item.quality}</span>` : '' }
-                        <span class="rating-badge"><i class="fas fa-star"></i> ${item.rating || 'N/A'}</span>
-                    </div>
-                </div>
+                <div class="poster-wrapper"><img src="${item.posterUrl}" alt="${item.title}" loading="lazy"><div class="movie-card-info">${ qualityClass ? `<span class="quality-badge ${qualityClass}">${item.quality}</span>` : '' }<span class="rating-badge"><i class="fas fa-star"></i> ${item.rating || 'N/A'}</span></div></div>
                 <h3 class="movie-title">${item.title}</h3>
             `;
             return anchor;
         };
-
+        
+        // Fungsi untuk menampilkan hasil pencarian (tidak berubah)
         const renderSearchResults = (results) => {
             searchResultsGrid.innerHTML = '';
             if (results.length === 0) {
@@ -78,40 +68,60 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        const initializeApp = async () => {
+        // Fungsi BARU untuk memuat semua data HANYA saat dibutuhkan
+        const loadAllContent = async () => {
+            if (isAllContentLoaded) return; // Jika sudah dimuat, jangan ulangi
+            
+            searchLoading.style.display = 'block';
+            searchResultsGrid.innerHTML = '';
+
             try {
                 const [moviesRes, seriesRes, indonesiaRes] = await Promise.all([
-                    fetch('data/movies.json'),
-                    fetch('data/series.json'),
-                    fetch('data/indonesia.json')
+                    fetch('data/movies.json'), fetch('data/series.json'), fetch('data/indonesia.json')
                 ]);
+                
+                if (!moviesRes.ok || !seriesRes.ok || !indonesiaRes.ok) throw new Error("Gagal mengambil file data.");
+
                 const movies = await moviesRes.json();
                 const series = await seriesRes.json();
                 const indonesia = await indonesiaRes.json();
                 
                 allContent = [...movies, ...series, ...indonesia];
-
-                const movieContainer = document.getElementById('movies-list');
-                const seriesContainer = document.getElementById('series-list');
-                const indonesiaContainer = document.getElementById('indonesia-list');
-
-                movies.slice(0, 10).forEach(item => movieContainer.appendChild(createMovieCard(item)));
-                series.slice(0, 10).forEach(item => seriesContainer.appendChild(createMovieCard(item)));
-                indonesia.slice(0, 10).forEach(item => indonesiaContainer.appendChild(createMovieCard(item)));
-
+                isAllContentLoaded = true;
             } catch (error) {
-                console.error("Gagal memuat data awal:", error);
-                document.querySelector('.movie-rows').innerHTML = '<p style="text-align:center; color: #ff9999;">Gagal memuat data film. Pastikan project dijalankan via Live Server.</p>';
+                console.error("Gagal memuat data untuk pencarian:", error);
+                searchResultsTitle.textContent = "Gagal memuat data pencarian";
+            } finally {
+                searchLoading.style.display = 'none';
             }
         };
 
-        // Event listener untuk search input, diletakkan di dalam sini
+        // Fungsi untuk memuat 10 film pertama untuk setiap kategori (ringan)
+        const loadPreviews = async (categoryName, elementId, limit) => {
+            try {
+                const res = await fetch(`data/${categoryName}.json`);
+                if (!res.ok) throw new Error(`File ${categoryName}.json tidak ditemukan.`);
+                
+                const data = await res.json();
+                const container = document.getElementById(elementId);
+                data.slice(0, limit).forEach(item => container.appendChild(createMovieCard(item)));
+            } catch (error) {
+                console.error(`Gagal memuat preview untuk ${categoryName}:`, error);
+            }
+        };
+
+        // LOGIKA PENCARIAN BARU (Lazy Loading)
         if (searchInput) {
-            searchInput.addEventListener('input', (e) => {
+            searchInput.addEventListener('input', async (e) => {
                 const searchTerm = e.target.value.toLowerCase().trim();
+
                 if (searchTerm.length > 0) {
                     defaultRowsContainer.style.display = 'none';
                     searchResultsContainer.style.display = 'block';
+
+                    // Hanya panggil fungsi load jika data belum ada
+                    await loadAllContent();
+
                     const filteredResults = allContent.filter(item => 
                         item.title.toLowerCase().includes(searchTerm)
                     );
@@ -123,7 +133,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         
-        // Jalankan!
-        initializeApp();
+        // Jalankan pemuatan preview saat halaman dibuka
+        loadPreviews('movies', 'movies-list', 10);
+        loadPreviews('series', 'series-list', 10);
+        loadPreviews('indonesia', 'indonesia-list', 10);
     }
 });
