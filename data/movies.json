@@ -56,16 +56,16 @@
         "country": "United States"
     },
     {
-        "id": "civil-war-2024",
+        "id": "king-kong-2005",
         "type": "movie",
-        "title": "Civil War (2024)",
-        "posterUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sh7Rg8Er3tFcN9BpKIPOMvALgZd.jpg",
+        "title": "King Kong (2005)",
+        "posterUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/6a2HY6UmD7XiDD3NokgaBAXEsD2.jpg",
         "quality": "HD",
         "rating": "6.9",
-        "description": "Dalam waktu dekat, sekelompok wartawan perang berusaha untuk bertahan hidup sambil melaporkan kebenaran ketika Amerika Serikat berdiri di ambang perang saudara.",
-        "streamUrl": "https://vidlink.pro/movie/541671?sub_file=https://raw.githubusercontent.com/adithikmah28/netflik/main/Subtitle/Ballerina%20from%20the%20World%20of%20John%20Wick%20(2025).vtt&sub_label=Indonesia",
-        "cast": ["Ana de Armas", "Keanu Reeves", "Ian McShane"],
-        "director": "Len Wiseman",
+        "description": "Pada tahun 1933 di New York, seorang produser film yang terlalu ambisius memaksa para pemain dan kru kapal yang disewanya untuk melakukan perjalanan ke Pulau Tengkorak yang misterius, di mana mereka bertemu dengan Kong, seekor kera raksasa yang langsung jatuh cinta pada sang pemeran utama.",
+        "streamUrl": "https://vidlink.pro/movie/254?sub_file=https://raw.githubusercontent.com/adithikmah28/netflik/main/Subtitle/King.Kong.2005.EXTENDED.BluRay.vtt&sub_label=Indonesia",
+        "cast": ["Naomi Watts", "Adrien Brody", "Jack Black"],
+        "director": "Peter Jackson",
         "subtitle": ["Indonesia", "English"],
         "country": "United States"
     }
