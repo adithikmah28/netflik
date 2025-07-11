@@ -68,5 +68,19 @@
         "director": "Peter Jackson",
         "subtitle": ["Indonesia", "English"],
         "country": "United States"
+    },
+    {
+        "id": "john-wick-2014",
+        "type": "movie",
+        "title": "John Wick (2014)",
+        "posterUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/fZPSd91yGE9fCcCe6OoQr6E3Bev.jpg",
+        "quality": "HD",
+        "rating": "7.4",
+        "description": "Saat mobilnya dicuri dan anjingnya dibunuh oleh putra seorang gangster, John Wick si mantan pembunuh yang pemberani menghadapi seluruh kawanan mafia demi membalas dendam.",
+        "streamUrl": "https://vidlink.pro/movie/245891?sub_file=https://raw.githubusercontent.com/adithikmah28/netflik/main/Subtitle/John%20Wick.vtt&sub_label=Indonesia",
+        "cast": ["Keanu Reeves", "Michael Nyqvist", "Alfie Allen"],
+        "director": "Chad Stahelski",
+        "subtitle": ["Indonesia", "English"],
+        "country": "United States"
     }
 ]
