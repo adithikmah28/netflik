@@ -92,3 +92,7 @@ a.movie-card-link:hover {
     }
     .header { padding: 15px 5%; } .logo { font-size: 1.5em; } main { padding-top: 80px; } .row-header h2 { font-size: 1.2rem; } .header.search-active .search-box input { width: 120px; }
 }
+/* Style tambahan untuk wadah hasil pencarian */
+#search-results-container {
+    padding-top: 20px;
+}
