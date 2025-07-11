@@ -194,5 +194,33 @@
         "director": "Paul Agusta",
         "subtitle": ["English", "indonesia"],
         "country": "Indonesia"
+    },
+    {
+        "id": "kultus-iblis-2023",
+        "type": "movie",
+        "title": "Kultus Iblis (2023)",
+        "posterUrl": "https://image.tmdb.org/t/p/original/8GlBl00JOIywYNkoeRc0Fnzwr8O.jpg",
+        "quality": "HD",
+        "rating": "4.8",
+        "description": "Sepasang anak kembar datang ke desa terpencil untuk mencari tahu penyebab kematian aneh ayah mereka, namun mereka akhirnya terjebak di desa berbahaya yang penuh teror.",
+        "streamUrl": "https://vidlink.pro/movie/1164124",
+        "cast": ["Yasamin Jasem", "Fadi Alaydrus", "Rukman Rosadi"],
+        "director": "Bobby Prasetyo",
+        "subtitle": ["English", "indonesia"],
+        "country": "Indonesia"
+    },
+    {
+        "id": "a-perfect-fit-2021",
+        "type": "movie",
+        "title": "A Perfect Fit (2021)",
+        "posterUrl": "https://image.tmdb.org/t/p/original/zpF0WcOarNWVhS17eeT1nl6IacP.jpg",
+        "quality": "HD",
+        "rating": "7.3",
+        "description": "Saat pergi bersama temannya ke satu tempat, Saski (Nadya Arina) diramal oleh seseorang yang membawanya ke sebuah toko sepatu. Saski kemudian memasuki toko itu untuk memilih sepatu yang cocok. Tanpa ia sadari kunjungannya ke toko sepatu itu memicu sederet kejadian yang akan mengubah hidupnya.",
+        "streamUrl": "https://vidsrc.icu/embed/movie/800669",
+        "cast": ["Nadya Arina", "Refal Hady", "Giorgino Abraham"],
+        "director": "Hadrah Daeng Ratu",
+        "subtitle": ["English", "indonesia"],
+        "country": "Indonesia"
     }
 ]
