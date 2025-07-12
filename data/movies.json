@@ -11,7 +11,7 @@
         "cast": ["Will Smith", "Martin Lawrence", "Vanessa Hudgens"],
         "director": "Adil & Bilall",
         "subtitle": ["Indonesia", "English"],
-        "country": ["United States", "Inonesia"],
+        "country": "United States",
         "genre": ["Action", "Comedy", "Thriller"],
         "keywords": ["miami", "florida", "police detective", "buddy cop", "sequel"],
         "downloadLinks": [
