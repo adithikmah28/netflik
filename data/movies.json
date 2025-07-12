@@ -12,10 +12,11 @@
         "director": "Adil & Bilall",
         "subtitle": ["Indonesia", "English"],
         "country": "United States",
+        "genre": ["Action", "Comedy", "Thriller"],
+        "keywords": ["miami", "florida", "police detective", "buddy cop", "sequel"],
         "downloadLinks": [
             { "quality": "1080p", "provider": "Google Drive", "url": "#" }
-        ],
-        "keywords": ["miami, florida", "sequel", "on the run", "police detective", "buddy cop", "buddy comedy", "aftercreditsstinger", "hilarious"]
+        ]
     },
     {
         "id": "dune-part-two-2024",
@@ -30,6 +31,8 @@
         "director": "Denis Villeneuve",
         "subtitle": ["Indonesia", "English"],
         "country": "United States",
+        "genre": ["Science Fiction", "Adventure", "Action"],
+        "keywords": ["epic", "based on novel", "space opera", "desert"],
         "downloadLinks": [
             { "quality": "1080p", "provider": "Google Drive", "url": "#" }
         ]
@@ -47,6 +50,8 @@
         "director": "Adam Wingard",
         "subtitle": ["Indonesia", "English"],
         "country": "United States",
+        "genre": ["Action", "Science Fiction", "Adventure"],
+        "keywords": ["kaiju", "monster", "giant monster", "monsterverse"],
         "downloadLinks": [
             { "quality": "1080p", "provider": "Google Drive", "url": "#" }
         ]
@@ -63,7 +68,9 @@
         "cast": ["Ana de Armas", "Keanu Reeves", "Ian McShane"],
         "director": "Len Wiseman",
         "subtitle": ["Indonesia", "English"],
-        "country": "United States"
+        "country": "United States",
+        "genre": ["Action", "Thriller"],
+        "keywords": ["assassin", "spin off", "john wick universe"]
     },
     {
         "id": "king-kong-2005",
@@ -77,7 +84,9 @@
         "cast": ["Naomi Watts", "Adrien Brody", "Jack Black"],
         "director": "Peter Jackson",
         "subtitle": ["Indonesia", "English"],
-        "country": "United States"
+        "country": "United States",
+        "genre": ["Adventure", "Drama", "Action"],
+        "keywords": ["giant monster", "island", "new york city", "remake"]
     },
     {
         "id": "john-wick-2014",
@@ -91,7 +100,9 @@
         "cast": ["Keanu Reeves", "Michael Nyqvist", "Alfie Allen"],
         "director": "Chad Stahelski",
         "subtitle": ["Indonesia", "English"],
-        "country": "United States"
+        "country": "United States",
+        "genre": ["Action", "Thriller"],
+        "keywords": ["assassin", "revenge", "gun fu", "hitman"]
     },
     {
         "id": "john-wick-chapter-2-2017",
@@ -105,6 +116,8 @@
         "cast": ["Keanu Reeves", "Common", "Laurence Fishburne"],
         "director": "Chad Stahelski",
         "subtitle": ["Indonesia", "English"],
-        "country": "United States"
+        "country": "United States",
+        "genre": ["Action", "Thriller", "Crime"],
+        "keywords": ["assassin", "hitman", "sequel", "gun fu"]
     }
 ]
