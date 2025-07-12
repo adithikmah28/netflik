@@ -23,7 +23,7 @@ a {
     color: var(--light-color); 
 }
 
-/* === HEADER & NAVBAR === */
+/* === HEADER & NAVBAR (TIDAK BERUBAH) === */
 .header { position: fixed; top: 0; left: 0; width: 100%; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 100; background: linear-gradient(to bottom, rgba(0,0,0,0.7) 10%, rgba(0,0,0,0)); transition: background-color 0.3s ease; }
 .header.scrolled { background-color: var(--dark-color); }
 .logo { font-size: 2em; font-weight: 700; color: var(--primary-color); letter-spacing: 2px; }
@@ -40,7 +40,7 @@ a {
 .header.search-active .search-box { background-color: rgba(0,0,0,0.7); border-color: var(--light-color); }
 .header.search-active .search-box input { width: 200px; padding: 0 10px; }
 
-/* === KONTEN UTAMA === */
+/* === KONTEN UTAMA (TIDAK BERUBAH) === */
 main { padding-top: 100px; }
 .movie-rows { padding: 20px 0; }
 .movie-row { margin-bottom: 40px; }
@@ -49,12 +49,51 @@ main { padding-top: 100px; }
 .view-all-link { color: var(--gray-color); font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
 .view-all-link:hover { color: var(--light-color); }
 
-/* === KARTU FILM & POSTER === */
+/* === STRUKTUR KARTU FILM & POSTER === */
 a.movie-card-link { display: block; transition: transform 0.3s ease; }
 a.movie-card-link:hover { transform: scale(1.08) translateY(-10px); z-index: 10; }
 .poster-wrapper { position: relative; width: 100%; aspect-ratio: 2 / 3; border-radius: 5px; overflow: hidden; background-color: #222; margin-bottom: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
 .poster-wrapper img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
 .movie-title { font-size: 0.95rem; font-weight: 500; text-align: center; color: #e5e5e5; padding: 0 5px; }
+
+/* --- KODE YANG HILANG, SEKARANG DIKEMBALIKAN --- */
+.movie-card-info {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    z-index: 2;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start; 
+    padding: 8px; 
+    background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+}
+.quality-badge { 
+    padding: 3px 8px; 
+    font-size: 0.75rem; 
+    font-weight: 700; 
+    color: white; 
+    border-radius: 3px; 
+    text-shadow: 1px 1px 2px black; 
+}
+.quality-hd { background-color: var(--quality-hd); }
+.quality-sd { background-color: var(--quality-sd); }
+.quality-cam { background-color: var(--quality-cam); }
+.rating-badge { 
+    display: flex; 
+    align-items: center; 
+    background-color: rgba(0,0,0,0.7); 
+    padding: 3px 8px; 
+    border-radius: 3px; 
+    font-size: 0.8rem; 
+    font-weight: 700; 
+}
+.rating-badge i { 
+    color: #f5c518; 
+    margin-right: 5px; 
+}
+/* --- AKHIR DARI KODE YANG DIKEMBALIKAN --- */
 
 /* --- ATURAN KHUSUS UNTUK HALAMAN UTAMA (SCROLL HORIZONTAL) --- */
 .movie-list { display: flex; gap: 20px; padding: 0 5%; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -ms-overflow-style: none; }
@@ -72,7 +111,7 @@ a.movie-card-link:hover { transform: scale(1.08) translateY(-10px); z-index: 10;
 .social-links a { color: var(--gray-color); margin: 0 15px; font-size: 1.5rem; transition: color 0.3s; }
 .social-links a:hover { color: var(--light-color); }
 
-/* === RESPONSIVE RULES (DENGAN PERBAIKAN TOTAL) === */
+/* === RESPONSIVE RULES === */
 @media (max-width: 992px) { 
     .navbar { position: fixed; top: 0; right: -100%; width: 250px; height: 100%; background-color: var(--dark-color); box-shadow: -5px 0 15px rgba(0,0,0,0.5); display: flex; flex-direction: column; padding-top: 80px; transition: right 0.4s ease-in-out; } 
     .navbar.nav-active { right: 0; } 
@@ -82,34 +121,12 @@ a.movie-card-link:hover { transform: scale(1.08) translateY(-10px); z-index: 10;
 }
 
 @media (max-width: 768px) {
-    /* Aturan umum untuk HP */
-    .header { padding: 15px 5%; }
-    .logo { font-size: 1.5em; }
-    main { padding-top: 80px; }
-    .row-header h2 { font-size: 1.2rem; }
-    .header.search-active .search-box input { width: 120px; }
-    
-    /* Aturan untuk Halaman Utama di HP */
-    .movie-list .movie-card-link {
-        width: 150px;
-    }
-    
-    /* Aturan untuk Halaman Grid di HP */
-    .category-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 20px 15px;
-    }
+    .header { padding: 15px 5%; } .logo { font-size: 1.5em; } main { padding-top: 80px; } .row-header h2 { font-size: 1.2rem; } .header.search-active .search-box input { width: 120px; }
+    .movie-list .movie-card-link { width: 150px; }
+    .category-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px 15px; }
 }
 
 @media (max-width: 480px) {
-    /* Aturan untuk Halaman Utama di HP kecil */
-    .movie-list .movie-card-link {
-        width: 120px;
-    }
-
-    /* Aturan untuk Halaman Grid di HP Kecil */
-    .category-grid {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        gap: 20px 10px;
-    }
+    .movie-list .movie-card-link { width: 120px; }
+    .category-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 20px 10px; }
 }
