@@ -107,3 +107,13 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--dark-color); 
     .stream-description { font-size: 1rem; }
     .metadata-grid { grid-template-columns: 1fr; }
 }
+/* Tambahkan ini ke file streaming.css */
+.metadata-item span a, .keyword-tag {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.metadata-item span a:hover, .keyword-tag:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
