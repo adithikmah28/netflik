@@ -1,17 +1,40 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <!-- ... (head tetap sama) ... -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Pencarian - Netflik</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 style=%22fill: %23E50914;%22>N</text></svg>">
+    <link rel="stylesheet" href="style.css"> <!-- Pakai style utama yang sudah benar -->
+    <link rel="stylesheet" href="category.css"> <!-- Pakai style paginasi -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-    <!-- ... (header tetap sama) ... -->
+    <header class="header">
+        <a href="index.html" class="logo">NETFLIK</a>
+        <nav class="navbar">
+            <div class="nav-close-btn"><i class="fas fa-times"></i></div>
+            <a href="index.html">Beranda</a>
+        </nav>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
+    </header>
+
     <main>
         <section class="category-page">
+            <!-- ID SUDAH DIPERBAIKI DI SINI -->
             <h1 id="results-title">Memuat hasil...</h1>
-            <div id="results-grid" class="category-grid"></div>
-            <nav id="pagination-controls" class="pagination"></nav>
+            <div id="results-grid" class="category-grid">
+                <!-- Poster akan dimuat oleh JavaScript -->
+            </div>
+            <nav id="pagination-controls" class="pagination">
+                <!-- Tombol halaman akan dimuat oleh JavaScript -->
+            </nav>
         </section>
     </main>
+
     <script src="results.js"></script>
 </body>
 </html>
