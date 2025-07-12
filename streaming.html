@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <!-- ... (head tetap sama) ... -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sedang Menonton... - Netflik</title>
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" href="data:image/svg+xml,...">
     <link rel="stylesheet" href="streaming.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,17 +12,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-    <!-- ... (header tetap sama) ... -->
-    <header class="stream-header"><a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a><a href="index.html" class="logo">NETFLIK</a></header>
+    <header class="stream-header">
+        <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a>
+        <a href="index.html" class="logo">NETFLIK</a>
+    </header>
 
     <main id="stream-container" class="stream-container">
         <div class="loading">Memuat video...</div>
     </main>
 
-    <!-- MODAL IKLAN (UPDATE) -->
+    <!-- MODAL IKLAN YANG BENAR -->
     <div id="ad-modal" class="ad-modal">
         <div class="ad-modal-content">
-            <!-- Tombol Close (span) sudah DIHAPUS dari sini -->
             <h2>Satu Langkah Lagi!</h2>
             <p>Untuk mendukung kami, silakan klik tombol di bawah ini sebelum melanjutkan menonton.</p>
             <a href="javascript:void(0)" id="ad-link" class="ad-button" target="_blank">
