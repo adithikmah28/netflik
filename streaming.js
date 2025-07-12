@@ -11,32 +11,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     const type = params.get('type');
     const id = params.get('id');
 
-    if (!type || !id) {
-        streamContainer.innerHTML = `<p class="error">Konten tidak ditemukan.</p>`;
-        return;
-    }
+    if (!type || !id) { streamContainer.innerHTML = `<p class="error">Konten tidak ditemukan.</p>`; return; }
 
-    // FUNGSI MODAL LOCK (TIDAK DIUBAH, INI YANG PENTING)
     const unlockVideo = () => {
         adModal.classList.remove('show');
         const iframe = document.getElementById('video-iframe');
-        if (iframe && iframe.dataset.src) {
-            iframe.src = iframe.dataset.src;
-        }
+        if (iframe && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
     };
     
     adLink.href = ADSTERRA_DIRECT_LINK;
-    adLink.addEventListener('click', () => {
-        setTimeout(unlockVideo, 500); 
-    });
+    adLink.addEventListener('click', () => { setTimeout(unlockVideo, 500); });
 
     const buildFinalUrl = (baseUrl) => {
         const paramsToAdd = "autoplay=1&modestbranding=1&rel=0";
-        if (baseUrl.includes('?')) {
-            return `${baseUrl}&${paramsToAdd}`;
-        } else {
-            return `${baseUrl}?${paramsToAdd}`;
-        }
+        if (baseUrl.includes('?')) { return `${baseUrl}&${paramsToAdd}`; } 
+        else { return `${baseUrl}?${paramsToAdd}`; }
     };
 
     try {
@@ -53,12 +42,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (contentData) {
             document.title = `${contentData.title} - Netflik`;
 
-            // --- FUNGSI BARU UNTUK MEMBUAT LINK METADATA ---
             const slugify = (text) => text.toLowerCase().replace(/\s+/g, '-');
 
             const createLinkList = (items, type) => {
                 if (!items || items.length === 0) return 'N/A';
-                return items.map(item => `<a href="results.html?type=${type}&q=${slugify(item)}">${item}</a>`).join(', ');
+                return items
+                    .map(item => `<a href="results.html?type=${type}&q=${slugify(item)}">${item}</a>`)
+                    .join('<span class="separator">, </span>');
             };
             
             const createSingleLink = (item, type) => {
@@ -101,53 +91,37 @@ document.addEventListener('DOMContentLoaded', async () => {
             `;
 
             if (contentData.type === 'series' && contentData.seasons) {
-                streamContainer.innerHTML = `
-                    <div class="video-player-wrapper"><div class="video-container"><iframe id="video-iframe" data-src="" title="${contentData.title}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></div>
-                    <div class="stream-controls"><select id="season-select"></select><div id="episodes-list-container"></div></div>
-                    ${mainContentHTML}
-                `;
+                streamContainer.innerHTML = `<div class="video-player-wrapper"><div class="video-container"><iframe id="video-iframe" data-src="" title="${contentData.title}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></div><div class="stream-controls"><select id="season-select"></select><div id="episodes-list-container"></div></div>${mainContentHTML}`;
                 
                 const videoIframe = document.getElementById('video-iframe');
                 const seasonSelect = document.getElementById('season-select');
                 const episodesContainer = document.getElementById('episodes-list-container');
-
-                // LOGIKA MODAL LOCK UNTUK SERIES (TIDAK DIUBAH)
                 const playEpisode = (episodeBox) => {
                     document.querySelectorAll('.episode-box').forEach(b => b.classList.remove('active'));
                     episodeBox.classList.add('active');
-                    videoIframe.src = '';
-                    videoIframe.dataset.src = buildFinalUrl(episodeBox.dataset.streamUrl);
+                    videoIframe.src = ''; videoIframe.dataset.src = buildFinalUrl(episodeBox.dataset.streamUrl);
                     adModal.classList.add('show');
                 };
-
                 const renderAndPlayFirstEpisode = (seasonIndex) => {
                     episodesContainer.innerHTML = '';
                     const season = contentData.seasons[seasonIndex];
                     if (!season || !season.episodes) return;
                     season.episodes.forEach(ep => {
                         const epBox = document.createElement('div');
-                        epBox.className = 'episode-box';
-                        epBox.textContent = ep.episode;
-                        epBox.dataset.streamUrl = ep.streamUrl;
+                        epBox.className = 'episode-box'; epBox.textContent = ep.episode; epBox.dataset.streamUrl = ep.streamUrl;
                         epBox.addEventListener('click', () => playEpisode(epBox));
                         episodesContainer.appendChild(epBox);
                     });
                     const firstEpisodeBox = episodesContainer.querySelector('.episode-box');
                     if (firstEpisodeBox) { playEpisode(firstEpisodeBox); }
                 };
-                
                 contentData.seasons.forEach((season, index) => seasonSelect.add(new Option(season.season_name, index)));
                 seasonSelect.addEventListener('change', (e) => { renderAndPlayFirstEpisode(e.target.value); });
                 renderAndPlayFirstEpisode(0);
                 
             } else {
                 const finalMovieUrl = buildFinalUrl(contentData.streamUrl);
-                streamContainer.innerHTML = `
-                    <div class="video-player-wrapper"><div class="video-container"><iframe id="video-iframe" data-src="${finalMovieUrl}" title="${contentData.title}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></div>
-                    ${downloadButtonHTML}
-                    ${mainContentHTML}
-                `;
-                // LOGIKA MODAL LOCK UNTUK MOVIE (TIDAK DIUBAH)
+                streamContainer.innerHTML = `<div class="video-player-wrapper"><div class="video-container"><iframe id="video-iframe" data-src="${finalMovieUrl}" title="${contentData.title}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></div>${downloadButtonHTML}${mainContentHTML}`;
                 adModal.classList.add('show');
             }
 
