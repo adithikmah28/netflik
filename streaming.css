@@ -117,3 +117,27 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--dark-color); 
     color: var(--primary-color);
     text-decoration: underline;
 }
+/* ... (semua CSS sebelumnya tetap sama sampai akhir .metadata-item) ... */
+.metadata-item strong { display: block; color: #888; font-weight: 500; margin-bottom: 4px; font-size: 0.8rem; text-transform: uppercase; }
+
+/* --- STYLE BARU UNTUK LINK METADATA --- */
+/* Style untuk link (Pemeran, Sutradara, dll) */
+.metadata-item span a {
+    color: var(--primary-color); /* Warna merah Netflix */
+    text-decoration: none;
+    transition: text-decoration 0.2s;
+}
+.metadata-item span a:hover {
+    text-decoration: underline;
+}
+/* Style untuk koma pemisah agar tetap putih */
+.separator {
+    color: #ccc; /* Warna putih keabuan, sama seperti teks biasa */
+    pointer-events: none; /* Agar koma tidak bisa diklik */
+}
+/* --- AKHIR STYLE BARU --- */
+
+.keyword-tags { /* ... */ }
+.keyword-tag { /* ... */ }
+.keyword-tag:hover { /* ... */ }
+/* ... (sisa CSS untuk download, modal, dan media queries tetap sama) ... */
