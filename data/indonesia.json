@@ -12,8 +12,11 @@
         "director": "Hadrah Daeng Ratu",
         "subtitle": ["Indonesia", "English"],
         "country": "Indonesia"
-        "genre": ["Horror", "Drama", "Thriller"]
-        
+        "genre": ["Science Fiction", "Adventure", "Action"],
+        "keywords": ["epic", "based on novel", "space opera", "desert"],
+        "downloadLinks": [
+            { "quality": "1080p", "provider": "Google Drive", "url": "#" }
+        ]
     },
     {
         "id": "perempuan-tanah-jahanam-2024",
