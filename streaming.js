@@ -12,51 +12,41 @@ document.addEventListener('DOMContentLoaded', async () => {
     const id = params.get('id');
 
     if (!type || !id) { streamContainer.innerHTML = `<p class="error">Konten tidak ditemukan.</p>`; return; }
-    if (!type || !id) {
-        streamContainer.innerHTML = `<p class="error">Konten tidak ditemukan.</p>`;
-        return;
-    }
 
-    // FUNGSI MODAL LOCK (TIDAK DIUBAH, INI YANG PENTING)
     const unlockVideo = () => {
         adModal.classList.remove('show');
         const iframe = document.getElementById('video-iframe');
         if (iframe && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
-        if (iframe && iframe.dataset.src) {
-            iframe.src = iframe.dataset.src;
-        }
     };
-
+    
     adLink.href = ADSTERRA_DIRECT_LINK;
     adLink.addEventListener('click', () => { setTimeout(unlockVideo, 500); });
-    adLink.addEventListener('click', () => {
-        setTimeout(unlockVideo, 500); 
-    });
 
     const buildFinalUrl = (baseUrl) => {
         const paramsToAdd = "autoplay=1&modestbranding=1&rel=0";
         if (baseUrl.includes('?')) { return `${baseUrl}&${paramsToAdd}`; } 
         else { return `${baseUrl}?${paramsToAdd}`; }
-        if (baseUrl.includes('?')) {
-            return `${baseUrl}&${paramsToAdd}`;
-        } else {
-            return `${baseUrl}?${paramsToAdd}`;
-        }
     };
 
     try {
-@@ -42,40 +53,50 @@
+        let dataSources = [];
+        if (type === 'movie') dataSources.push(fetch('data/movies.json'), fetch('data/indonesia.json'));
+        else if (type === 'series') dataSources.push(fetch('data/series.json'));
+        
+        const responses = await Promise.all(dataSources);
+        let allData = [];
+        for (const response of responses) if (response.ok) allData.push(...await response.json());
+
+        const contentData = allData.find(item => item.id === id);
+        
         if (contentData) {
             document.title = `${contentData.title} - Netflik`;
 
-            // --- FUNGSI BARU UNTUK MEMBUAT LINK METADATA ---
             const slugify = (text) => text.toLowerCase().replace(/\s+/g, '-');
-
             const createLinkList = (items, type) => {
                 if (!items || items.length === 0) return 'N/A';
                 return items.map(item => `<a href="results.html?type=${type}&q=${slugify(item)}">${item}</a>`).join(', ');
             };
-            
             const createSingleLink = (item, type) => {
                 if (!item) return 'N/A';
                 return `<a href="results.html?type=${type}&q=${slugify(item)}">${item}</a>`;
@@ -78,21 +68,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             let downloadButtonHTML = '';
             if (contentData.type === 'movie' && contentData.downloadLinks && contentData.downloadLinks.length > 0) {
                 const downloadUrl = `download.html?type=${contentData.type}&id=${contentData.id}`;
-                downloadButtonHTML = `
-                    <div class="download-wrapper">
-                        <a href="${downloadUrl}" class="download-page-btn"><i class="fas fa-download"></i> Download Film Ini</a>
-                    </div>
-                `;
                 downloadButtonHTML = `<div class="download-wrapper"><a href="${downloadUrl}" class="download-page-btn"><i class="fas fa-download"></i> Download Film Ini</a></div>`;
             }
-
+            
             let keywordsHTML = '';
             if (contentData.keywords && contentData.keywords.length > 0) {
-                keywordsHTML = `
-                    <div class="keyword-tags">
-                        ${contentData.keywords.map(keyword => `<a href="#" class="keyword-tag">${keyword}</a>`).join('')}
-                    </div>
-                `;
                 keywordsHTML = `<div class="keyword-tags">${contentData.keywords.map(keyword => `<a href="results.html?type=keyword&q=${slugify(keyword)}" class="keyword-tag">${keyword}</a>`).join('')}</div>`;
             }
 
@@ -101,61 +81,43 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <h1 class="stream-title">${contentData.title}</h1>
                     <div class="title-divider"></div>
                     <p class="stream-description">${contentData.description}</p>
-                    <div class="metadata-wrapper">
-                        <div class="metadata-grid">
-                            <div class="metadata-item"><strong>Pemeran</strong><span>${(contentData.cast || []).join(', ') || 'N/A'}</span></div>
-                            <div class="metadata-item"><strong>Sutradara</strong><span>${contentData.director || 'N/A'}</span></div>
-                            <div class="metadata-item"><strong>Kualitas</strong><span>${contentData.quality || 'N/A'}</span></div>
-                            <div class="metadata-item"><strong>Subtitle</strong><span>${(contentData.subtitle || []).join(', ') || 'N/A'}</span></div>
-                            <div class="metadata-item"><strong>Negara</strong><span>${contentData.country || 'N/A'}</span></div>
-                        </div>
-                        ${keywordsHTML} 
-                    </div>
                     ${metadataHTML}
                     ${keywordsHTML} 
                 </div>
             `;
 
-@@ -89,8 +110,32 @@
+            if (contentData.type === 'series' && contentData.seasons) {
+                streamContainer.innerHTML = `<div class="video-player-wrapper"><div class="video-container"><iframe id="video-iframe" data-src="" title="${contentData.title}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></div><div class="stream-controls"><select id="season-select"></select><div id="episodes-list-container"></div></div>${mainContentHTML}`;
+                
                 const videoIframe = document.getElementById('video-iframe');
                 const seasonSelect = document.getElementById('season-select');
                 const episodesContainer = document.getElementById('episodes-list-container');
-                const playEpisode = (episodeBox) => { /* ... (fungsi ini tetap sama) ... */ };
-                const renderAndPlayFirstEpisode = (seasonIndex) => { /* ... (fungsi ini tetap sama) ... */ };
-
-                // LOGIKA MODAL LOCK UNTUK SERIES (TIDAK DIUBAH)
                 const playEpisode = (episodeBox) => {
                     document.querySelectorAll('.episode-box').forEach(b => b.classList.remove('active'));
                     episodeBox.classList.add('active');
-                    videoIframe.src = '';
-                    videoIframe.dataset.src = buildFinalUrl(episodeBox.dataset.streamUrl);
+                    videoIframe.src = ''; videoIframe.dataset.src = buildFinalUrl(episodeBox.dataset.streamUrl);
                     adModal.classList.add('show');
                 };
-
                 const renderAndPlayFirstEpisode = (seasonIndex) => {
                     episodesContainer.innerHTML = '';
                     const season = contentData.seasons[seasonIndex];
                     if (!season || !season.episodes) return;
                     season.episodes.forEach(ep => {
                         const epBox = document.createElement('div');
-                        epBox.className = 'episode-box';
-                        epBox.textContent = ep.episode;
-                        epBox.dataset.streamUrl = ep.streamUrl;
+                        epBox.className = 'episode-box'; epBox.textContent = ep.episode; epBox.dataset.streamUrl = ep.streamUrl;
                         epBox.addEventListener('click', () => playEpisode(epBox));
                         episodesContainer.appendChild(epBox);
                     });
                     const firstEpisodeBox = episodesContainer.querySelector('.episode-box');
                     if (firstEpisodeBox) { playEpisode(firstEpisodeBox); }
                 };
-                
                 contentData.seasons.forEach((season, index) => seasonSelect.add(new Option(season.season_name, index)));
                 seasonSelect.addEventListener('change', (e) => { renderAndPlayFirstEpisode(e.target.value); });
                 renderAndPlayFirstEpisode(0);
-@@ -102,14 +147,15 @@
-                    ${downloadButtonHTML}
-                    ${mainContentHTML}
-                `;
-                // LOGIKA MODAL LOCK UNTUK MOVIE (TIDAK DIUBAH)
+                
+            } else {
+                const finalMovieUrl = buildFinalUrl(contentData.streamUrl);
+                streamContainer.innerHTML = `<div class="video-player-wrapper"><div class="video-container"><iframe id="video-iframe" data-src="${finalMovieUrl}" title="${contentData.title}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></div>${downloadButtonHTML}${mainContentHTML}`;
                 adModal.classList.add('show');
             }
 
