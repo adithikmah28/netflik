@@ -11,7 +11,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const type = params.get('type');
     const id = params.get('id');
 
-    if (!type || !id) { streamContainer.innerHTML = `<p class="error">Konten tidak ditemukan.</p>`; return; }
+    if (!type || !id) {
+        streamContainer.innerHTML = `<p class="error">Konten tidak ditemukan.</p>`;
+        return;
+    }
 
     const unlockVideo = () => {
         adModal.classList.remove('show');
@@ -23,7 +26,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     adLink.href = ADSTERRA_DIRECT_LINK;
     adLink.addEventListener('click', () => {
-        setTimeout(unlockVideo, 500);
+        // Jangan hapus modal langsung, beri waktu untuk tab baru terbuka
+        setTimeout(unlockVideo, 500); 
     });
 
     const buildFinalUrl = (baseUrl) => {
@@ -68,6 +72,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             if (contentData.type === 'series' && contentData.seasons) {
+                // --- KONTEN SERIES ---
                 streamContainer.innerHTML = `
                     <div class="video-player-wrapper"><div class="video-container"><iframe id="video-iframe" data-src="" title="${contentData.title}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></div>
                     <div class="stream-controls"><select id="season-select"></select><div id="episodes-list-container"></div></div>
@@ -79,19 +84,22 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </div>
                 `;
                 
+                // Variabel elemen yang dibutuhkan
                 const videoIframe = document.getElementById('video-iframe');
                 const seasonSelect = document.getElementById('season-select');
+                const episodesContainer = document.getElementById('episodes-list-container');
 
+                // --- FUNGSI LENGKAP UNTUK MEMUTAR EPISODE ---
                 const playEpisode = (episodeBox) => {
                     document.querySelectorAll('.episode-box').forEach(b => b.classList.remove('active'));
                     episodeBox.classList.add('active');
-                    videoIframe.src = '';
+                    videoIframe.src = ''; // Kosongkan dulu untuk ganti episode
                     videoIframe.dataset.src = buildFinalUrl(episodeBox.dataset.streamUrl);
-                    adModal.classList.add('show');
+                    adModal.classList.add('show'); // Tampilkan modal iklan
                 };
 
+                // --- FUNGSI LENGKAP UNTUK MENAMPILKAN DAFTAR EPISODE ---
                 const renderEpisodes = (seasonIndex) => {
-                    const episodesContainer = document.getElementById('episodes-list-container');
                     episodesContainer.innerHTML = '';
                     contentData.seasons[seasonIndex].episodes.forEach(ep => {
                         const epBox = document.createElement('div');
@@ -101,19 +109,23 @@ document.addEventListener('DOMContentLoaded', async () => {
                         epBox.addEventListener('click', () => playEpisode(epBox));
                         episodesContainer.appendChild(epBox);
                     });
-                    
-                    // --- KODE KRUSIAL YANG DIKEMBALIKAN ---
-                    // Otomatis putar episode pertama dari season yang dipilih
-                    const firstEpisodeBox = episodesContainer.querySelector('.episode-box');
-                    if (firstEpisodeBox) {
-                        playEpisode(firstEpisodeBox);
-                    }
-                    // ---------------------------------------
                 };
                 
+                // Isi dropdown, tambahkan event listener
                 contentData.seasons.forEach((season, index) => seasonSelect.add(new Option(season.season_name, index)));
-                seasonSelect.addEventListener('change', (e) => renderEpisodes(e.target.value));
-                renderEpisodes(0); // Panggil untuk pertama kali
+                seasonSelect.addEventListener('change', (e) => {
+                    renderEpisodes(e.target.value);
+                    const firstEpisode = episodesContainer.querySelector('.episode-box');
+                    if (firstEpisode) playEpisode(firstEpisode);
+                });
+                
+                // Render episode season pertama saat halaman dimuat
+                renderEpisodes(0);
+                // Otomatis putar episode pertama
+                const firstEpisodeOnLoad = episodesContainer.querySelector('.episode-box');
+                if (firstEpisodeOnLoad) {
+                    playEpisode(firstEpisodeOnLoad);
+                }
                 
             } else {
                 // KONTEN MOVIE
