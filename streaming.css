@@ -100,3 +100,43 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--dark-color); 
     .stream-description { font-size: 1rem; }
     .metadata-grid { grid-template-columns: 1fr; }
 }
+/* ... (semua CSS sebelumnya tetap sama sampai akhir .download-page-btn) ... */
+
+/* --- STYLE BARU UNTUK KATA KUNCI --- */
+.keywords-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+}
+.keywords-section h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #e5e5e5;
+    margin-bottom: 15px;
+}
+.keyword-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.keyword-tag {
+    display: inline-block;
+    padding: 5px 15px;
+    background-color: #222;
+    border: 1px solid #444;
+    border-radius: 20px; /* Membuatnya seperti pil */
+    font-size: 0.85rem;
+    color: #ccc;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+.keyword-tag:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--light-color);
+}
+/* --- AKHIR STYLE BARU --- */
+
+@media (max-width: 768px) {
+    /* ... (sisa media queries tetap sama) ... */
+}
