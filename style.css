@@ -3,6 +3,37 @@
     --dark-color: #141414;
     --light-color: #ffffff;
     --gray-color: #808080;
+    --quality-hd: #28a745; --quality-sd: #17a2b8; --quality-cam: #dc3545;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Poppins', sans-serif; background-color: var(--dark-color); color: var(--light-color); overflow-x: hidden; }
+a { text-decoration: none; color: var(--light-color); }
+/* ... (Header, Search, Navbar, Footer, dll tetap sama. Tidak perlu diubah) ... */
+.header { position: fixed; top: 0; left: 0; width: 100%; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 100; background: linear-gradient(to bottom, rgba(0,0,0,0.7) 10%, rgba(0,0,0,0)); transition: background-color 0.3s ease; }
+.header.scrolled { background-color: var(--dark-color); }
+.logo { font-size: 2em; font-weight: 700; color: var(--primary-color); letter-spacing: 2px; }
+.navbar a { margin-left: 20px; font-weight: 500; transition: color 0.3s; }
+.navbar a:hover, .navbar a.active { color: var(--primary-color); }
+.nav-close-btn { display: none; }
+.header-right { display: flex; align-items: center; gap: 20px; }
+.header-right > i { font-size: 1.2rem; cursor: pointer; }
+.profile-pic { width: 40px; height: 40px; border-radius: 5px; cursor: pointer; }
+.hamburger { display: none; font-size: 1.8rem; cursor: pointer; }
+.search-box { display: flex; align-items: center; background-color: transparent; border: 1px solid transparent; padding: 5px; border-radius: 5px; transition: all 0.3s ease; }
+.search-box .search-icon { color: var(--light-color); cursor: pointer; font-size: 1.2rem; }
+.search-box input { background: transparent; border: none; outline: none; color: var(--light-color); font-size: 1rem; width: 0; padding: 0; transition: all 0.3s ease; }
+.header.search-active .search-box { background-color: rgba(0,0,0,0.7); border-color: var(--light-color); }
+.header.search-active .search-box input { width: 200px; padding: 0 10px; }
+main { padding-top: 100px; }
+.movie-rows { padding: 20px 0; }
+.movie-row { margin-bottom: 40px; }
+.row-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 0 5%; }
+.row-header h2 { margin: 0; }
+.view-all-link { color: var(--gray-color); font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+.view-all-link:hover { color: var(--light-color); }
+.view-all-link i { margin-left: 5px; font-size: 0.8rem; }
+.movie-list { display: flex; gap: 20px; padding: 0 5%; overflow-x: auto; overflow-y: hidden; -ms-overflow-style: none; scrollbar-width: none; }
+.movie-list::-webkit-scrollbar { display: none; }
     --quality-hd: #28a745; 
     --quality-sd: #17a2b8; 
     --quality-cam: #dc3545;
@@ -23,85 +54,329 @@ a {
     color: var(--light-color); 
 }
 
-/* === HEADER & NAVBAR (TIDAK ADA PERUBAHAN) === */
-.header { position: fixed; top: 0; left: 0; width: 100%; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 100; background: linear-gradient(to bottom, rgba(0,0,0,0.7) 10%, rgba(0,0,0,0)); transition: background-color 0.3s ease; }
-.header.scrolled { background-color: var(--dark-color); }
-.logo { font-size: 2em; font-weight: 700; color: var(--primary-color); letter-spacing: 2px; }
-.navbar a { margin-left: 20px; font-weight: 500; transition: color 0.3s; }
-.navbar a:hover, .navbar a.active { color: var(--primary-color); }
-.nav-close-btn { display: none; }
-.header-right { display: flex; align-items: center; gap: 20px; }
-.header-right > i { font-size: 1.2rem; cursor: pointer; }
-.profile-pic { width: 40px; height: 40px; border-radius: 5px; cursor: pointer; }
-.hamburger { display: none; font-size: 1.8rem; cursor: pointer; }
-.search-box { display: flex; align-items: center; background-color: transparent; border: 1px solid transparent; padding: 5px; border-radius: 5px; transition: all 0.3s ease; }
-.search-box .search-icon { color: var(--light-color); cursor: pointer; font-size: 1.2rem; }
-.search-box input { background: transparent; border: none; outline: none; color: var(--light-color); font-size: 1rem; width: 0; padding: 0; transition: all 0.3s ease; }
-.header.search-active .search-box { background-color: rgba(0,0,0,0.7); border-color: var(--light-color); }
-.header.search-active .search-box input { width: 200px; padding: 0 10px; }
+/* === STRUKTUR KARTU FILM YANG BENAR (GANTI BAGIAN INI) === */
+a.movie-card-link {
+    display: block;
+    width: 200px; /* Lebar kartu di halaman utama */
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+a.movie-card-link:hover {
+    transform: scale(1.08) translateY(-10px);
+    z-index: 10;
+}
+.poster-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #222;
+    margin-bottom: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    /* Aspek rasio 2:3 untuk poster */
+    aspect-ratio: 2 / 3;
+}
+.poster-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.movie-card-info {
+    position: absolute; top: 0; left: 0; width: 100%; z-index: 2;
+    display: flex; justify-content: space-between; align-items: flex-start; padding: 8px; 
+/* === HEADER & NAVBAR === */
+.header { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    padding: 20px 5%; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    z-index: 100; 
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7) 10%, rgba(0,0,0,0)); 
+    transition: background-color 0.3s ease; 
+}
+.header.scrolled { 
+    background-color: var(--dark-color); 
+}
+.logo { 
+    font-size: 2em; 
+    font-weight: 700; 
+    color: var(--primary-color); 
+    letter-spacing: 2px; 
+}
+.navbar a { 
+    margin-left: 20px; 
+    font-weight: 500; 
+    transition: color 0.3s; 
+}
+.navbar a:hover, 
+.navbar a.active { 
+    color: var(--primary-color); 
+}
+.nav-close-btn { 
+    display: none; 
+}
+.header-right { 
+    display: flex; 
+    align-items: center; 
+    gap: 20px; 
+}
+.header-right > i { 
+    font-size: 1.2rem; 
+    cursor: pointer; 
+}
+.profile-pic { 
+    width: 40px; 
+    height: 40px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+.hamburger { 
+    display: none; 
+    font-size: 1.8rem; 
+    cursor: pointer; 
+}
+.search-box { 
+    display: flex; 
+    align-items: center; 
+    background-color: transparent; 
+    border: 1px solid transparent; 
+    padding: 5px; 
+    border-radius: 5px; 
+    transition: all 0.3s ease; 
+}
+.search-box .search-icon { 
+    color: var(--light-color); 
+    cursor: pointer; 
+    font-size: 1.2rem; 
+}
+.search-box input { 
+    background: transparent; 
+    border: none; 
+    outline: none; 
+    color: var(--light-color); 
+    font-size: 1rem; 
+    width: 0; 
+    padding: 0; 
+    transition: all 0.3s ease; 
+}
+.header.search-active .search-box { 
+    background-color: rgba(0,0,0,0.7); 
+    border-color: var(--light-color); 
+}
+.header.search-active .search-box input { 
+    width: 200px; 
+    padding: 0 10px; 
+}
 
-/* === KONTEN UTAMA (TIDAK ADA PERUBAHAN) === */
-main { padding-top: 100px; }
-.movie-rows { padding: 20px 0; }
-.movie-row { margin-bottom: 40px; }
-.row-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 0 5%; }
-.row-header h2 { margin: 0; }
-.view-all-link { color: var(--gray-color); font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
-.view-all-link:hover { color: var(--light-color); }
-.view-all-link i { margin-left: 5px; font-size: 0.8rem; }
-.movie-list { display: flex; gap: 20px; padding: 0 5%; overflow-x: auto; overflow-y: hidden; -ms-overflow-style: none; scrollbar-width: none; }
-.movie-list::-webkit-scrollbar { display: none; }
+/* === KONTEN UTAMA & BARIS FILM === */
+main { 
+    padding-top: 100px; 
+}
+.movie-rows { 
+    padding: 20px 0; 
+}
+.movie-row { 
+    margin-bottom: 40px; 
+}
+.row-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 20px; 
+    padding: 0 5%; 
+}
+.row-header h2 { 
+    margin: 0; 
+}
+.view-all-link { 
+    color: var(--gray-color); 
+    font-size: 0.9rem; 
+    font-weight: 500; 
+    transition: color 0.3s; 
+}
+.view-all-link:hover { 
+    color: var(--light-color); 
+}
+.view-all-link i { 
+    margin-left: 5px; 
+    font-size: 0.8rem; 
+}
+.movie-list { 
+    display: flex; 
+    gap: 20px; 
+    padding: 0 5%; 
+    overflow-x: auto; 
+    overflow-y: hidden; 
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+}
+.movie-list::-webkit-scrollbar { 
+    display: none; 
+}
 
-/* === STRUKTUR KARTU FILM (TIDAK ADA PERUBAHAN) === */
-a.movie-card-link { display: block; width: 200px; flex-shrink: 0; transition: transform 0.3s ease; }
-a.movie-card-link:hover { transform: scale(1.08) translateY(-10px); z-index: 10; }
-.poster-wrapper { position: relative; width: 100%; aspect-ratio: 2 / 3; border-radius: 5px; overflow: hidden; background-color: #222; margin-bottom: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-.poster-wrapper img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
-.movie-card-info { /* ... */ } .quality-badge { /* ... */ } .rating-badge { /* ... */ } .movie-title { /* ... */ }
+/* === STRUKTUR KARTU FILM === */
+a.movie-card-link { 
+    display: block; 
+    width: 200px; 
+    flex-shrink: 0; 
+    transition: transform 0.3s ease; 
+}
+a.movie-card-link:hover { 
+    transform: scale(1.08) translateY(-10px); 
+    z-index: 10; 
+}
+.poster-wrapper { 
+    position: relative; 
+    width: 100%; 
+    aspect-ratio: 2 / 3; 
+    border-radius: 5px; 
+    overflow: hidden; 
+    background-color: #222; 
+    margin-bottom: 12px; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); 
+}
+.poster-wrapper img { 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+.movie-card-info { 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    z-index: 2;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start; 
+    padding: 8px; 
+    background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+}
+.quality-badge { padding: 3px 8px; font-size: 0.75rem; font-weight: 700; color: white; border-radius: 3px; text-shadow: 1px 1px 2px black; }
+.quality-badge { 
+    padding: 3px 8px; 
+    font-size: 0.75rem; 
+    font-weight: 700; 
+    color: white; 
+    border-radius: 3px; 
+    text-shadow: 1px 1px 2px black; 
+}
+.quality-hd { background-color: var(--quality-hd); }
+.quality-sd { background-color: var(--quality-sd); }
+.quality-cam { background-color: var(--quality-cam); }
+.rating-badge { display: flex; align-items: center; background-color: rgba(0,0,0,0.7); padding: 3px 8px; border-radius: 3px; font-size: 0.8rem; font-weight: 700; }
+.rating-badge i { color: #f5c518; margin-right: 5px; }
+.movie-title { font-size: 0.95rem; font-weight: 500; text-align: center; color: #e5e5e5; padding: 0 5px; }
+/* === AKHIR BAGIAN PENTING === */
+.rating-badge { 
+    display: flex; 
+    align-items: center; 
+    background-color: rgba(0,0,0,0.7); 
+    padding: 3px 8px; 
+    border-radius: 3px; 
+    font-size: 0.8rem; 
+    font-weight: 700; 
+}
+.rating-badge i { 
+    color: #f5c518; 
+    margin-right: 5px; 
+}
+.movie-title { 
+    font-size: 0.95rem; 
+    font-weight: 500; 
+    text-align: center; 
+    color: #e5e5e5; 
+    padding: 0 5px; 
+}
 
-/* --- PERBAIKAN GRID DI SINI --- */
-/* Style ini akan digunakan oleh semua halaman yang punya grid (search, category, results) */
-#search-results-container, .category-page {
+/* === STYLE UMUM UNTUK GRID (DIPAKAI DI SEARCH & CATEGORY) === */
+#search-results-container {
     padding-top: 20px;
 }
 .category-grid {
-    display: grid; /* Ganti dari flex ke grid */
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Blueprint Ajaib */
-    gap: 25px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px 20px; 
+    justify-content: flex-start;
 }
-/* Kita harus memberitahu kartu film agar lebarnya otomatis saat di dalam grid */
-.category-grid .movie-card-link {
-    width: auto; /* Hapus lebar tetap 200px, biarkan grid yang mengatur */
-}
-/* --- AKHIR PERBAIKAN --- */
 
-/* === FOOTER (TIDAK ADA PERUBAHAN) === */
 .footer { padding: 40px 5%; text-align: center; border-top: 1px solid #333; margin-top: 50px; color: var(--gray-color); }
 .social-links { margin-top: 20px; }
 .social-links a { color: var(--gray-color); margin: 0 15px; font-size: 1.5rem; transition: color 0.3s; }
 .social-links a:hover { color: var(--light-color); }
+/* === FOOTER === */
+.footer { 
+    padding: 40px 5%; 
+    text-align: center; 
+    border-top: 1px solid #333; 
+    margin-top: 50px; 
+    color: var(--gray-color); 
+}
+.social-links { 
+    margin-top: 20px; 
+}
+.social-links a { 
+    color: var(--gray-color); 
+    margin: 0 15px; 
+    font-size: 1.5rem; 
+    transition: color 0.3s; 
+}
+.social-links a:hover { 
+    color: var(--light-color); 
+}
 
-/* === RESPONSIVE RULES (DENGAN SEDIKIT PENYESUAIAN) === */
-@media (max-width: 992px) { /* ...Navbar mobile sama... */ }
+/* === RESPONSIVE RULES === */
+@media (max-width: 992px) { 
+    .navbar { position: fixed; top: 0; right: -100%; width: 250px; height: 100%; background-color: var(--dark-color); box-shadow: -5px 0 15px rgba(0,0,0,0.5); display: flex; flex-direction: column; padding-top: 80px; transition: right 0.4s ease-in-out; } 
+    .navbar.nav-active { right: 0; } 
+    .navbar a { font-size: 1.2rem; margin: 15px 25px; } 
+    .nav-close-btn { display: block; position: absolute; top: 25px; right: 25px; font-size: 1.8rem; cursor: pointer; } 
+    .hamburger { display: block; } 
+}
 
+@media (max-width: 992px) { /* ...Navbar mobile sama... */ .navbar { position: fixed; top: 0; right: -100%; width: 250px; height: 100%; background-color: var(--dark-color); box-shadow: -5px 0 15px rgba(0,0,0,0.5); display: flex; flex-direction: column; padding-top: 80px; transition: right 0.4s ease-in-out; } .navbar.nav-active { right: 0; } .navbar a { font-size: 1.2rem; margin: 15px 25px; } .nav-close-btn { display: block; position: absolute; top: 25px; right: 25px; font-size: 1.8rem; cursor: pointer; } .hamburger { display: block; } }
 @media (max-width: 768px) {
+    /* Ukuran kartu film di halaman utama (index.html) saat mode HP */
+    a.movie-card-link {
     /* Kartu di halaman utama (index.html) */
     .movie-list a.movie-card-link {
         width: 150px;
     }
-    /* Grid untuk search & category & results */
+    .header { padding: 15px 5%; } .logo { font-size: 1.5em; } main { padding-top: 80px; } .row-header h2 { font-size: 1.2rem; } .header.search-active .search-box input { width: 120px; }
+    /* Grid untuk search & category */
     .category-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 20px 15px;
     }
+    .category-grid .movie-card-link {
+        width: calc(50% - 7.5px);
+    }
     /* Lainnya */
-    .header { padding: 15px 5%; } .logo { font-size: 1.5em; } main { padding-top: 80px; } .row-header h2 { font-size: 1.2rem; } .header.search-active .search-box input { width: 120px; }
+    .header { padding: 15px 5%; }
+    .logo { font-size: 1.5em; }
+    main { padding-top: 80px; }
+    .row-header h2 { font-size: 1.2rem; }
+    .header.search-active .search-box input { width: 120px; }
 }
+/* Style tambahan untuk wadah hasil pencarian */
+#search-results-container {
+    padding-top: 20px;
 
 @media (max-width: 480px) {
-    /* Grid di HP kecil */
+    /* Grid untuk search & category di HP kecil */
     .category-grid {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
         gap: 20px 10px;
+    }
+    .category-grid .movie-card-link {
+        width: calc(33.33% - 7px);
     }
 }
