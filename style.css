@@ -63,14 +63,35 @@ a.movie-card-link:hover { transform: scale(1.08) translateY(-10px); z-index: 10;
 .rating-badge { display: flex; align-items: center; background-color: rgba(0,0,0,0.7); padding: 3px 8px; border-radius: 3px; font-size: 0.8rem; font-weight: 700; }
 .rating-badge i { color: #f5c518; margin-right: 5px; }
 
-/* --- ATURAN LAYOUT TERPISAH YANG AMAN --- */
-.movie-list { display: flex; gap: 20px; padding: 0 5%; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -ms-overflow-style: none; }
-.movie-list::-webkit-scrollbar { display: none; }
-.movie-list .movie-card-link { width: 200px; flex-shrink: 0; }
+/* --- PERBAIKAN UKURAN & JARAK DI SINI --- */
 
+/* ATURAN UNTUK HALAMAN UTAMA (SCROLL HORIZONTAL) */
+.movie-list { 
+    display: flex; 
+    gap: 15px; /* PERUBAHAN: Jarak dipersempit dari 20px menjadi 15px */
+    padding: 0 5%; 
+    overflow-x: auto; 
+    overflow-y: hidden; 
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+}
+.movie-list::-webkit-scrollbar { display: none; }
+.movie-list .movie-card-link { 
+    width: 200px; /* PERUBAHAN: Ini adalah ukuran basis yang bagus, sama dengan minmax di grid */
+    flex-shrink: 0; 
+}
+
+/* ATURAN UNTUK HALAMAN GRID (CATEGORY, RESULTS, SEARCH) */
 #search-results-container, .category-page { padding-top: 20px; }
-.category-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 25px 20px; }
-.category-grid .movie-card-link { width: 100%; }
+.category-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Ukuran minimal 200px, sama dengan di atas */
+    gap: 25px 15px; /* Jarak horizontal 15px, sama dengan di atas */
+}
+.category-grid .movie-card-link { 
+    width: 100%; 
+}
+/* --- AKHIR PERBAIKAN --- */
 
 /* === FOOTER (STABIL) === */
 .footer { padding: 40px 5%; text-align: center; border-top: 1px solid #333; margin-top: 50px; color: var(--gray-color); }
@@ -95,10 +116,10 @@ a.movie-card-link:hover { transform: scale(1.08) translateY(-10px); z-index: 10;
     .header.search-active .search-box input { width: 120px; }
     
     .movie-list .movie-card-link { width: 150px; }
-    .category-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px 15px; }
+    .category-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
 }
 
 @media (max-width: 480px) {
     .movie-list .movie-card-link { width: 120px; }
-    .category-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 20px 10px; }
+    .category-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
 }
