@@ -5,59 +5,83 @@ document.addEventListener('DOMContentLoaded', async () => {
     const currentPage = parseInt(params.get('page') || '1', 10);
     const itemsPerPage = 20;
 
-    const titleEl = document.getElementById('tag-title'); // Kita akan ganti nama ID ini di HTML nanti
-    const gridEl = document.getElementById('tag-grid');
+    const titleEl = document.getElementById('results-title');
+    const gridEl = document.getElementById('results-grid');
     const paginationEl = document.getElementById('pagination-controls');
 
     if (!queryType || !queryValue) {
-        titleEl.textContent = 'Parameter tidak valid';
+        titleEl.textContent = 'Parameter pencarian tidak valid.';
         return;
     }
 
     const formattedValue = queryValue.replace(/-/g, ' ');
-
-    // Judul dinamis berdasarkan tipe pencarian
     let titlePrefix = "Hasil untuk ";
     if (queryType === 'genre') titlePrefix = "Genre: ";
     else if (queryType === 'cast') titlePrefix = "Pemeran: ";
     else if (queryType === 'director') titlePrefix = "Sutradara: ";
     else if (queryType === 'country') titlePrefix = "Negara: ";
     else if (queryType === 'keyword') titlePrefix = "Kata Kunci: ";
-    
     titleEl.textContent = `${titlePrefix}"${formattedValue}"`;
     document.title = `${titlePrefix}"${formattedValue}" - Netflik`;
 
-    const createMovieCard = (item) => { /* ... salin dari versi sebelumnya, tidak berubah ... */ };
-    const renderPage = (pageNumber, data) => { /* ... salin dari versi sebelumnya, tapi update link paginasi ... */ };
+    const createMovieCard = (item) => {
+        const anchor = document.createElement('a');
+        anchor.className = 'movie-card-link';
+        anchor.href = `streaming.html?type=${item.type}&id=${item.id}`;
+        const qualityLower = (item.quality || '').toLowerCase();
+        let qualityClass = '';
+        if (qualityLower === 'hd') qualityClass = 'quality-hd'; else if (qualityLower === 'sd') qualityClass = 'quality-sd'; else if (qualityLower === 'cam') qualityClass = 'quality-cam';
+        anchor.innerHTML = `<div class="poster-wrapper"><img src="${item.posterUrl}" alt="${item.title}" loading="lazy"><div class="movie-card-info">${qualityClass ? `<span class="quality-badge ${qualityClass}">${item.quality}</span>` : ''}<span class="rating-badge"><i class="fas fa-star"></i> ${item.rating || 'N/A'}</span></div></div><h3 class="movie-title">${item.title}</h3>`;
+        return anchor;
+    };
+
+    const renderPage = (pageNumber, data) => {
+        const totalItems = data.length;
+        const totalPages = Math.ceil(totalItems / itemsPerPage);
+        const startIndex = (pageNumber - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        const itemsToShow = data.slice(startIndex, endIndex);
+        gridEl.innerHTML = '';
+        if (itemsToShow.length === 0) {
+            gridEl.innerHTML = '<p style="width:100%; text-align:center;">Tidak ada hasil ditemukan.</p>';
+        } else {
+            itemsToShow.forEach(item => gridEl.appendChild(createMovieCard(item)));
+        }
+        paginationEl.innerHTML = '';
+        if (totalPages > 1) {
+            for (let i = 1; i <= totalPages; i++) {
+                const link = document.createElement('a');
+                link.className = `page-link ${i === pageNumber ? 'active' : ''}`;
+                link.href = `results.html?type=${queryType}&q=${queryValue}&page=${i}`;
+                link.textContent = i;
+                paginationEl.appendChild(link);
+            }
+        }
+    };
 
     try {
-        const [moviesRes, seriesRes, indonesiaRes] = await Promise.all([
-            fetch('data/movies.json'), fetch('data/series.json'), fetch('data/indonesia.json')
-        ]);
+        const [moviesRes, seriesRes, indonesiaRes] = await Promise.all([fetch('data/movies.json'), fetch('data/series.json'), fetch('data/indonesia.json')]);
         const allContent = [...(await moviesRes.json()), ...(await seriesRes.json()), ...(await indonesiaRes.json())];
 
-        // Logika filter dinamis
         const filteredData = allContent.filter(item => {
             if (!item) return false;
-            switch (queryType) {
-                case 'genre':
-                case 'keywords':
-                case 'cast':
-                    // Untuk array (pemeran, genre, keywords)
-                    return item[queryType] && item[queryType].some(val => val.toLowerCase().replace(/\s+/g, '-') === queryValue);
-                case 'director':
-                case 'country':
-                    // Untuk string tunggal (sutradara, negara)
-                    return item[queryType] && item[queryType].toLowerCase().replace(/\s+/g, '-') === queryValue;
-                default:
-                    return false;
+            const itemType = queryType === 'keyword' ? 'keywords' : queryType; // Alias 'keyword' ke 'keywords'
+            const targetData = item[itemType];
+            if (!targetData) return false;
+            if (Array.isArray(targetData)) {
+                return targetData.some(val => val.toLowerCase().replace(/\s+/g, '-') === queryValue);
+            } else {
+                return targetData.toLowerCase().replace(/\s+/g, '-') === queryValue;
             }
         });
         
         renderPage(currentPage, filteredData);
-
     } catch (error) {
         console.error('Error:', error);
         titleEl.textContent = 'Gagal memuat konten.';
     }
+    
+    // Logika menu mobile
+    const navbar = document.querySelector('.navbar'); const hamburger = document.querySelector('.hamburger'); const navCloseBtn = document.querySelector('.nav-close-btn');
+    if (hamburger && navbar && navCloseBtn) { hamburger.addEventListener('click', () => navbar.classList.add('nav-active')); navCloseBtn.addEventListener('click', () => navbar.classList.remove('nav-active')); }
 });
