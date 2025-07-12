@@ -13,6 +13,30 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--dark-color); 
 .video-player-wrapper { margin-bottom: 20px; }
 .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background-color: #000; border-radius: 8px; }
 .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+/* --- TOMBOL DOWNLOAD (LAYOUT BARU) --- */
+.download-wrapper {
+    display: flex;
+    justify-content: center; /* Pusatkan tombol ke tengah */
+    margin-bottom: 30px;
+}
+.download-page-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 25px;
+    background-color: #333;
+    color: var(--light-color);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.2s;
+    border: 1px solid #555;
+}
+.download-page-btn:hover { background-color: var(--primary-color); border-color: var(--primary-color); }
+.download-page-btn i { font-size: 1.2rem; }
+
+/* --- KONTROL SEASON & EPISODE (TETAP SAMA) --- */
 .stream-controls { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; padding: 15px; background-color: #181818; border-radius: 8px; margin-bottom: 25px; }
 #season-select { background-color: #333; color: var(--light-color); border: 1px solid #555; border-radius: 5px; padding: 8px 12px; font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 500; cursor: pointer; }
 #season-select:focus { outline: none; border-color: var(--primary-color); }
@@ -20,123 +44,51 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--dark-color); 
 .episode-box { width: 40px; height: 40px; background-color: #2a2a2a; border: 1px solid #444; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: background-color 0.2s, border-color 0.2s; }
 .episode-box:hover { border-color: var(--light-color); }
 .episode-box.active { background-color: var(--primary-color); border-color: var(--primary-color); color: var(--light-color); }
+
+/* --- DETAIL FILM & SINOPSIS (TETAP SAMA) --- */
 .stream-details { margin-top: 30px; }
 .stream-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 15px; }
 .title-divider { height: 3px; width: 80px; background-color: var(--primary-color); margin-bottom: 20px; border-radius: 2px; }
 .stream-description { font-size: 1.1rem; line-height: 1.7; max-width: 800px; color: #ccc; margin-bottom: 30px; }
-.metadata-wrapper { margin-top: 30px; padding-top: 20px; border-top: 1px solid #333; }
-.metadata-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px 25px; }
-.metadata-item { font-size: 0.9rem; color: #b3b3b3; }
-.metadata-item strong { display: block; color: #888; font-weight: 500; margin-bottom: 4px; font-size: 0.8rem; text-transform: uppercase; }
-.download-page-btn { display: inline-flex; align-items: center; gap: 10px; margin-top: 30px; padding: 12px 25px; background-color: #333; color: var(--light-color); text-decoration: none; border-radius: 5px; font-weight: 600; transition: background-color 0.2s; border: 1px solid #555; }
-.download-page-btn:hover { background-color: var(--primary-color); border-color: var(--primary-color); }
-.download-page-btn i { font-size: 1.2rem; }
 
-/* --- STYLE KRUSIAL UNTUK MODAL IKLAN --- */
-.ad-modal {
-    display: none; /* Awalnya sembunyi */
-    position: fixed; /* Kunci: Membuatnya melayang di atas segalanya */
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.85); /* Ini adalah 'kain hitam' transparan */
-    justify-content: center; /* Pusatkan kotaknya secara horizontal */
-    align-items: center; /* Pusatkan kotaknya secara vertikal */
-}
-.ad-modal.show {
-    display: flex; /* Saat disuruh muncul oleh JS, gunakan flex */
-}
-
-.ad-modal-content {
-    background-color: #222;
-    padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-    width: 90%;
-    max-width: 450px;
-    position: relative;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.5);
-}
-
-.ad-modal-content h2 {
-    color: var(--primary-color);
-    margin-bottom: 15px;
-}
-
-.ad-modal-content p {
-    margin-bottom: 25px;
-    line-height: 1.6;
-    color: #ccc;
-}
-
-.ad-button {
-    display: inline-block;
-    background-color: var(--primary-color);
-    color: var(--light-color);
-    padding: 15px 30px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1.2rem;
-    transition: background-color 0.2s;
-    margin-bottom: 15px;
-}
-
-.ad-button:hover {
-    background-color: #f61a27;
-}
-
-.ad-modal-content small {
-    color: #888;
-    font-style: italic;
-}
-/* --- AKHIR STYLE MODAL --- */
-
-@media (max-width: 768px) {
-    .stream-controls { flex-direction: column; align-items: flex-start; }
-    .stream-title { font-size: 1.8rem; }
-    .stream-description { font-size: 1rem; }
-    .metadata-grid { grid-template-columns: 1fr; }
-}
-/* ... (semua CSS sebelumnya tetap sama sampai akhir .download-page-btn) ... */
-
-/* --- STYLE BARU UNTUK KATA KUNCI --- */
-.keywords-section {
+/* --- METADATA & KATA KUNCI (LAYOUT BARU) --- */
+.metadata-wrapper {
     margin-top: 30px;
     padding-top: 20px;
     border-top: 1px solid #333;
 }
-.keywords-section h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #e5e5e5;
-    margin-bottom: 15px;
+.metadata-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px 25px;
+    margin-bottom: 20px; /* Jarak ke kata kunci */
 }
+.metadata-item { font-size: 0.9rem; color: #b3b3b3; }
+.metadata-item strong { display: block; color: #888; font-weight: 500; margin-bottom: 4px; font-size: 0.8rem; text-transform: uppercase; }
 .keyword-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    padding-top: 20px;
+    border-top: 1px solid #333; /* Garis pemisah dari metadata */
 }
 .keyword-tag {
     display: inline-block;
     padding: 5px 15px;
     background-color: #222;
     border: 1px solid #444;
-    border-radius: 20px; /* Membuatnya seperti pil */
+    border-radius: 20px;
     font-size: 0.85rem;
     color: #ccc;
     text-decoration: none;
     transition: all 0.2s ease-in-out;
 }
-.keyword-tag:hover {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-    color: var(--light-color);
-}
-/* --- AKHIR STYLE BARU --- */
+.keyword-tag:hover { background-color: var(--primary-color); border-color: var(--primary-color); color: var(--light-color); }
 
+/* ... (Modal Iklan & Media Queries tetap sama) ... */
 @media (max-width: 768px) {
-    /* ... (sisa media queries tetap sama) ... */
+    .stream-controls { flex-direction: column; align-items: flex-start; }
+    .stream-title { font-size: 1.8rem; }
+    .stream-description { font-size: 1rem; }
+    .metadata-grid { grid-template-columns: 1fr; }
 }
