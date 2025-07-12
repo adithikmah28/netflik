@@ -1,25 +1,45 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    // ... (variabel dan fungsi unlockVideo, buildFinalUrl tetap sama) ...
+    // --- TEMPATKAN DIRECT LINK ADSTERRA DI SINI ---
     const ADSTERRA_DIRECT_LINK = "https://your-adsterra-direct-link.com/script.js";
+    // ---------------------------------------------
+
     const streamContainer = document.getElementById('stream-container');
     const adModal = document.getElementById('ad-modal');
     const adLink = document.getElementById('ad-link');
+
     const params = new URLSearchParams(window.location.search);
     const type = params.get('type');
     const id = params.get('id');
 
-    if (!type || !id) { /* ... */ return; }
-    const unlockVideo = () => { /* ... */ };
-    adLink.href = ADSTERRA_DIRECT_LINK;
-    adLink.addEventListener('click', () => { /* ... */ });
-    const buildFinalUrl = (baseUrl) => { /* ... */ };
+    if (!type || !id) { streamContainer.innerHTML = `<p class="error">Konten tidak ditemukan.</p>`; return; }
 
+    const unlockVideo = () => {
+        adModal.classList.remove('show');
+        const iframe = document.getElementById('video-iframe');
+        if (iframe && iframe.dataset.src) {
+            iframe.src = iframe.dataset.src;
+        }
+    };
+    
+    adLink.href = ADSTERRA_DIRECT_LINK;
+    adLink.addEventListener('click', () => {
+        setTimeout(unlockVideo, 500);
+    });
+
+    const buildFinalUrl = (baseUrl) => {
+        const paramsToAdd = "autoplay=1&modestbranding=1&rel=0";
+        if (baseUrl.includes('?')) {
+            return `${baseUrl}&${paramsToAdd}`;
+        } else {
+            return `${baseUrl}?${paramsToAdd}`;
+        }
+    };
 
     try {
-        // ... (logika fetch data tetap sama) ...
         let dataSources = [];
         if (type === 'movie') dataSources.push(fetch('data/movies.json'), fetch('data/indonesia.json'));
         else if (type === 'series') dataSources.push(fetch('data/series.json'));
+        
         const responses = await Promise.all(dataSources);
         let allData = [];
         for (const response of responses) if (response.ok) allData.push(...await response.json());
@@ -40,17 +60,14 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </div>
                 </div>
             `;
-
-            // --- PERBAIKAN LOGIKA TOMBOL DOWNLOAD ---
+            
             let downloadButtonHTML = '';
-            // Hanya buat tombol jika tipenya 'movie' DAN ada link download
             if (contentData.type === 'movie' && contentData.downloadLinks && contentData.downloadLinks.length > 0) {
                 const downloadUrl = `download.html?type=${contentData.type}&id=${contentData.id}`;
                 downloadButtonHTML = `<a href="${downloadUrl}" class="download-page-btn"><i class="fas fa-download"></i> Download Film Ini</a>`;
             }
 
             if (contentData.type === 'series' && contentData.seasons) {
-                // --- KONTEN SERIES (TANPA TOMBOL DOWNLOAD) ---
                 streamContainer.innerHTML = `
                     <div class="video-player-wrapper"><div class="video-container"><iframe id="video-iframe" data-src="" title="${contentData.title}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></div>
                     <div class="stream-controls"><select id="season-select"></select><div id="episodes-list-container"></div></div>
@@ -61,17 +78,45 @@ document.addEventListener('DOMContentLoaded', async () => {
                         ${metadataHTML}
                     </div>
                 `;
-                // ... (sisa logika series seperti playEpisode, renderEpisodes tetap sama persis)
+                
                 const videoIframe = document.getElementById('video-iframe');
                 const seasonSelect = document.getElementById('season-select');
-                const playEpisode = (episodeBox) => { /* ... */ };
-                const renderEpisodes = (seasonIndex) => { /* ... */ };
+
+                const playEpisode = (episodeBox) => {
+                    document.querySelectorAll('.episode-box').forEach(b => b.classList.remove('active'));
+                    episodeBox.classList.add('active');
+                    videoIframe.src = '';
+                    videoIframe.dataset.src = buildFinalUrl(episodeBox.dataset.streamUrl);
+                    adModal.classList.add('show');
+                };
+
+                const renderEpisodes = (seasonIndex) => {
+                    const episodesContainer = document.getElementById('episodes-list-container');
+                    episodesContainer.innerHTML = '';
+                    contentData.seasons[seasonIndex].episodes.forEach(ep => {
+                        const epBox = document.createElement('div');
+                        epBox.className = 'episode-box';
+                        epBox.textContent = ep.episode;
+                        epBox.dataset.streamUrl = ep.streamUrl;
+                        epBox.addEventListener('click', () => playEpisode(epBox));
+                        episodesContainer.appendChild(epBox);
+                    });
+                    
+                    // --- KODE KRUSIAL YANG DIKEMBALIKAN ---
+                    // Otomatis putar episode pertama dari season yang dipilih
+                    const firstEpisodeBox = episodesContainer.querySelector('.episode-box');
+                    if (firstEpisodeBox) {
+                        playEpisode(firstEpisodeBox);
+                    }
+                    // ---------------------------------------
+                };
+                
                 contentData.seasons.forEach((season, index) => seasonSelect.add(new Option(season.season_name, index)));
                 seasonSelect.addEventListener('change', (e) => renderEpisodes(e.target.value));
-                renderEpisodes(0);
+                renderEpisodes(0); // Panggil untuk pertama kali
                 
             } else {
-                // --- KONTEN MOVIE (DENGAN TOMBOL DOWNLOAD) ---
+                // KONTEN MOVIE
                 const finalMovieUrl = buildFinalUrl(contentData.streamUrl);
                 streamContainer.innerHTML = `
                     <div class="video-player-wrapper"><div class="video-container"><iframe id="video-iframe" data-src="${finalMovieUrl}" title="${contentData.title}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></div>
