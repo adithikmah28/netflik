@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     adLink.href = ADSTERRA_DIRECT_LINK;
     adLink.addEventListener('click', () => {
-        // Jangan hapus modal langsung, beri waktu untuk tab baru terbuka
         setTimeout(unlockVideo, 500); 
     });
 
@@ -84,24 +83,25 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </div>
                 `;
                 
-                // Variabel elemen yang dibutuhkan
                 const videoIframe = document.getElementById('video-iframe');
                 const seasonSelect = document.getElementById('season-select');
                 const episodesContainer = document.getElementById('episodes-list-container');
 
-                // --- FUNGSI LENGKAP UNTUK MEMUTAR EPISODE ---
+                // --- FUNGSI BARU YANG LEBIH BERSIH & ANTI-GAGAL ---
                 const playEpisode = (episodeBox) => {
                     document.querySelectorAll('.episode-box').forEach(b => b.classList.remove('active'));
                     episodeBox.classList.add('active');
-                    videoIframe.src = ''; // Kosongkan dulu untuk ganti episode
+                    videoIframe.src = '';
                     videoIframe.dataset.src = buildFinalUrl(episodeBox.dataset.streamUrl);
-                    adModal.classList.add('show'); // Tampilkan modal iklan
+                    adModal.classList.add('show');
                 };
 
-                // --- FUNGSI LENGKAP UNTUK MENAMPILKAN DAFTAR EPISODE ---
-                const renderEpisodes = (seasonIndex) => {
+                const renderAndPlayFirstEpisode = (seasonIndex) => {
                     episodesContainer.innerHTML = '';
-                    contentData.seasons[seasonIndex].episodes.forEach(ep => {
+                    const season = contentData.seasons[seasonIndex];
+                    if (!season || !season.episodes) return;
+
+                    season.episodes.forEach(ep => {
                         const epBox = document.createElement('div');
                         epBox.className = 'episode-box';
                         epBox.textContent = ep.episode;
@@ -109,23 +109,24 @@ document.addEventListener('DOMContentLoaded', async () => {
                         epBox.addEventListener('click', () => playEpisode(epBox));
                         episodesContainer.appendChild(epBox);
                     });
+                    
+                    // Otomatis putar episode pertama setelah daftar dibuat
+                    const firstEpisodeBox = episodesContainer.querySelector('.episode-box');
+                    if (firstEpisodeBox) {
+                        playEpisode(firstEpisodeBox);
+                    }
                 };
                 
-                // Isi dropdown, tambahkan event listener
+                // Isi dropdown
                 contentData.seasons.forEach((season, index) => seasonSelect.add(new Option(season.season_name, index)));
+                
+                // Tambahkan event listener untuk ganti season
                 seasonSelect.addEventListener('change', (e) => {
-                    renderEpisodes(e.target.value);
-                    const firstEpisode = episodesContainer.querySelector('.episode-box');
-                    if (firstEpisode) playEpisode(firstEpisode);
+                    renderAndPlayFirstEpisode(e.target.value);
                 });
                 
-                // Render episode season pertama saat halaman dimuat
-                renderEpisodes(0);
-                // Otomatis putar episode pertama
-                const firstEpisodeOnLoad = episodesContainer.querySelector('.episode-box');
-                if (firstEpisodeOnLoad) {
-                    playEpisode(firstEpisodeOnLoad);
-                }
+                // Panggil untuk pertama kali saat halaman dimuat
+                renderAndPlayFirstEpisode(0);
                 
             } else {
                 // KONTEN MOVIE
