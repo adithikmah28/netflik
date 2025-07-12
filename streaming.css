@@ -14,63 +14,31 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--dark-color); 
 .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background-color: #000; border-radius: 8px; }
 .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-/* --- KONTROL SEASON (UPDATE) --- */
-.stream-controls {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-    padding: 15px;
-    background-color: #181818;
-    border-radius: 8px;
-    margin-bottom: 25px;
-}
-.season-selector {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.season-selector label {
-    font-weight: 500;
-    color: #ccc;
-}
-#season-select {
-    background-color: #333;
-    color: var(--light-color);
-    border: 1px solid #555;
-    border-radius: 5px;
-    padding: 8px 12px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-}
-#season-select:focus {
-    outline: none;
-    border-color: var(--primary-color);
-}
-#episodes-list-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    flex: 1;
-}
-.episode-box {
-    width: 40px; height: 40px; background-color: #2a2a2a; border: 1px solid #444; border-radius: 5px;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: background-color 0.2s, border-color 0.2s;
-}
+/* --- KONTROL SEASON & EPISODE (TETAP SAMA) --- */
+.stream-controls { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; padding: 15px; background-color: #181818; border-radius: 8px; margin-bottom: 25px; }
+#season-select { background-color: #333; color: var(--light-color); border: 1px solid #555; border-radius: 5px; padding: 8px 12px; font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 500; cursor: pointer; }
+#season-select:focus { outline: none; border-color: var(--primary-color); }
+#episodes-list-container { display: flex; flex-wrap: wrap; gap: 10px; flex: 1; }
+.episode-box { width: 40px; height: 40px; background-color: #2a2a2a; border: 1px solid #444; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: background-color 0.2s, border-color 0.2s; }
 .episode-box:hover { border-color: var(--light-color); }
 .episode-box.active { background-color: var(--primary-color); border-color: var(--primary-color); color: var(--light-color); }
 
-/* --- METADATA BARU --- */
+/* --- DETAIL FILM & SINOPSIS (STYLING BARU) --- */
 .stream-details {
     margin-top: 30px;
 }
 .stream-title {
     font-size: 2.5rem;
     font-weight: 700;
+    margin-bottom: 15px;
+}
+/* Garis pemisah merah */
+.title-divider {
+    height: 3px;
+    width: 80px;
+    background-color: var(--primary-color);
     margin-bottom: 20px;
+    border-radius: 2px;
 }
 .stream-description {
     font-size: 1.1rem;
@@ -79,103 +47,32 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--dark-color); 
     color: #ccc;
     margin-bottom: 30px;
 }
-.metadata-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+
+/* --- METADATA (LAYOUT BARU) --- */
+.metadata-wrapper {
+    margin-top: 30px;
     padding-top: 20px;
     border-top: 1px solid #333;
 }
+.metadata-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Kolom lebih kecil */
+    gap: 15px 25px; /* Jarak vertikal-horizontal */
+}
 .metadata-item {
-    font-size: 1rem;
+    font-size: 0.9rem; /* Ukuran font lebih kecil */
+    color: #b3b3b3;
 }
 .metadata-item strong {
+    display: block; /* Label di atas nilai */
     color: #888;
-    margin-right: 8px;
-}
-.metadata-item span {
-    color: #e5e5e5;
-}
-
-/* --- PERBAIKAN TAMPILAN SELULER --- */
-@media (max-width: 768px) {
-    .stream-controls {
-        flex-direction: column;
-        align-items: flex-start; /* Mencegah dropdown jadi full-width */
-    }
-    .stream-title { font-size: 1.8rem; }
-    .stream-description { font-size: 1rem; }
-    .metadata-grid { grid-template-columns: 1fr; } /* Satu kolom di HP */
-}
-/* ... (semua CSS sebelumnya tetap sama) ... */
-/* Tambahkan kode ini di bagian paling bawah */
-
-/* --- MODAL IKLAN --- */
-.ad-modal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.85);
-    justify-content: center;
-    align-items: center;
-}
-.ad-modal.show {
-    display: flex;
+    font-weight: 500;
+    margin-bottom: 4px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
 }
 
-.ad-modal-content {
-    background-color: #222;
-    padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-    width: 90%;
-    max-width: 450px;
-    position: relative;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.5);
-}
-
-/* Style untuk tombol close sudah DIHAPUS dari sini */
-
-.ad-modal-content h2 {
-    color: var(--primary-color);
-    margin-bottom: 15px;
-}
-
-.ad-modal-content p {
-    margin-bottom: 25px;
-    line-height: 1.6;
-    color: #ccc;
-}
-
-.ad-button {
-    display: inline-block;
-    background-color: var(--primary-color);
-    color: var(--light-color);
-    padding: 15px 30px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1.2rem;
-    transition: background-color 0.2s;
-    margin-bottom: 15px;
-}
-
-.ad-button:hover {
-    background-color: #f61a27;
-}
-
-.ad-modal-content small {
-    color: #888;
-    font-style: italic;
-}
-/* ... (semua CSS sebelumnya tetap sama) ... */
-/* Tambahkan kode ini di bagian paling bawah */
-
-/* --- TOMBOL DOWNLOAD DI HALAMAN STREAMING --- */
+/* --- TOMBOL DOWNLOAD (TETAP SAMA) --- */
 .download-page-btn {
     display: inline-flex;
     align-items: center;
@@ -190,10 +87,13 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--dark-color); 
     transition: background-color 0.2s;
     border: 1px solid #555;
 }
-.download-page-btn:hover {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-.download-page-btn i {
-    font-size: 1.2rem;
+.download-page-btn:hover { background-color: var(--primary-color); border-color: var(--primary-color); }
+.download-page-btn i { font-size: 1.2rem; }
+
+/* ... (Modal Iklan & Media Queries tetap sama) ... */
+@media (max-width: 768px) {
+    .stream-controls { flex-direction: column; align-items: flex-start; }
+    .stream-title { font-size: 1.8rem; }
+    .stream-description { font-size: 1rem; }
+    .metadata-grid { grid-template-columns: 1fr; }
 }
