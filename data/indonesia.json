@@ -11,15 +11,15 @@
         "cast": ["Aghniny Haque", "Djenar Maesa Ayu", "Ibrahim Risyad"],
         "director": "Hadrah Daeng Ratu",
         "subtitle": ["Indonesia", "English"],
-        "country": "Indonesia"
-        "genre": ["Science Fiction", "Adventure", "Action"],
-        "keywords": ["epic", "based on novel", "space opera", "desert"],
+        "country": "Indonesia",
+        "genre": ["Horror", "Mystery"],
+        "keywords": ["pemakaman", "gaib", "horor indonesia"],
         "downloadLinks": [
             { "quality": "1080p", "provider": "Google Drive", "url": "#" }
         ]
     },
     {
-        "id": "perempuan-tanah-jahanam-2024",
+        "id": "perempuan-tanah-jahanam-2019",
         "type": "movie",
         "title": "Perempuan Tanah Jahanam (2019)",
         "posterUrl": "https://image.tmdb.org/t/p/original/tAYHRuKxNa4arD32YTmDT1j46Mi.jpg",
@@ -30,7 +30,9 @@
         "cast": ["Tara Basro", "Marissa Anita", "Asmara Abigail"],
         "director": "Joko Anwar",
         "subtitle": ["English", "Arabic", "Persian", "Spanish", "French", "Italian"],
-        "country": "Indonesia"
+        "country": "Indonesia",
+        "genre": ["Horror", "Mystery", "Thriller"],
+        "keywords": ["desa", "kutukan", "folk horror"]
     },
     {
         "id": "pengabdi-setan-2017",
@@ -44,21 +46,25 @@
         "cast": ["Tara Basro", "Bront Palarae", "Endy Arfian"],
         "director": "Joko Anwar",
         "subtitle": ["Arabic", "English"],
-        "country": "Indonesia"
+        "country": "Indonesia",
+        "genre": ["Horror", "Mystery", "Drama"],
+        "keywords": ["kultus setan", "hantu", "keluarga"]
     },
     {
         "id": "pengabdi-setan-2-communion-2022",
         "type": "movie",
-        "title": "pengabdi setan 2: communion (2022)",
+        "title": "Pengabdi Setan 2: Communion (2022)",
         "posterUrl": "https://image.tmdb.org/t/p/original/zzpxuEXS1azwhqfvtacLtScixbS.jpg",
         "quality": "HD",
         "rating": "6.9",
-        "description": "Beberapa tahun setelah berhasil menyelamatkan diri dari kejadian mengerikan yang membuat mereka kehilangan ibu dan si bungsu Ian, Rini dan adik-adiknya, Toni dan Bondi, serta Bapak tinggal di rumah susun karena percaya tinggal di rumah susun aman jika terjadi sesuatu karena ada banyak orang. Namun, mereka segera menyadari bahwa tinggal bersama banyak orang mungkin juga sangat berbahaya, jika mereka tidak sangat mengenali siapa saja yang menjadi tetangga mereka. Pada sebuah malam penuh teror, Rini dan Keluarganya harus kembali menyelamatkan diri. Tapi kali ini, mungkin sudah terlambat untuk lari.",
+        "description": "Beberapa tahun setelah berhasil menyelamatkan diri dari kejadian mengerikan, Rini dan keluarganya tinggal di rumah susun karena percaya tinggal di rumah susun aman. Namun, mereka segera menyadari bahwa tinggal bersama banyak orang mungkin juga sangat berbahaya.",
         "streamUrl": "https://vidlink.pro/movie/925786",
         "cast": ["Tara Basro", "Bront Palarae", "Endy Arfian"],
         "director": "Joko Anwar",
-        "subtitle": ["-", "-"],
-        "country": "Indonesia"
+        "subtitle": ["Indonesia", "English"],
+        "country": "Indonesia",
+        "genre": ["Horror", "Mystery"],
+        "keywords": ["rumah susun", "teror", "sekte"]
     },
     {
         "id": "mencuri-raden-saleh-2022",
@@ -67,68 +73,14 @@
         "posterUrl": "https://image.tmdb.org/t/p/original/1fdqRcgEYNkXCnnKAzz2JtFnUv7.jpg",
         "quality": "HD",
         "rating": "7.5",
-        "description": "Mengisahkan tentang pencurian lukisan karya Raden Saleh.",
+        "description": "Sekelompok mahasiswa merencanakan pencurian terbesar abad ini: mencuri lukisan tak ternilai 'Penangkapan Pangeran Diponegoro' karya Raden Saleh yang disimpan di Istana Presiden.",
         "streamUrl": "https://vidsrc.vc/embed/movie/832544",
         "cast": ["Iqbaal Ramadhan", "Angga Yunanda", "Aghniny Haque"],
         "director": "Angga Dwimas Sasongko",
-        "subtitle": ["-", "-"],
-        "country": "Indonesia"
-    },
-    {
-        "id": "mata-batin-2018",
-        "type": "movie",
-        "title": "mata batin (2018)",
-        "posterUrl": "https://image.tmdb.org/t/p/original/9vDSQoEVFCwt9O21E0O0BEqu57k.jpg",
-        "quality": "HD",
-        "rating": "7.5",
-        "description": "Seorang wanita tersiksa dengan kemampuan mata ketiga.",
-        "streamUrl": "https://vidsrc.vc/embed/movie/480007",
-        "cast": ["Jessica Mila", "Bianca Hello", "Denny Sumargo"],
-        "director": "Rocky Soraya",
-        "subtitle": ["-", "-"],
-        "country": "Indonesia"
-    },
-    {
-        "id": "the-most-beautiful-girl-in-the-world-2025",
-        "type": "movie",
-        "title": "The Most Beautiful Girl in the World (2025)",
-        "posterUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/iIfL2XV0tVZzRezrYok5YTQt51K.jpg",
-        "quality": "HD",
-        "rating": "6.4",
-        "description": "Demi warisan, seorang pria mata keranjang membuat acara perjodohan untuk memenuhi permintaan terakhir ayahnya yang ingin putranya itu menikahi gadis tercantik di dunia.",
-        "streamUrl": "https://vidlink.pro/movie/1393069",
-        "cast": ["Reza Rahadian", "Sheila Dara Aisha", "Kevin Julio"],
-        "director": "Robert Ronny",
         "subtitle": ["Indonesia", "English"],
-        "country": "Indonesia"
-    },
-    {
-        "id": "sebelum-7-hari-2025",
-        "type": "movie",
-        "title": "Sebelum 7 Hari (2025)",
-        "posterUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/mTyXwqsKKcRMl4t5FXk5rotibyX.jpg",
-        "quality": "HD",
-        "rating": "6.9",
-        "description": "Kutukan pada ibu mereka yang baru saja meninggal membuat Tari dan saudara laki-lakinya Kadar hanya punya waktu tujuh hari untuk membebaskan jiwanya dan melindungi keluarga mereka dari kegelapan.",
-        "streamUrl": "https://vidlink.pro/movie/1305926",
-        "cast": ["Agla Artalidia", "Anantya Rezky Kirana", "Sulthan Hamonangan"],
-        "director": "Awi Suryadi",
-        "subtitle": ["English", "Arabic"],
-        "country": "Indonesia"
-    },
-    {
-        "id": "pengantin-iblis-2025",
-        "type": "movie",
-        "title": "Pengantin Iblis (2025)",
-        "posterUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/6UWQVddCVCnFM4G7PSHcCc5NGtI.jpg",
-        "quality": "HD",
-        "rating": "6.3",
-        "description": "Ranti adalah seorang ibu dan istri yang amat berbakti. Ranti memiliki putri yang amat ia sayangi, tapi cacat kondisinya sejak lahir, Nina. Suatu hari Nina mengalami kecelakaan fatal yang membutuhkan penanganan segera. Namun suami Ranti yang bekerja sebagai pelaut sedang tidak berada di rumah, dan keluarga besarnya juga tidak bisa membantu Ranti. Ranti akhirnya harus mencari jalan apapun demi keselamatan Nina. Ranti terpaksa menerima tawaran untuk menjadi pengantin iblis. Akhirnya Nina dapat disembuhkan, namun ada harga lain yang harus Ranti bayar, yang menyangkut nyawa seluruh anggota keluarganya.",
-        "streamUrl": "https://vidlink.pro/movie/1261543",
-        "cast": ["Taskya Namya", "Wafda Saifan Lubis", "Arla Ailani"],
-        "director": "Azhar Kinoi Lubis",
-        "subtitle": ["English"],
-        "country": "Indonesia"
+        "country": "Indonesia",
+        "genre": ["Action", "Crime", "Drama"],
+        "keywords": ["pencurian", "heist", "lukisan", "mahasiswa"]
     },
     {
         "id": "the-night-comes-for-us-2018",
@@ -137,100 +89,18 @@
         "posterUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/8lI1p5cPqgXN2qrKZrmI3mhKBfs.jpg",
         "quality": "HD",
         "rating": "6.9",
-        "description": "Seorang tukang pukul bernama Ito (Joe Taslim) kembali ke keluarga kriminalnya di Jakarta setelah bekerja dengan sebuah Triad Asia Tenggara yang kejam. Dia terperangkap dalam sebuah intrik pengkhianatan dan kekacauan saat Triad tersebut memulai sebuah kampanye berdarah untuk ekspansi teritorial mereka.",
+        "description": "Seorang tukang pukul bernama Ito kembali ke keluarga kriminalnya di Jakarta setelah bekerja dengan sebuah Triad Asia Tenggara yang kejam. Dia terperangkap dalam sebuah intrik pengkhianatan dan kekacauan.",
         "streamUrl": "https://vidlink.pro/movie/449992",
         "cast": ["Joe Taslim", "Iko Uwais", "Julie Estelle"],
         "director": "Timo Tjahjanto",
-        "subtitle": ["English", "indonesia"],
-        "country": "Indonesia"
-    },
-    {
-        "id": "sumala-2024",
-        "type": "movie",
-        "title": "Sumala (2024)",
-        "posterUrl": "https://image.tmdb.org/t/p/original/jCOac0WEpCz8KyQYV0MTQ5oSwmf.jpg",
-        "quality": "HD",
-        "rating": "7.3",
-        "description": "Tanpa sepengetahuan Soedjiman suaminya, Sulastri melakukan perjanjian dengan iblis supaya ia bisa memiliki anak. Ia melahirkan anak kembar, Kumala yang bertahan hidup dan Sumala yang meninggal. Kumala tumbuh menjadi anak yang baik hati tapi cacat fisik dan mental. Ia sering mendapat perlakuan buruk dari orang-orang sekitarnya. Suatu hari Sumala datang dari dunia kematian dan membuat perhitungan kepada mereka yang telah menyakiti Kumala.",
-        "streamUrl": "https://vidsrc.icu/embed/movie/1260594",
-        "cast": ["Luna Maya", "Darius Sinathrya", "Makayla Rose Hilli"],
-        "director": "Rizal Mantovani",
-        "subtitle": ["English", "indonesia"],
-        "country": "Indonesia"
-    },
-    {
-        "id": "penggonan-wingit-2-miss-k-2024",
-        "type": "movie",
-        "title": "Panggonan Wingit 2: Miss K (2024)",
-        "posterUrl": "https://image.tmdb.org/t/p/original/g0ZQ348AfZ3YEhz7N43AICjFlvM.jpg",
-        "quality": "HD",
-        "rating": "5.5",
-        "description": "Setelah ibunya meninggal, ALMA dan adiknya, MIA pindah dari Jakarta ke Surabaya karena Alma mendapat pekerjaan sebagai manajer di Apartemen Sasmaya. Anehnya, lantai 6 di apartemen itu ditutup. Tetapi karena ada hal mendesak, Alma dan Mia terpaksa masuk ke lantai tersebut dan masuk ke unit nomor 610. Mereka melihat sosok seorang wanita dan anak kecil perempuan misterius di sana yang berkata, “Papat dina, maghrib…” Sejak itu Alma dan Mia mulai mengalami teror mengerikan. Ternyata unit 610 itu adalah sebuah tempat angker. Siapapun yang membukanya akan mati dalam empat hari di waktu maghrib.",
-        "streamUrl": "https://vidsrc.icu/embed/movie/1321326",
-        "cast": ["Cinta Laura Kiehl", "Arifin Putra", "Callista Arum"],
-        "director": "Guntur Soeharjanto",
-        "subtitle": ["English", "indonesia"],
-        "country": "Indonesia"
-    },
-    {
-        "id": "badarawuhi-di-desa-penari-2024",
-        "type": "movie",
-        "title": "Badarawuhi di Desa Penari (2024)",
-        "posterUrl": "https://image.tmdb.org/t/p/original/2gACO8YojtfEzDhQT6LkKFW5bCa.jpg",
-        "quality": "HD",
-        "rating": "5.5",
-        "description": "Mila harus mengembalikan gelang mistik ke Desa Menari, tanpa menyadari bahwa Badarawuhi - makhluk misterius dan mistis yang memerintah desa - menantinya.",
-        "streamUrl": "https://vidlink.pro/movie/1176166",
-        "cast": ["Maudy Effrosina", "Aulia Sarah", "Jourdy Pranata"],
-        "director": "Kimo Stamboel",
-        "subtitle": ["English", "indonesia"],
-        "country": "Indonesia"
-    },
-    {
-        "id": "pernikahan-arwah-2025",
-        "type": "movie",
-        "title": "Pernikahan Arwah (2025)",
-        "posterUrl": "https://image.tmdb.org/t/p/original/iyHft1M3T9VbiNuG2kFTK6Coeyt.jpg",
-        "quality": "HD",
-        "rating": "6.5",
-        "description": "Sepasang suami istri yang bertunangan kembali ke rumah leluhur mempelai pria setelah kematian bibinya. Namun pengantin hantu yang menyembunyikan rahasia kelam keluarga mengancam kedamaian mereka.",
-        "streamUrl": "https://vidlink.pro/movie/1339775",
-        "cast": ["Morgan Oey", "Zulfa Maharani", "Jourdy Pranata"],
-        "director": "Paul Agusta",
-        "subtitle": ["English", "indonesia"],
-        "country": "Indonesia"
-    },
-    {
-        "id": "kultus-iblis-2023",
-        "type": "movie",
-        "title": "Kultus Iblis (2023)",
-        "posterUrl": "https://image.tmdb.org/t/p/original/8GlBl00JOIywYNkoeRc0Fnzwr8O.jpg",
-        "quality": "HD",
-        "rating": "4.8",
-        "description": "Sepasang anak kembar datang ke desa terpencil untuk mencari tahu penyebab kematian aneh ayah mereka, namun mereka akhirnya terjebak di desa berbahaya yang penuh teror.",
-        "streamUrl": "https://vidlink.pro/movie/1164124",
-        "cast": ["Yasamin Jasem", "Fadi Alaydrus", "Rukman Rosadi"],
-        "director": "Bobby Prasetyo",
-        "subtitle": ["English", "indonesia"],
-        "country": "Indonesia"
-    },
-    {
-        "id": "a-perfect-fit-2021",
-        "type": "movie",
-        "title": "A Perfect Fit (2021)",
-        "posterUrl": "https://image.tmdb.org/t/p/original/zpF0WcOarNWVhS17eeT1nl6IacP.jpg",
-        "quality": "HD",
-        "rating": "7.3",
-        "description": "Saat pergi bersama temannya ke satu tempat, Saski (Nadya Arina) diramal oleh seseorang yang membawanya ke sebuah toko sepatu. Saski kemudian memasuki toko itu untuk memilih sepatu yang cocok. Tanpa ia sadari kunjungannya ke toko sepatu itu memicu sederet kejadian yang akan mengubah hidupnya.",
-        "streamUrl": "https://vidsrc.icu/embed/movie/800669",
-        "cast": ["Nadya Arina", "Refal Hady", "Giorgino Abraham"],
-        "director": "Hadrah Daeng Ratu",
-        "subtitle": ["English", "indonesia"],
-        "country": "Indonesia"
+        "subtitle": ["English", "Indonesia"],
+        "country": "Indonesia",
+        "genre": ["Action", "Thriller", "Crime"],
+        "keywords": ["gangster", "triad", "brutal", "silat"]
     },
     {
         "id": "kabut-berduri-2024",
-        "type": ["movie", "series"],
+        "type": "movie",
         "title": "Kabut Berduri (2024)",
         "posterUrl": "https://image.tmdb.org/t/p/original/jS7bzVw3u7ydK0o5WwH9qIH2V8K.jpg",
         "quality": "HD",
@@ -239,7 +109,9 @@
         "streamUrl": "https://vidsrc.icu/embed/movie/1126357",
         "cast": ["Putri Marino", "Yoga Pratama", "Lukman Sardi"],
         "director": "Edwin",
-        "subtitle": ["English", "indonesia"],
-        "country": "Indonesia"
+        "subtitle": ["English", "Indonesia"],
+        "country": "Indonesia",
+        "genre": ["Crime", "Thriller", "Mystery"],
+        "keywords": ["detektif", "pembunuhan berantai", "perbatasan"]
     }
 ]
