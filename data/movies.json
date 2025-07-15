@@ -150,5 +150,24 @@
         "downloadLinks": [
             { "quality": "1080p", "provider": "Google Drive", "url": "#" }
         ]
+    },
+    {
+        "id": "how-to-train-your-dragon-2025",
+        "type": "movie",
+        "title": "How to Train Your Dragon (2025)",
+        "posterUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/q5pXRYTycaeW6dEgsCrd4mYPmxM.jpg",
+        "quality": "HD",
+        "rating": "8.0",
+        "description": "How to Train Your Dragon (2025) Ketika ancaman kuno membahayakan Viking dan naga di pulau Berk, persahabatan antara Hiccup, seorang Viking yang inventif, dan Toothless, seekor naga Night Fury, menjadi kunci bagi kedua spesies ini untuk menempa masa depan yang baru bersama.",
+        "streamUrl": "https://vidlink.pro/movie/1087192?sub_file=https://raw.githubusercontent.com/adithikmah28/netflik/main/Subtitle/How.to.Train.Your.Dragon.2025.vtt&sub_label=Indonesia",
+        "cast": ["Mason Thames", "Nico Parker", "Gerard Butler"],
+        "director": "Dean DeBlois",
+        "subtitle": ["Indonesia", "English"],
+        "country": "United States",
+        "genre": ["Fantasy", "Family", "Action"],
+        "keywords": ["flying", "vikings (norsemen)", "remake", "dragon", "battle", "warrior", "live action remake", "based on young adult novel", "fantasy", "bold"],
+        "downloadLinks": [
+            { "quality": "1080p", "provider": "Google Drive", "url": "#" }
+        ]
     }
 ]
