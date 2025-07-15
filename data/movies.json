@@ -119,5 +119,21 @@
         "country": "United States",
         "genre": ["Action", "Thriller", "Crime"],
         "keywords": ["assassin", "hitman", "sequel", "gun fu"]
+    },
+    {
+        "id": "m3gan-2-0-2025",
+        "type": "movie",
+        "title": "M3GAN 2.0 (2025)",
+        "posterUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/4a63rQqIDTrYNdcnTXdPsQyxVLo.jpg",
+        "quality": "HD",
+        "rating": "7.3",
+        "description": "M3GAN 2.0 (2025) Dua tahun setelah M3GAN mengamuk, penciptanya, Gemma, menggunakan cara lain untuk menghidupkan kembali ciptaannya yang terkenal untuk mengalahkan Amelia, senjata kelas militer yang dibuat oleh kontraktor pertahanan yang mencuri teknologi dasar M3GAN.",
+        "streamUrl": "https://vidlink.pro/movie/1071585?sub_file=https://raw.githubusercontent.com/adithikmah28/netflik/main/Subtitle/M3GAN.2.0.2025.vtt&sub_label=Indonesia",
+        "cast": ["Keanu Reeves", "Common", "Laurence Fishburne"],
+        "director": "Gerard Johnstone",
+        "subtitle": ["Indonesia", "English"],
+        "country": "United States",
+        "genre": ["Action", "Horror", "Sci-fi"],
+        "keywords": ["assassin", "hitman", "sequel", "gun fu"]
     }
 ]
