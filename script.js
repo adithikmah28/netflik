@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- TEMPATKAN KUNCI API TMDB DI SINI ---
-    const TMDB_API_KEY = 'GANTI_DENGAN_KUNCI_API_V3_MILIKMU';
+    const TMDB_API_KEY = '8c79e8986ea53efac75026e541207aa3';
     // ------------------------------------------
 
     // --- BAGIAN 1: LOGIKA UMUM UNTUK SEMUA HALAMAN ---
