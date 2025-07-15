@@ -4,14 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Netflik - Tonton Film & Series Favoritmu</title>
-    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 style=%22fill: %23E50914;%22>N</text></svg>">
+    
+    <!-- Link CSS & Fonts -->
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Meta OG untuk Share di Media Sosial -->
+    <meta name="description" content="Nonton ribuan film dan series terbaru dengan subtitle Indonesia kualitas HD. Gratis, tanpa iklan yang mengganggu. Update setiap hari!">
+    <meta property="og:title" content="Netflik - Nonton Film & Series Sub Indo Gratis" />
+    <meta property="og:description" content="Streaming ribuan film dan TV series terbaru dengan subtitle Indonesia kualitas HD. Gratis dan selalu update!" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://URL-WEBSITEMU.com/" />
+    <meta property="og:image" content="https://URL-WEBSITEMU.com/preview-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
 </head>
 <body>
+
     <header class="header">
         <a href="index.html" class="logo">NETFLIK</a>
         <nav class="navbar">
@@ -37,18 +53,48 @@
     <main>
         <!-- TAMPILAN KATEGORI DEFAULT -->
         <section id="default-rows" class="movie-rows">
-            <div class="movie-row"><div class="row-header"><h2>Movies</h2><a href="category.html?name=movies" class="view-all-link">Lihat Semua <i class="fas fa-chevron-right"></i></a></div><div class="movie-list" id="movies-list"></div></div>
-            <div class="movie-row"><div class="row-header"><h2>Series Populer</h2><a href="category.html?name=series" class="view-all-link">Lihat Semua <i class="fas fa-chevron-right"></i></a></div><div class="movie-list" id="series-list"></div></div>
-            <div class="movie-row"><div class="row-header"><h2>Film Indonesia</h2><a href="category.html?name=indonesia" class="view-all-link">Lihat Semua <i class="fas fa-chevron-right"></i></a></div><div class="movie-list" id="indonesia-list"></div></div>
+            
+            <!-- BARIS BARU UNTUK TRENDING -->
+            <div class="movie-row">
+                <div class="row-header">
+                    <h2>Sedang Trending</h2>
+                </div>
+                <div class="movie-list" id="trending-list">
+                    <!-- Film trending akan dimuat di sini oleh JavaScript -->
+                </div>
+            </div>
+            <!-- AKHIR BARIS BARU -->
+
+            <div class="movie-row">
+                <div class="row-header">
+                    <h2>Movies</h2>
+                    <a href="category.html?name=movies" class="view-all-link">Lihat Semua <i class="fas fa-chevron-right"></i></a>
+                </div>
+                <div class="movie-list" id="movies-list"></div>
+            </div>
+
+            <div class="movie-row">
+                <div class="row-header">
+                    <h2>Series Populer</h2>
+                    <a href="category.html?name=series" class="view-all-link">Lihat Semua <i class="fas fa-chevron-right"></i></a>
+                </div>
+                <div class="movie-list" id="series-list"></div>
+            </div>
+
+            <div class="movie-row">
+                <div class="row-header">
+                    <h2>Film Indonesia</h2>
+                    <a href="category.html?name=indonesia" class="view-all-link">Lihat Semua <i class="fas fa-chevron-right"></i></a>
+                </div>
+                <div class="movie-list" id="indonesia-list"></div>
+            </div>
         </section>
 
-        <!-- WADAH HASIL PENCARIAN (UPDATE DI SINI) -->
+        <!-- WADAH HASIL PENCARIAN -->
         <section id="search-results-container" class="category-page" style="display: none;">
             <h1 id="search-results-title">Hasil Pencarian</h1>
-            <!-- Tambahkan indikator loading -->
-            <div id="search-loading" style="text-align: center; font-size: 1.2rem; color: #ccc; display: none;">Mencari di seluruh koleksi...</div>
             <div id="search-results-grid" class="category-grid">
-                <!-- Hasil pencarian akan dimuat di sini -->
+                <!-- Hasil pencarian akan dimuat oleh JavaScript di sini -->
             </div>
         </section>
     </main>
@@ -56,7 +102,10 @@
     <footer class="footer">
         <p>© 2024 Netflik. Dibuat dengan ❤️ untukmu.</p>
         <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
     </footer>
 
