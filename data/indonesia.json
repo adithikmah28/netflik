@@ -15,7 +15,11 @@
         "genre": ["Horror", "Mystery"],
         "keywords": ["pemakaman", "gaib", "horor indonesia"],
         "downloadLinks": [
-            { "quality": "1080p", "provider": "Google Drive", "url": "#" }
+            { "quality": "1080p", "provider": "Google Drive", "url": "https://link-download-1080p.com" }
+        ],
+        "subtitleLinks": [
+            { "language": "Indonesia", "url": "https://link-subtitle-indonesia.com" },
+            { "language": "English", "url": "https://link-subtitle-english.com" }
         ]
     },
     {
@@ -32,7 +36,14 @@
         "subtitle": ["English", "Arabic", "Persian", "Spanish", "French", "Italian"],
         "country": "Indonesia",
         "genre": ["Horror", "Mystery", "Thriller"],
-        "keywords": ["desa", "kutukan", "folk horror"]
+        "keywords": ["desa", "kutukan", "folk horror"],
+        "downloadLinks": [
+            { "quality": "1080p", "provider": "Google Drive", "url": "https://link-download-1080p.com" }
+        ],
+        "subtitleLinks": [
+            { "language": "Indonesia", "url": "https://link-subtitle-indonesia.com" },
+            { "language": "English", "url": "https://link-subtitle-english.com" }
+        ]
     },
     {
         "id": "pengabdi-setan-2017",
@@ -48,7 +59,14 @@
         "subtitle": ["Arabic", "English"],
         "country": "Indonesia",
         "genre": ["Horror", "Mystery", "Drama"],
-        "keywords": ["kultus setan", "hantu", "keluarga"]
+        "keywords": ["kultus setan", "hantu", "keluarga"],
+        "downloadLinks": [
+            { "quality": "1080p", "provider": "Google Drive", "url": "https://link-download-1080p.com" }
+        ],
+        "subtitleLinks": [
+            { "language": "Indonesia", "url": "https://link-subtitle-indonesia.com" },
+            { "language": "English", "url": "https://link-subtitle-english.com" }
+        ]
     },
     {
         "id": "pengabdi-setan-2-communion-2022",
@@ -64,7 +82,14 @@
         "subtitle": ["Indonesia", "English"],
         "country": "Indonesia",
         "genre": ["Horror", "Mystery"],
-        "keywords": ["rumah susun", "teror", "sekte"]
+        "keywords": ["rumah susun", "teror", "sekte"],
+        "downloadLinks": [
+            { "quality": "1080p", "provider": "Google Drive", "url": "https://link-download-1080p.com" }
+        ],
+        "subtitleLinks": [
+            { "language": "Indonesia", "url": "https://link-subtitle-indonesia.com" },
+            { "language": "English", "url": "https://link-subtitle-english.com" }
+        ]
     },
     {
         "id": "mencuri-raden-saleh-2022",
@@ -80,7 +105,14 @@
         "subtitle": ["Indonesia", "English"],
         "country": "Indonesia",
         "genre": ["Action", "Crime", "Drama"],
-        "keywords": ["pencurian", "heist", "lukisan", "mahasiswa"]
+        "keywords": ["pencurian", "heist", "lukisan", "mahasiswa"],
+        "downloadLinks": [
+            { "quality": "1080p", "provider": "Google Drive", "url": "https://link-download-1080p.com" }
+        ],
+        "subtitleLinks": [
+            { "language": "Indonesia", "url": "https://link-subtitle-indonesia.com" },
+            { "language": "English", "url": "https://link-subtitle-english.com" }
+        ]
     },
     {
         "id": "the-night-comes-for-us-2018",
@@ -96,7 +128,14 @@
         "subtitle": ["English", "Indonesia"],
         "country": "Indonesia",
         "genre": ["Action", "Thriller", "Crime"],
-        "keywords": ["gangster", "triad", "brutal", "silat"]
+        "keywords": ["gangster", "triad", "brutal", "silat"],
+        "downloadLinks": [
+            { "quality": "1080p", "provider": "Google Drive", "url": "https://link-download-1080p.com" }
+        ],
+        "subtitleLinks": [
+            { "language": "Indonesia", "url": "https://link-subtitle-indonesia.com" },
+            { "language": "English", "url": "https://link-subtitle-english.com" }
+        ]
     },
     {
         "id": "kabut-berduri-2024",
@@ -112,6 +151,13 @@
         "subtitle": ["English", "Indonesia"],
         "country": "Indonesia",
         "genre": ["Crime", "Thriller", "Mystery"],
-        "keywords": ["detektif", "pembunuhan berantai", "perbatasan"]
+        "keywords": ["detektif", "pembunuhan berantai", "perbatasan"],
+        "downloadLinks": [
+            { "quality": "1080p", "provider": "Google Drive", "url": "https://link-download-1080p.com" }
+        ],
+        "subtitleLinks": [
+            { "language": "Indonesia", "url": "https://link-subtitle-indonesia.com" },
+            { "language": "English", "url": "https://link-subtitle-english.com" }
+        ]
     }
 ]
