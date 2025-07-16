@@ -1,62 +1,66 @@
 .download-page {
-    padding: 0 5%;
-    max-width: 800px;
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 50px 5%;
 }
-
-#download-title {
-    font-size: 2.2rem;
-    text-align: center;
-    margin-bottom: 30px;
-    color: #e5e5e5;
+.back-button-simple {
+    color: #ccc;
+    text-decoration: none;
+    font-weight: 500;
 }
-
-.download-links-container {
+.back-button-simple:hover {
+    color: #fff;
+}
+.download-hub-content {
+    background-color: #181818;
+    padding: 25px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
 }
-
-.download-link-btn {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px 20px;
-    background-color: #222;
-    border: 1px solid #444;
-    border-radius: 8px;
-    color: var(--light-color);
-    text-decoration: none;
-    transition: background-color 0.2s, border-color 0.2s;
-}
-
-.download-link-btn:hover {
-    background-color: #333;
-    border-color: var(--primary-color);
-}
-
-.download-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.download-info i {
+#download-title {
     font-size: 1.5rem;
-    color: var(--primary-color);
-}
-
-.download-info .quality {
-    font-size: 1.2rem;
     font-weight: 600;
+    color: #e5e5e5;
+    margin: 0 0 10px 0;
+    text-align: center;
+    border-bottom: 1px solid #333;
+    padding-bottom: 20px;
 }
-
-.download-info .provider {
+.download-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.download-hub-content select {
+    width: 100%;
+    padding: 12px;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+    border-radius: 5px;
     font-size: 1rem;
-    color: #ccc;
 }
-
-.download-icon {
-    font-size: 1.5rem;
-    color: #888;
+.hub-download-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    text-align: center;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 25px;
+    transition: background-color 0.2s;
+}
+.hub-download-btn:hover {
+    background-color: #f61a27;
+}
+.hub-download-btn.disabled {
+    background-color: #555;
+    pointer-events: none;
+    opacity: 0.6;
 }
