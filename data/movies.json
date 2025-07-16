@@ -15,7 +15,11 @@
         "genre": ["Action", "Comedy", "Thriller"],
         "keywords": ["miami, florida", "sequel", "on the run", "police detective", "buddy cop", "buddy comedy", "aftercreditsstinger", "hilarious"],
         "downloadLinks": [
-            { "quality": "1080p", "provider": "Google Drive", "url": "#" }
+            { "quality": "1080p", "provider": "Google Drive", "url": "https://link-download-1080p.com" }
+        ],
+        "subtitleLinks": [
+            { "language": "Indonesia", "url": "https://link-subtitle-indonesia.com" },
+            { "language": "English", "url": "https://link-subtitle-english.com" }
         ]
     },
     {
