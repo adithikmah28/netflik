@@ -6,7 +6,7 @@
     <title>Download - Netflik</title>
     <link rel="icon" href="data:image/svg+xml,...">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="download.css"> <!-- CSS Khusus untuk halaman ini -->
+    <link rel="stylesheet" href="download.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
@@ -20,23 +20,25 @@
     <main>
         <section class="download-page">
             <div id="download-hub-container" class="download-hub-content">
-                <h3 id="download-title">Memuat Link Download...</h3>
+                <h3 id="download-title">Download Hub:</h3>
                 
                 <!-- Bagian Video -->
                 <div id="video-section" class="download-section" style="display: none;">
                     <select id="quality-select">
-                        <option value="">Pilih Kualitas Video</option>
+                        <option value="">Select quality</option>
                     </select>
-                    <a id="video-download-link" href="#" class="hub-download-btn disabled" target="_blank">Download Video</a>
+                    <a id="video-download-link" href="#" class="hub-download-btn disabled" target="_blank">Download</a>
                 </div>
 
                 <!-- Bagian Subtitle -->
                 <div id="subtitle-section" class="download-section" style="display: none;">
                     <select id="subtitle-select">
-                        <option value="">Pilih Bahasa Subtitle</option>
+                        <option value="">Select subtitle language</option>
                     </select>
-                    <a id="subtitle-download-link" href="#" class="hub-download-btn disabled" target="_blank">Download Subtitle</a>
+                    <a id="subtitle-download-link" href="#" class="hub-download-btn disabled" target="_blank">Download</a>
                 </div>
+
+                <button id="cancel-btn" class="hub-cancel-btn">Cancel</button>
             </div>
         </section>
     </main>
