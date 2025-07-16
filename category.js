@@ -57,11 +57,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             for (let i = 1; i <= totalPages; i++) {
                 const link = document.createElement('a');
                 link.className = `page-link ${i === pageNumber ? 'active' : ''}`;
-                link.href = '#';
+                link.href = `category.html?name=${categoryName}&page=${i}`; // Link paginasi yang benar
                 link.textContent = i;
                 link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    renderPage(i, data);
+                    // Cukup pindah halaman, tidak perlu logic rumit
                 });
                 paginationEl.appendChild(link);
             }
@@ -69,24 +68,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
     
     try {
-        if (categoryName === 'series') {
-            const [seriesRes, indonesiaRes] = await Promise.all([ fetch('data/series.json'), fetch('data/indonesia.json') ]);
-            const seriesData = await seriesRes.json();
-            const indonesiaData = await indonesiaRes.json();
-            allData = [...seriesData, ...indonesiaData].filter(item => item.type === 'series');
-
-        } else if (categoryName === 'movies') {
-            const [moviesRes, indonesiaRes] = await Promise.all([ fetch('data/movies.json'), fetch('data/indonesia.json') ]);
-            const moviesData = await moviesRes.json();
-            const indonesiaData = await indonesiaRes.json();
-            allData = [...moviesData, ...indonesiaData].filter(item => item.type === 'movie');
-
-        } else {
-            const response = await fetch(`data/${categoryName}.json`);
-            if (!response.ok) throw new Error(`Data untuk kategori "${categoryName}" tidak ditemukan.`);
-            allData = await response.json();
-        }
-
+        const response = await fetch(`data/${categoryName}.json`);
+        if (!response.ok) throw new Error(`Data untuk kategori "${categoryName}" tidak ditemukan.`);
+        
+        allData = await response.json();
         allData.reverse();
 
         let formattedTitle;
