@@ -13,20 +13,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
-    let allData = []; // Simpan semua data di sini untuk pencarian
+    let allData = [];
 
     const createMovieCard = (item) => {
         const anchor = document.createElement('a');
         anchor.className = 'movie-card-link';
         anchor.href = `streaming.html?type=${item.type}&id=${item.id}`;
-        anchor.dataset.title = item.title.toLowerCase(); // Penting untuk pencarian
-
+        anchor.dataset.title = item.title.toLowerCase();
         const qualityLower = (item.quality || '').toLowerCase();
         let qualityClass = '';
         if (qualityLower === 'hd') qualityClass = 'quality-hd';
         else if (qualityLower === 'sd') qualityClass = 'quality-sd';
         else if (qualityLower === 'cam') qualityClass = 'quality-cam';
-
         anchor.innerHTML = `
             <div class="poster-wrapper">
                 <img src="${item.posterUrl}" alt="${item.title}" loading="lazy">
@@ -59,7 +57,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             for (let i = 1; i <= totalPages; i++) {
                 const link = document.createElement('a');
                 link.className = `page-link ${i === pageNumber ? 'active' : ''}`;
-                link.href = '#'; // Hapus href agar tidak reload
+                link.href = '#';
                 link.textContent = i;
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -71,10 +69,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
     
     try {
-        const response = await fetch(`data/${categoryName}.json`);
-        if (!response.ok) throw new Error(`Data untuk kategori "${categoryName}" tidak ditemukan.`);
-        
-        allData = await response.json();
+        if (categoryName === 'series') {
+            const [seriesRes, indonesiaRes] = await Promise.all([ fetch('data/series.json'), fetch('data/indonesia.json') ]);
+            const seriesData = await seriesRes.json();
+            const indonesiaData = await indonesiaRes.json();
+            allData = [...seriesData, ...indonesiaData].filter(item => item.type === 'series');
+
+        } else if (categoryName === 'movies') {
+            const [moviesRes, indonesiaRes] = await Promise.all([ fetch('data/movies.json'), fetch('data/indonesia.json') ]);
+            const moviesData = await moviesRes.json();
+            const indonesiaData = await indonesiaRes.json();
+            allData = [...moviesData, ...indonesiaData].filter(item => item.type === 'movie');
+
+        } else {
+            const response = await fetch(`data/${categoryName}.json`);
+            if (!response.ok) throw new Error(`Data untuk kategori "${categoryName}" tidak ditemukan.`);
+            allData = await response.json();
+        }
+
+        allData.reverse();
 
         let formattedTitle;
         if (categoryName === 'movies') formattedTitle = 'Movies';
@@ -90,32 +103,28 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.error('Error:', error);
         titleEl.textContent = 'Gagal Memuat Konten';
-        gridEl.innerHTML = `<p style="color: #ff9999;">${error.message}</p>`;
     }
 
-    // --- LOGIKA PENCARIAN & UI ---
     const header = document.querySelector('.header');
-    const searchIcon = document.querySelector('.search-icon');
     const searchInput = document.getElementById('category-search-input');
+    const searchIcon = document.querySelector('.search-icon');
+    if (searchIcon && searchInput) {
+        searchIcon.addEventListener('click', () => {
+            header.classList.toggle('search-active');
+            if (header.classList.contains('search-active')) searchInput.focus();
+        });
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filteredData = allData.filter(item => item.title.toLowerCase().includes(searchTerm));
+            renderPage(1, filteredData);
+        });
+    }
+
     const navbar = document.querySelector('.navbar');
     const hamburger = document.querySelector('.hamburger');
     const navCloseBtn = document.querySelector('.nav-close-btn');
-
     if (hamburger && navbar && navCloseBtn) {
         hamburger.addEventListener('click', () => navbar.classList.add('nav-active'));
         navCloseBtn.addEventListener('click', () => navbar.classList.remove('nav-active'));
     }
-
-    searchIcon.addEventListener('click', () => {
-        header.classList.toggle('search-active');
-        if (header.classList.contains('search-active')) searchInput.focus();
-    });
-
-    searchInput.addEventListener('input', () => {
-        const searchTerm = searchInput.value.toLowerCase();
-        const filteredData = allData.filter(item => 
-            item.title.toLowerCase().includes(searchTerm)
-        );
-        renderPage(1, filteredData); // Selalu mulai dari halaman 1 setelah search
-    });
 });
