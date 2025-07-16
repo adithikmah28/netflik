@@ -1,7 +1,13 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    // --- TEMPATKAN DIRECT LINK ADSTERRA DI SINI ---
-    const ADSTERRA_DIRECT_LINK = "https://your-adsterra-direct-link.com/script.js";
-    // ---------------------------------------------
+    // --- TEMPATKAN SEMUA DIRECT LINK ADSTERRA DI SINI ---
+    const ADSTERRA_DIRECT_LINKS = [
+        "https://link-adsterra-1.com/script.js",
+        "https://link-adsterra-2.com/script.js",
+        "https://link-adsterra-3.com/script.js",
+        "https://link-adsterra-4.com/script.js",
+        "https://link-adsterra-5.com/script.js"
+    ];
+    // ----------------------------------------------------
 
     const streamContainer = document.getElementById('stream-container');
     const adModal = document.getElementById('ad-modal');
@@ -19,8 +25,23 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (iframe && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
     };
     
-    adLink.href = ADSTERRA_DIRECT_LINK;
-    adLink.addEventListener('click', () => { setTimeout(unlockVideo, 500); });
+    // Logika untuk tombol iklan
+    adLink.addEventListener('click', () => {
+        setTimeout(unlockVideo, 500); 
+    });
+
+    // Fungsi untuk menampilkan modal dengan link acak
+    const showAdModal = () => {
+        // Pilih satu link secara acak dari daftar
+        const randomIndex = Math.floor(Math.random() * ADSTERRA_DIRECT_LINKS.length);
+        const randomLink = ADSTERRA_DIRECT_LINKS[randomIndex];
+        
+        // Pasang link acak itu ke tombol
+        adLink.href = randomLink;
+
+        // Tampilkan modal
+        adModal.classList.add('show');
+    };
 
     const buildFinalUrl = (baseUrl) => {
         const paramsToAdd = "autoplay=1&modestbranding=1&rel=0";
@@ -43,27 +64,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             document.title = `${contentData.title} - Netflik`;
 
             const slugify = (text) => text.toLowerCase().replace(/\s+/g, '-');
-            const createLinkList = (items, type) => {
-                if (!items || items.length === 0) return 'N/A';
-                return items.map(item => `<a href="results.html?type=${type}&q=${slugify(item)}">${item}</a>`).join(', ');
-            };
-            const createSingleLink = (item, type) => {
-                if (!item) return 'N/A';
-                return `<a href="results.html?type=${type}&q=${slugify(item)}">${item}</a>`;
-            };
-
-            const metadataHTML = `
-                <div class="metadata-wrapper">
-                    <div class="metadata-grid">
-                        <div class="metadata-item"><strong>Pemeran</strong><span>${createLinkList(contentData.cast, 'cast')}</span></div>
-                        <div class="metadata-item"><strong>Sutradara</strong><span>${createSingleLink(contentData.director, 'director')}</span></div>
-                        <div class="metadata-item"><strong>Genre</strong><span>${createLinkList(contentData.genre, 'genre')}</span></div>
-                        <div class="metadata-item"><strong>Kualitas</strong><span>${contentData.quality || 'N/A'}</span></div>
-                        <div class="metadata-item"><strong>Subtitle</strong><span>${(contentData.subtitle || []).join(', ')}</span></div>
-                        <div class="metadata-item"><strong>Negara</strong><span>${createSingleLink(contentData.country, 'country')}</span></div>
-                    </div>
-                </div>
-            `;
+            const createLinkList = (items, type) => !items || items.length === 0 ? 'N/A' : items.map(item => `<a href="results.html?type=${type}&q=${slugify(item)}">${item}</a>`).join(', ');
+            const createSingleLink = (item, type) => !item ? 'N/A' : `<a href="results.html?type=${type}&q=${slugify(item)}">${item}</a>`;
+            const metadataHTML = `<div class="metadata-wrapper"><div class="metadata-grid"><div class="metadata-item"><strong>Pemeran</strong><span>${createLinkList(contentData.cast, 'cast')}</span></div><div class="metadata-item"><strong>Sutradara</strong><span>${createSingleLink(contentData.director, 'director')}</span></div><div class="metadata-item"><strong>Genre</strong><span>${createLinkList(contentData.genre, 'genre')}</span></div><div class="metadata-item"><strong>Kualitas</strong><span>${contentData.quality || 'N/A'}</span></div><div class="metadata-item"><strong>Subtitle</strong><span>${(contentData.subtitle || []).join(', ')}</span></div><div class="metadata-item"><strong>Negara</strong><span>${createSingleLink(contentData.country, 'country')}</span></div></div></div>`;
             
             let downloadButtonHTML = '';
             if (contentData.type === 'movie' && contentData.downloadLinks && contentData.downloadLinks.length > 0) {
@@ -76,15 +79,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 keywordsHTML = `<div class="keyword-tags">${contentData.keywords.map(keyword => `<a href="results.html?type=keyword&q=${slugify(keyword)}" class="keyword-tag">${keyword}</a>`).join('')}</div>`;
             }
 
-            const mainContentHTML = `
-                <div class="stream-details">
-                    <h1 class="stream-title">${contentData.title}</h1>
-                    <div class="title-divider"></div>
-                    <p class="stream-description">${contentData.description}</p>
-                    ${metadataHTML}
-                    ${keywordsHTML} 
-                </div>
-            `;
+            const mainContentHTML = `<div class="stream-details"><h1 class="stream-title">${contentData.title}</h1><div class="title-divider"></div><p class="stream-description">${contentData.description}</p>${metadataHTML}${keywordsHTML}</div>`;
 
             if (contentData.type === 'series' && contentData.seasons) {
                 streamContainer.innerHTML = `<div class="video-player-wrapper"><div class="video-container"><iframe id="video-iframe" data-src="" title="${contentData.title}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></div><div class="stream-controls"><select id="season-select"></select><div id="episodes-list-container"></div></div>${mainContentHTML}`;
@@ -92,12 +87,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const videoIframe = document.getElementById('video-iframe');
                 const seasonSelect = document.getElementById('season-select');
                 const episodesContainer = document.getElementById('episodes-list-container');
+                
                 const playEpisode = (episodeBox) => {
                     document.querySelectorAll('.episode-box').forEach(b => b.classList.remove('active'));
                     episodeBox.classList.add('active');
-                    videoIframe.src = ''; videoIframe.dataset.src = buildFinalUrl(episodeBox.dataset.streamUrl);
-                    adModal.classList.add('show');
+                    videoIframe.src = ''; 
+                    videoIframe.dataset.src = buildFinalUrl(episodeBox.dataset.streamUrl);
+                    showAdModal(); // Gunakan fungsi baru
                 };
+
                 const renderAndPlayFirstEpisode = (seasonIndex) => {
                     episodesContainer.innerHTML = '';
                     const season = contentData.seasons[seasonIndex];
@@ -111,6 +109,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     const firstEpisodeBox = episodesContainer.querySelector('.episode-box');
                     if (firstEpisodeBox) { playEpisode(firstEpisodeBox); }
                 };
+                
                 contentData.seasons.forEach((season, index) => seasonSelect.add(new Option(season.season_name, index)));
                 seasonSelect.addEventListener('change', (e) => { renderAndPlayFirstEpisode(e.target.value); });
                 renderAndPlayFirstEpisode(0);
@@ -118,7 +117,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             } else {
                 const finalMovieUrl = buildFinalUrl(contentData.streamUrl);
                 streamContainer.innerHTML = `<div class="video-player-wrapper"><div class="video-container"><iframe id="video-iframe" data-src="${finalMovieUrl}" title="${contentData.title}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div></div>${downloadButtonHTML}${mainContentHTML}`;
-                adModal.classList.add('show');
+                showAdModal(); // Gunakan fungsi baru
             }
 
         } else {
