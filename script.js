@@ -157,11 +157,27 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // --- PROSES UTAMA SAAT HALAMAN DIBUKA ---
         const initializeApp = async () => {
-            await loadAllInternalContent(); // 1. Muat semua data dari JSON ke memori
-            loadPreviews();                 // 2. Tampilkan preview 10 film dari data di memori
-            loadTrending();                 // 3. Cari yang trending dari data di memori
-        };
+    await loadAllInternalContent(); 
+    
+    // --- PERUBAHAN DI SINI ---
+    // Balik urutan data sebelum ditampilkan
+    const moviesData = allContent.filter(i => i.type === 'movie' && i.country !== 'Indonesia').reverse();
+    const seriesData = allContent.filter(i => i.type === 'series').reverse();
+    const indonesiaData = allContent.filter(i => i.country === 'Indonesia').reverse();
+    
+    // Tampilkan preview dengan data yang sudah dibalik
+    const movieContainer = document.getElementById('movies-list');
+    const seriesContainer = document.getElementById('series-list');
+    const indonesiaContainer = document.getElementById('indonesia-list');
 
-        initializeApp();
+    moviesData.slice(0, 10).forEach(item => movieContainer.appendChild(createMovieCard(item)));
+    seriesData.slice(0, 10).forEach(item => seriesContainer.appendChild(createMovieCard(item)));
+    indonesiaData.slice(0, 10).forEach(item => indonesiaContainer.appendChild(createMovieCard(item)));
+    // --- AKHIR PERUBAHAN ---
+
+    loadTrending();
+};
+
+initializeApp();
     }
 });
