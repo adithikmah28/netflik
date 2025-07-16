@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const subtitleDownloadLink = document.getElementById('subtitle-download-link');
     const videoSection = document.getElementById('video-section');
     const subtitleSection = document.getElementById('subtitle-section');
+    const cancelBtn = document.getElementById('cancel-btn');
 
     if (!type || !id) {
         titleEl.textContent = 'Konten tidak ditemukan';
@@ -17,23 +18,31 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-        let dataSources = [fetch('data/movies.json'), fetch('data/series.json'), fetch('data/indonesia.json')];
+        let dataSources = [
+            fetch('data/movies.json'),
+            fetch('data/series.json'),
+            fetch('data/indonesia.json')
+        ];
+        
         const responses = await Promise.all(dataSources);
         let allData = [];
         for (const response of responses) if (response.ok) allData.push(...await response.json());
         const contentData = allData.find(item => item.id === id);
 
         if (contentData) {
-            titleEl.textContent = `Download: ${contentData.title}`;
+            titleEl.textContent = `Download Hub: ${contentData.title}`;
             document.title = `Download: ${contentData.title} - Netflik`;
 
+            // Cek dan tampilkan bagian download video
             if (contentData.downloadLinks && contentData.downloadLinks.length > 0) {
                 videoSection.style.display = 'flex';
                 contentData.downloadLinks.forEach(link => {
-                    const option = new Option(`${link.quality} (${link.provider})`, link.url);
+                    const option = new Option(`${link.quality} - ${link.provider}`, link.url);
                     qualitySelect.add(option);
                 });
             }
+
+            // Cek dan tampilkan bagian download subtitle
             if (contentData.subtitleLinks && contentData.subtitleLinks.length > 0) {
                 subtitleSection.style.display = 'flex';
                 contentData.subtitleLinks.forEach(link => {
@@ -41,8 +50,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                     subtitleSelect.add(option);
                 });
             }
+
         } else {
-            titleEl.textContent = 'Konten tidak ditemukan';
+            titleEl.textContent = 'Data konten tidak ditemukan';
         }
 
     } catch (error) {
@@ -50,6 +60,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         titleEl.textContent = 'Gagal memuat data.';
     }
 
+    // Event listener untuk mengaktifkan tombol download
     qualitySelect.addEventListener('change', (e) => {
         if (e.target.value) {
             videoDownloadLink.href = e.target.value;
@@ -59,6 +70,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             videoDownloadLink.classList.add('disabled');
         }
     });
+
     subtitleSelect.addEventListener('change', (e) => {
         if (e.target.value) {
             subtitleDownloadLink.href = e.target.value;
@@ -67,5 +79,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             subtitleDownloadLink.href = '#';
             subtitleDownloadLink.classList.add('disabled');
         }
+    });
+
+    // Event listener untuk tombol cancel
+    cancelBtn.addEventListener('click', () => {
+        // Kembali ke halaman sebelumnya
+        history.back();
     });
 });
