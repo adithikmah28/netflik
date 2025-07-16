@@ -4,7 +4,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     const id = params.get('id');
 
     const titleEl = document.getElementById('download-title');
-    const containerEl = document.getElementById('download-links-container');
+    const qualitySelect = document.getElementById('quality-select');
+    const subtitleSelect = document.getElementById('subtitle-select');
+    const videoDownloadLink = document.getElementById('video-download-link');
+    const subtitleDownloadLink = document.getElementById('subtitle-download-link');
+    const videoSection = document.getElementById('video-section');
+    const subtitleSection = document.getElementById('subtitle-section');
 
     if (!type || !id) {
         titleEl.textContent = 'Konten tidak ditemukan';
@@ -12,48 +17,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-        let dataSources = [
-            fetch('data/movies.json'),
-            fetch('data/series.json'),
-            fetch('data/indonesia.json')
-        ];
-        
+        let dataSources = [fetch('data/movies.json'), fetch('data/series.json'), fetch('data/indonesia.json')];
         const responses = await Promise.all(dataSources);
         let allData = [];
-        for (const response of responses) {
-            if (response.ok) allData.push(...await response.json());
-        }
-
+        for (const response of responses) if (response.ok) allData.push(...await response.json());
         const contentData = allData.find(item => item.id === id);
 
         if (contentData) {
             titleEl.textContent = `Download: ${contentData.title}`;
             document.title = `Download: ${contentData.title} - Netflik`;
 
-            containerEl.innerHTML = '';
             if (contentData.downloadLinks && contentData.downloadLinks.length > 0) {
+                videoSection.style.display = 'flex';
                 contentData.downloadLinks.forEach(link => {
-                    const button = document.createElement('a');
-                    button.className = 'download-link-btn';
-                    button.href = link.url;
-                    button.target = '_blank'; // Buka di tab baru
-
-                    button.innerHTML = `
-                        <div class="download-info">
-                            <i class="fas fa-film"></i>
-                            <div>
-                                <div class="quality">${link.quality}</div>
-                                <div class="provider">${link.provider}</div>
-                            </div>
-                        </div>
-                        <i class="fas fa-download download-icon"></i>
-                    `;
-                    containerEl.appendChild(button);
+                    const option = new Option(`${link.quality} (${link.provider})`, link.url);
+                    qualitySelect.add(option);
                 });
-            } else {
-                containerEl.innerHTML = '<p style="text-align: center;">Maaf, link download untuk konten ini belum tersedia.</p>';
             }
-
+            if (contentData.subtitleLinks && contentData.subtitleLinks.length > 0) {
+                subtitleSection.style.display = 'flex';
+                contentData.subtitleLinks.forEach(link => {
+                    const option = new Option(link.language, link.url);
+                    subtitleSelect.add(option);
+                });
+            }
         } else {
             titleEl.textContent = 'Konten tidak ditemukan';
         }
@@ -63,12 +50,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         titleEl.textContent = 'Gagal memuat data.';
     }
 
-    // Logika menu mobile
-    const navbar = document.querySelector('.navbar');
-    const hamburger = document.querySelector('.hamburger');
-    const navCloseBtn = document.querySelector('.nav-close-btn');
-    if (hamburger && navbar && navCloseBtn) {
-        hamburger.addEventListener('click', () => navbar.classList.add('nav-active'));
-        navCloseBtn.addEventListener('click', () => navbar.classList.remove('nav-active'));
-    }
+    qualitySelect.addEventListener('change', (e) => {
+        if (e.target.value) {
+            videoDownloadLink.href = e.target.value;
+            videoDownloadLink.classList.remove('disabled');
+        } else {
+            videoDownloadLink.href = '#';
+            videoDownloadLink.classList.add('disabled');
+        }
+    });
+    subtitleSelect.addEventListener('change', (e) => {
+        if (e.target.value) {
+            subtitleDownloadLink.href = e.target.value;
+            subtitleDownloadLink.classList.remove('disabled');
+        } else {
+            subtitleDownloadLink.href = '#';
+            subtitleDownloadLink.classList.add('disabled');
+        }
+    });
 });
