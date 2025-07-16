@@ -169,5 +169,24 @@
         "downloadLinks": [
             { "quality": "1080p", "provider": "Google Drive", "url": "#" }
         ]
+    },
+    {
+        "id": "karate-kid-legends-2025",
+        "type": "movie",
+        "title": "Karate Kid: Legends (2025)",
+        "posterUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/AEgggzRr1vZCLY86MAp93li43z.jpg",
+        "quality": "HD",
+        "rating": "7.3",
+        "description": "Karate Kid: Legends (2025) Setelah seorang jagoan kungfu Li Fong pindah ke New York City, dia menarik perhatian yang tidak diinginkan dari seorang juara karate lokal dan memulai perjalanan untuk mengikuti kompetisi karate pamungkas dengan bantuan Mr.",
+        "streamUrl": "https://vidlink.pro/movie/1011477?sub_file=https://raw.githubusercontent.com/adithikmah28/netflik/main/Subtitle/Karate.Kid.Legends.2025.vtt&sub_label=Indonesia",
+        "cast": ["Jackie Chan", "Ben Wang", "Ralph Macchio"],
+        "director": "Jonathan Entwistle",
+        "subtitle": ["Indonesia", "English"],
+        "country": "United States",
+        "genre": ["Action", "Adventure", "Drama"],
+        "keywords": ["new york city", "martial arts", "kung fu", "mentor", "ex-boyfriend", "karate", "beijing, china", "martial arts tournament", "martial arts training", "living abroad", "overprotective mother", "sympathetic"],
+        "downloadLinks": [
+            { "quality": "1080p", "provider": "Google Drive", "url": "#" }
+        ]
     }
 ]
