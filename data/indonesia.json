@@ -13,7 +13,7 @@
         "subtitle": ["Indonesia", "English"],
         "country": "Indonesia",
         "genre": ["Horror", "Mystery"],
-        "keywords": ["pemakaman", "gaib", "horor indonesia"],
+        "keywords": ["corpse", "body horror"],
         "downloadLinks": [
             { "quality": "360p", "provider": "(137.5 MB)", "url": "https://dl2.vid1.site/https%3A%2F%2Fvaliw.hakunaymatata.com%2Fresource%2F949bf3911d83df6c1282cd80186edb73.mp4%3Fauth_key%3D1752747738-0-0-2bbf1fdecf4507a1a63e6da6aa9961a0?n=The+Corpse+Washer+%282024%29" },
             { "quality": "480p", "provider": "(205.3 MB)", "url": "https://dl2.vid1.site/https%3A%2F%2Fvaliw.hakunaymatata.com%2Fresource%2F6f5fa8d3981270082ab892df1c8b6b7f.mp4%3Fauth_key%3D1752744442-0-0-eaf1566f3482b069bf970eac3766ec5b?n=The+Corpse+Washer+%282024%29" },
@@ -43,7 +43,7 @@
         "subtitle": ["English", "Arabic", "Persian", "Spanish", "French", "Italian"],
         "country": "Indonesia",
         "genre": ["Horror", "Mystery", "Thriller"],
-        "keywords": ["desa", "kutukan", "folk horror"]
+        "keywords": ["cemetery", "pregnancy", "black magic", "village", "cult", "abandoned house", "puppet master", "gore", "curse", "toll booth", "folk horror", "remote location", "heritage"]
     },
     {
         "id": "pengabdi-setan-2017",
