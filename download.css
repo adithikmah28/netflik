@@ -42,6 +42,13 @@
     border: 1px solid #555;
     border-radius: 5px;
     font-size: 1rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23cccccc' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem top 50%;
+    background-size: 1em;
 }
 .hub-download-btn {
     width: 100%;
@@ -53,6 +60,9 @@
     font-weight: 700;
     border-radius: 25px;
     transition: background-color 0.2s;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
 }
 .hub-download-btn:hover {
     background-color: #f61a27;
@@ -78,3 +88,33 @@
     background-color: #333;
     color: #fff;
 }
+
+/* --- STYLE UNTUK MODAL IKLAN --- */
+.ad-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
+}
+.ad-modal.show {
+    display: flex;
+}
+.ad-modal-content {
+    background-color: #222;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: 90%;
+    max-width: 450px;
+}
+.ad-modal-content h2 { color: var(--primary-color); margin-bottom: 15px; }
+.ad-modal-content p { margin-bottom: 25px; line-height: 1.6; color: #ccc; }
+.ad-button { display: inline-block; background-color: var(--primary-color); color: var(--light-color); padding: 15px 30px; border-radius: 5px; text-decoration: none; font-weight: 700; font-size: 1.2rem; transition: background-color 0.2s; margin-bottom: 15px; }
+.ad-button:hover { background-color: #f61a27; }
+.ad-modal-content small { color: #888; font-style: italic; }
