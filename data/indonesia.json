@@ -43,14 +43,7 @@
         "subtitle": ["English", "Arabic", "Persian", "Spanish", "French", "Italian"],
         "country": "Indonesia",
         "genre": ["Horror", "Mystery", "Thriller"],
-        "keywords": ["desa", "kutukan", "folk horror"],
-        "downloadLinks": [
-            { "quality": "1080p", "provider": "Google Drive", "url": "https://link-download-1080p.com" }
-        ],
-        "subtitleLinks": [
-            { "language": "Indonesia", "url": "https://link-subtitle-indonesia.com" },
-            { "language": "English", "url": "https://link-subtitle-english.com" }
-        ]
+        "keywords": ["desa", "kutukan", "folk horror"]
     },
     {
         "id": "pengabdi-setan-2017",
