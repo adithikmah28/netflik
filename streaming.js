@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', async () => {
     // --- TEMPATKAN DIRECT LINK ADSTERRA DI SINI ---
-    const ADSTERRA_DIRECT_LINK = "https://your-adsterra-direct-link.com/script.js";
+    const ADSTERRA_DIRECT_LINK = 
+        "https://www.profitableratecpm.com/d1e5phefj?key=c3b3e824ff1d208c1679071aba6d0127",
+        "https://www.profitableratecpm.com/u5xypz2u8j?key=d8afdfb1e3bdf2fb24c83cbd4739b52d",
+        "https://www.profitableratecpm.com/fiwxe3xm?key=04b7f4be0a02a383fc172e4d231e5df2",
+        "https://www.profitableratecpm.com/m9jcb8hgd5?key=8c28bc177e0b7d8b78e18ee16c0ba2dc",
+        "https://www.profitableratecpm.com/xdz7cfckrz?key=4da66776844b84dbeb38d4fbfc6fadb9"
     // ---------------------------------------------
 
     const streamContainer = document.getElementById('stream-container');
