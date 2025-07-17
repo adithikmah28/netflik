@@ -21,22 +21,24 @@
     <main>
         <section class="download-page">
             <div id="download-hub-container" class="download-hub-content">
-                <h3 id="download-title">Memuat Link Download...</h3>
+                <h3 id="download-title">Download Hub:</h3>
                 
-                <!-- Bagian Video -->
                 <div id="video-section" class="download-section" style="display: none;">
                     <select id="quality-select">
                         <option value="">Select quality</option>
                     </select>
-                    <button id="video-download-btn" class="hub-download-btn disabled">Download</button>
+                    <button id="video-download-btn" class="hub-download-btn disabled">
+                        <i class="fas fa-lock"></i> Pilih Kualitas Dahulu
+                    </button>
                 </div>
 
-                <!-- Bagian Subtitle -->
                 <div id="subtitle-section" class="download-section" style="display: none;">
                     <select id="subtitle-select">
                         <option value="">Select subtitle language</option>
                     </select>
-                    <button id="subtitle-download-btn" class="hub-download-btn disabled">Download</button>
+                    <button id="subtitle-download-btn" class="hub-download-btn disabled">
+                        <i class="fas fa-lock"></i> Pilih Bahasa Dahulu
+                    </button>
                 </div>
 
                 <button id="cancel-btn" class="hub-cancel-btn">Cancel</button>
@@ -44,18 +46,6 @@
         </section>
     </main>
     
-    <!-- MODAL IKLAN DI HALAMAN DOWNLOAD -->
-    <div id="ad-modal-download" class="ad-modal">
-        <div class="ad-modal-content">
-            <h2>Satu Langkah Lagi!</h2>
-            <p>Klik tombol di bawah ini untuk memulai download Anda.</p>
-            <a href="#" id="ad-link-download" class="ad-button" target="_blank">
-                LANJUTKAN DOWNLOAD
-            </a>
-            <small>Setelah mengklik, download Anda akan dimulai di tab baru.</small>
-        </div>
-    </div>
-
     <script src="download.js"></script>
 </body>
 </html>
