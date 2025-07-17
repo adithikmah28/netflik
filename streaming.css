@@ -15,7 +15,7 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--dark-color); 
 .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
 .download-wrapper { display: flex; justify-content: center; margin-bottom: 30px; }
-.download-page-btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 25px; background-color: #333; color: var(--light-color); text-decoration: none; border-radius: 5px; font-weight: 600; transition: background-color 0.2s; border: 1px solid #555; }
+.download-page-btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 25px; background-color: #333; color: var(--light-color); text-decoration: none; border-radius: 5px; font-weight: 600; transition: background-color 0.2s; border: 1px solid #555; cursor: pointer; font-family: 'Poppins', sans-serif; font-size: 1rem; }
 .download-page-btn:hover { background-color: var(--primary-color); border-color: var(--primary-color); }
 .download-page-btn i { font-size: 1.2rem; }
 
@@ -41,23 +41,48 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--dark-color); 
 .keyword-tag { display: inline-block; padding: 5px 15px; background-color: #222; border: 1px solid #444; border-radius: 20px; font-size: 0.85rem; color: #ccc; text-decoration: none; transition: all 0.2s ease-in-out; }
 .keyword-tag:hover { background-color: var(--primary-color); border-color: var(--primary-color); color: var(--light-color); }
 
-/* --- STYLE KRUSIAL UNTUK MODAL IKLAN (INI LEM-NYA) --- */
+/* --- STYLE UNTUK NOTIFIKASI --- */
+.notification-toast {
+    position: fixed;
+    bottom: -100px; /* Awalnya sembunyi di bawah layar */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    z-index: 4000;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 500;
+    transition: bottom 0.5s ease-in-out;
+}
+.notification-toast.show {
+    bottom: 30px; /* Muncul ke atas */
+}
+.notification-toast .icon {
+    font-size: 1.5rem;
+    color: #ffcc00; /* Warna kuning untuk warning */
+}
+
+/* --- STYLE MODAL IKLAN --- */
 .ad-modal {
-    display: none; /* Awalnya sembunyi */
-    position: fixed; /* Kunci: Membuatnya melayang di atas segalanya */
+    display: none;
+    position: fixed;
     z-index: 2000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.85); /* Ini adalah 'kain hitam' transparan */
-    justify-content: center; /* Pusatkan kotaknya secara horizontal */
-    align-items: center; /* Pusatkan kotaknya secara vertikal */
+    background-color: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
 }
 .ad-modal.show {
-    display: flex; /* Saat disuruh muncul oleh JS, gunakan flex */
+    display: flex;
 }
-
 .ad-modal-content {
     background-color: #222;
     padding: 30px;
@@ -65,43 +90,12 @@ body { font-family: 'Poppins', sans-serif; background-color: var(--dark-color); 
     text-align: center;
     width: 90%;
     max-width: 450px;
-    position: relative;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.5);
 }
-
-.ad-modal-content h2 {
-    color: var(--primary-color);
-    margin-bottom: 15px;
-}
-
-.ad-modal-content p {
-    margin-bottom: 25px;
-    line-height: 1.6;
-    color: #ccc;
-}
-
-.ad-button {
-    display: inline-block;
-    background-color: var(--primary-color);
-    color: var(--light-color);
-    padding: 15px 30px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1.2rem;
-    transition: background-color 0.2s;
-    margin-bottom: 15px;
-}
-
-.ad-button:hover {
-    background-color: #f61a27;
-}
-
-.ad-modal-content small {
-    color: #888;
-    font-style: italic;
-}
-/* --- AKHIR STYLE MODAL --- */
+.ad-modal-content h2 { color: var(--primary-color); margin-bottom: 15px; }
+.ad-modal-content p { margin-bottom: 25px; line-height: 1.6; color: #ccc; }
+.ad-button { display: inline-block; background-color: var(--primary-color); color: var(--light-color); padding: 15px 30px; border-radius: 5px; text-decoration: none; font-weight: 700; font-size: 1.2rem; transition: background-color 0.2s; margin-bottom: 15px; }
+.ad-button:hover { background-color: #f61a27; }
+.ad-modal-content small { color: #888; font-style: italic; }
 
 @media (max-width: 768px) {
     .stream-controls { flex-direction: column; align-items: flex-start; }
