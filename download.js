@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    // --- TEMPATKAN DIRECT LINK ADSTERRA DI SINI ---
+    // --- TEMPATKAN SEMUA DIRECT LINK ADSTERRA DI SINI ---
     const ADSTERRA_DIRECT_LINKS = [
         "https://your-adsterra-direct-link-1.com",
         "https://your-adsterra-direct-link-2.com",
-        "https://your-adsterra-direct-link-3.com"
+        "https://your-adsterra-direct-link-3.com",
+        "https://your-adsterra-direct-link-4.com"
     ];
 
     const params = new URLSearchParams(window.location.search);
@@ -18,49 +19,72 @@ document.addEventListener('DOMContentLoaded', async () => {
     const videoSection = document.getElementById('video-section');
     const subtitleSection = document.getElementById('subtitle-section');
     const cancelBtn = document.getElementById('cancel-btn');
-    const adModal = document.getElementById('ad-modal-download');
-    const adLinkBtn = document.getElementById('ad-link-download');
-    
-    let selectedVideoUrl = '';
-    let selectedSubtitleUrl = '';
-    let activeDownloadType = '';
 
-    if (!type || !id) { titleEl.textContent = 'Konten tidak ditemukan'; return; }
+    if (!type || !id) {
+        titleEl.textContent = 'Konten tidak ditemukan';
+        return;
+    }
 
-    const openRealDownloadLink = () => {
-        const targetUrl = (activeDownloadType === 'video') ? selectedVideoUrl : selectedSubtitleUrl;
-        if (targetUrl) { window.open(targetUrl, '_blank'); }
-        adModal.classList.remove('show');
+    const handleDownloadClick = (button) => {
+        const isUnlocked = button.dataset.unlocked === 'true';
+        const url = button.dataset.url;
+
+        if (isUnlocked) {
+            if (url) {
+                window.open(url, '_blank');
+            }
+        } else {
+            const randomAdLink = ADSTERRA_DIRECT_LINKS[Math.floor(Math.random() * ADSTERRA_DIRECT_LINKS.length)];
+            window.open(randomAdLink, '_blank');
+            button.innerHTML = '<i class="fas fa-check"></i> LINK SIAP! KLIK LAGI';
+            button.classList.remove('active');
+            button.classList.add('unlocked');
+            button.dataset.unlocked = 'true';
+        }
     };
 
-    adLinkBtn.addEventListener('click', () => {
-        const randomAdLink = ADSTERRA_DIRECT_LINKS[Math.floor(Math.random() * ADSTERRA_DIRECT_LINKS.length)];
-        window.open(randomAdLink, '_blank');
-        setTimeout(openRealDownloadLink, 500);
-    });
+    const resetButton = (button, initialText) => {
+        button.classList.add('disabled');
+        button.classList.remove('active', 'unlocked');
+        button.innerHTML = `<i class="fas fa-lock"></i> ${initialText}`;
+        button.dataset.unlocked = 'false';
+        button.dataset.url = '';
+    };
 
     qualitySelect.addEventListener('change', (e) => {
-        selectedVideoUrl = e.target.value;
-        videoDownloadBtn.classList.toggle('disabled', !selectedVideoUrl);
+        resetButton(subtitleDownloadBtn, 'Pilih Bahasa Dahulu');
+        subtitleSelect.selectedIndex = 0;
+
+        const selectedUrl = e.target.value;
+        if (selectedUrl) {
+            videoDownloadBtn.dataset.url = selectedUrl;
+            videoDownloadBtn.classList.remove('disabled', 'unlocked');
+            videoDownloadBtn.classList.add('active');
+            videoDownloadBtn.innerHTML = '<i class="fas fa-download"></i> UNDUH SEKARANG';
+            videoDownloadBtn.dataset.unlocked = 'false';
+        } else {
+            resetButton(videoDownloadBtn, 'Pilih Kualitas Dahulu');
+        }
     });
 
     subtitleSelect.addEventListener('change', (e) => {
-        selectedSubtitleUrl = e.target.value;
-        subtitleDownloadBtn.classList.toggle('disabled', !selectedSubtitleUrl);
+        resetButton(videoDownloadBtn, 'Pilih Kualitas Dahulu');
+        qualitySelect.selectedIndex = 0;
+
+        const selectedUrl = e.target.value;
+        if (selectedUrl) {
+            subtitleDownloadBtn.dataset.url = selectedUrl;
+            subtitleDownloadBtn.classList.remove('disabled', 'unlocked');
+            subtitleDownloadBtn.classList.add('active');
+            subtitleDownloadBtn.innerHTML = '<i class="fas fa-download"></i> UNDUH SEKARANG';
+            subtitleDownloadBtn.dataset.unlocked = 'false';
+        } else {
+            resetButton(subtitleDownloadBtn, 'Pilih Bahasa Dahulu');
+        }
     });
 
-    videoDownloadBtn.addEventListener('click', () => {
-        if (videoDownloadBtn.classList.contains('disabled')) return;
-        activeDownloadType = 'video';
-        adModal.classList.add('show');
-    });
-
-    subtitleDownloadBtn.addEventListener('click', () => {
-        if (subtitleDownloadBtn.classList.contains('disabled')) return;
-        activeDownloadType = 'subtitle';
-        adModal.classList.add('show');
-    });
-
+    videoDownloadBtn.addEventListener('click', () => handleDownloadClick(videoDownloadBtn));
+    subtitleDownloadBtn.addEventListener('click', () => handleDownloadClick(subtitleDownloadBtn));
     cancelBtn.addEventListener('click', () => history.back());
 
     try {
@@ -79,11 +103,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (contentData.downloadLinks && contentData.downloadLinks.length > 0) {
                 videoSection.style.display = 'flex';
                 contentData.downloadLinks.forEach(link => {
-                    // --- PERUBAHANNYA ADA DI SINI ---
                     const option = new Option(link.quality, link.url);
                     qualitySelect.add(option);
                 });
             }
+
             if (contentData.subtitleLinks && contentData.subtitleLinks.length > 0) {
                 subtitleSection.style.display = 'flex';
                 contentData.subtitleLinks.forEach(link => {
