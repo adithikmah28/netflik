@@ -150,9 +150,12 @@
         "subtitle": ["English", "Indonesia"],
         "country": "Indonesia",
         "genre": ["Action", "Thriller", "Crime"],
-        "keywords": ["gangster", "triad", "brutal", "silat"],
+        "keywords": ["assassin", "chinese mafia", "indonesia", "elite unit", "gore", "massacre", "fighting", "triad", "cold blooded killer", "workshop"],
         "downloadLinks": [
-            { "quality": "1080p", "provider": "Google Drive", "url": "https://link-download-1080p.com" }
+            { "quality": "360p", "provider": "Google Drive", "url": "https://dl2.vid1.site/https%3A%2F%2Fvaliw.hakunaymatata.com%2Fbt%2Fc134a7b56cd2402f4d2850a5f3958bb8.mp4%3Fauth_key%3D1752785153-0-0-188ebdcb9088c3f175c0892dd40efd9c?n=The+Night+Comes+for+Us+%282018%29" },
+            { "quality": "480p", "provider": "Google Drive", "url": "https://dl2.vid1.site/https%3A%2F%2Fvaliw.hakunaymatata.com%2Fresource%2Fc22dcdac3e70ef8e6f38be90ec5095cc.mp4%3Fauth_key%3D1752781447-0-0-87d1347999023d5cb8ed3af77dd6d50d?n=The+Night+Comes+for+Us+%282018%29" },
+            { "quality": "720p", "provider": "Google Drive", "url": "https://dl2.vid1.site/https%3A%2F%2Fvaliw.hakunaymatata.com%2Fresource%2F59d2ea20bbd7896b4a3ee636db2048f5.mp4%3Fauth_key%3D1752782037-0-0-75713405490ba7c8623188c2f488bb72?n=The+Night+Comes+for+Us+%282018%29" },
+            { "quality": "1080p", "provider": "Google Drive", "url": "https://dl2.vid1.site/https%3A%2F%2Fvaliw.hakunaymatata.com%2Fresource%2Fe0e99bbd849b280a01929b8b8068011e.mp4%3Fauth_key%3D1752782037-0-0-018f5dc3de132b5ffec73e24b8de7e9c?n=The+Night+Comes+for+Us+%282018%29" }
         ],
         "subtitleLinks": [
             { "language": "Indonesia", "url": "https://link-subtitle-indonesia.com" },
