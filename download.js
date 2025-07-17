@@ -25,16 +25,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     let selectedSubtitleUrl = '';
     let activeDownloadType = '';
 
-    if (!type || !id) {
-        titleEl.textContent = 'Konten tidak ditemukan';
-        return;
-    }
+    if (!type || !id) { titleEl.textContent = 'Konten tidak ditemukan'; return; }
 
     const openRealDownloadLink = () => {
         const targetUrl = (activeDownloadType === 'video') ? selectedVideoUrl : selectedSubtitleUrl;
-        if (targetUrl) {
-            window.open(targetUrl, '_blank');
-        }
+        if (targetUrl) { window.open(targetUrl, '_blank'); }
         adModal.classList.remove('show');
     };
 
@@ -66,9 +61,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         adModal.classList.add('show');
     });
 
-    cancelBtn.addEventListener('click', () => {
-        history.back();
-    });
+    cancelBtn.addEventListener('click', () => history.back());
 
     try {
         let dataSources = [fetch('data/movies.json'), fetch('data/series.json'), fetch('data/indonesia.json')];
@@ -86,11 +79,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (contentData.downloadLinks && contentData.downloadLinks.length > 0) {
                 videoSection.style.display = 'flex';
                 contentData.downloadLinks.forEach(link => {
-                    const option = new Option(`${link.quality} - ${link.provider}`, link.url);
+                    // --- PERUBAHANNYA ADA DI SINI ---
+                    const option = new Option(link.quality, link.url);
                     qualitySelect.add(option);
                 });
             }
-
             if (contentData.subtitleLinks && contentData.subtitleLinks.length > 0) {
                 subtitleSection.style.display = 'flex';
                 contentData.subtitleLinks.forEach(link => {
