@@ -173,9 +173,10 @@
         ]
     },
     {
-        "id": "kabut-berduri-2024",
+        "id": "Borderless-Fog-2024",
         "type": "movie",
-        "title": "Kabut Berduri (2024)",
+        "title": "Borderless Fog (2024)",
+        "alternativeTitles": ["Kabut Berduri"],
         "posterUrl": "https://image.tmdb.org/t/p/original/jS7bzVw3u7ydK0o5WwH9qIH2V8K.jpg",
         "quality": "HD",
         "rating": "6.3",
