@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             for (let i = 1; i <= totalPages; i++) {
                 const link = document.createElement('a');
                 link.className = `page-link ${i === pageNumber ? 'active' : ''}`;
-                link.href = `category.html?name=${categoryName}&page=${i}`; // Link paginasi yang benar
+                link.href = `category.html?name=${categoryName}&page=${i}`;
                 link.textContent = i;
                 link.addEventListener('click', (e) => {
                     // Cukup pindah halaman, tidak perlu logic rumit
@@ -99,8 +99,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (header.classList.contains('search-active')) searchInput.focus();
         });
         searchInput.addEventListener('input', () => {
-            const searchTerm = searchInput.value.toLowerCase();
-            const filteredData = allData.filter(item => item.title.toLowerCase().includes(searchTerm));
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            const filteredData = allData.filter(item => {
+                const mainTitleMatch = item.title.toLowerCase().includes(searchTerm);
+                let altTitleMatch = false;
+                if (item.alternativeTitles && Array.isArray(item.alternativeTitles)) {
+                    altTitleMatch = item.alternativeTitles.some(altTitle => altTitle.toLowerCase().includes(searchTerm));
+                }
+                return mainTitleMatch || altTitleMatch;
+            });
             renderPage(1, filteredData);
         });
     }
