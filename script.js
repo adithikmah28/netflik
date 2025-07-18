@@ -1,27 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-    // --- TEMPATKAN KUNCI API TMDB DI SINI ---
     const TMDB_API_KEY = '8c79e8986ea53efac75026e541207aa3';
-    // ------------------------------------------
-
-    // --- BAGIAN 1: LOGIKA UMUM UNTUK SEMUA HALAMAN (HEADER, MENU) ---
     const header = document.querySelector('.header');
     const navbar = document.querySelector('.navbar');
     const hamburger = document.querySelector('.hamburger');
     const navCloseBtn = document.querySelector('.nav-close-btn');
     const searchIcon = document.querySelector('.search-icon');
-    
+
     if (header) {
         window.addEventListener('scroll', () => {
             header.classList.toggle('scrolled', window.scrollY > 50);
         });
     }
-
     if (hamburger && navbar && navCloseBtn) {
         hamburger.addEventListener('click', () => navbar.classList.add('nav-active'));
         navCloseBtn.addEventListener('click', () => navbar.classList.remove('nav-active'));
     }
-
     if (searchIcon && header) {
         const searchInputForIcon = document.getElementById('search-input');
         searchIcon.addEventListener('click', () => {
@@ -32,19 +25,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- BAGIAN 2: LOGIKA KHUSUS HANYA UNTUK HALAMAN UTAMA ---
     const defaultRowsContainer = document.getElementById('default-rows');
     const searchResultsContainer = document.getElementById('search-results-container');
     
     if (defaultRowsContainer && searchResultsContainer) {
-
         let allContent = [];
-        
         const searchInput = document.getElementById('search-input');
         const searchResultsGrid = document.getElementById('search-results-grid');
         const searchResultsTitle = document.getElementById('search-results-title');
         
-        // FUNGSI INI HARUS ADA DI SINI AGAR BISA DIPAKAI SEMUA
         const createMovieCard = (item) => {
             const anchor = document.createElement('a');
             anchor.className = 'movie-card-link';
@@ -71,7 +60,21 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        const loadAllInternalContent = async () => {
+        const loadCategoryPreview = async (categoryName, elementId, limit) => {
+            try {
+                const response = await fetch(`data/${categoryName}.json`);
+                if (!response.ok) throw new Error("File tidak ditemukan");
+                const data = await response.json();
+                const container = document.getElementById(elementId);
+                data.reverse().slice(0, limit).forEach(item => {
+                    container.appendChild(createMovieCard(item));
+                });
+            } catch (error) {
+                console.error(`Gagal memuat preview untuk ${categoryName}:`, error);
+            }
+        };
+        
+        const loadAllContentForSearch = async () => {
             if (allContent.length > 0) return;
             try {
                 const [moviesRes, seriesRes, indonesiaRes] = await Promise.all([
@@ -82,47 +85,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 const indonesia = await indonesiaRes.json();
                 allContent = [...movies, ...series, ...indonesia];
             } catch (error) {
-                console.error("Gagal memuat data internal:", error);
+                console.error("Gagal memuat data untuk pencarian:", error);
             }
         };
 
-        // FUNGSI INI AKAN MEMUAT PREVIEW DARI FILE YANG BENAR
-        const loadCategoryPreview = async (categoryName, elementId, limit) => {
-            try {
-                const response = await fetch(`data/${categoryName}.json`);
-                if (!response.ok) throw new Error("File tidak ditemukan");
-
-                const data = await response.json();
-                const container = document.getElementById(elementId);
-                
-                data.reverse().slice(0, limit).forEach(item => {
-                    container.appendChild(createMovieCard(item));
-                });
-            } catch (error) {
-                console.error(`Gagal memuat preview untuk ${categoryName}:`, error);
-            }
-        };
-        
         const loadTrending = async () => {
             const container = document.getElementById('trending-list');
             if (!container) return;
-
-            // Pastikan semua data ada sebelum mencari trending
-            await loadAllInternalContent();
-            
+            await loadAllContentForSearch();
             const url = `https://api.themoviedb.org/3/trending/all/week?api_key=${TMDB_API_KEY}&language=en-US`;
             try {
                 const response = await fetch(url);
                 const data = await response.json();
                 const trendingTitles = data.results.map(item => (item.title || item.name).toLowerCase());
-                
                 const ourTrendingMovies = allContent.filter(item => {
                     const titleWithoutYear = item.title.replace(/\s\(\d{4}\)/, '').toLowerCase();
                     return trendingTitles.some(trendingTitle => 
                         titleWithoutYear.includes(trendingTitle) || trendingTitle.includes(titleWithoutYear)
                     );
                 });
-                
                 container.innerHTML = '';
                 if (ourTrendingMovies.length > 0) {
                     ourTrendingMovies.slice(0, 10).forEach(item => {
@@ -143,9 +124,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (searchTerm.length > 0) {
                     defaultRowsContainer.style.display = 'none';
                     searchResultsContainer.style.display = 'block';
-                    const filteredResults = allContent.filter(item => 
-                        item.title.toLowerCase().includes(searchTerm)
-                    );
+                    const filteredResults = allContent.filter(item => {
+                        const mainTitleMatch = item.title.toLowerCase().includes(searchTerm);
+                        let altTitleMatch = false;
+                        if (item.alternativeTitles && Array.isArray(item.alternativeTitles)) {
+                            altTitleMatch = item.alternativeTitles.some(altTitle => altTitle.toLowerCase().includes(searchTerm));
+                        }
+                        return mainTitleMatch || altTitleMatch;
+                    });
                     renderSearchResults(filteredResults);
                 } else {
                     defaultRowsContainer.style.display = 'block';
@@ -154,15 +140,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         
-        // PROSES UTAMA YANG BENAR
         const initializeApp = async () => {
-            // 1. Muat semua data ke memori untuk pencarian & trending
-            await loadAllInternalContent(); 
-            // 2. Tampilkan preview dari file masing-masing
+            await loadAllContentForSearch();
             loadCategoryPreview('movies', 'movies-list', 10);
             loadCategoryPreview('series', 'series-list', 10);
             loadCategoryPreview('indonesia', 'indonesia-list', 10);
-            // 3. Tampilkan trending
             loadTrending();
         };
 
